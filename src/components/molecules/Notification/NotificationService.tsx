@@ -5,7 +5,7 @@ import {
   CheckCircleFilled,
 } from '@ant-design/icons';
 import { notification } from 'antd';
-import './notification.scss';
+import './Notification.scss';
 
 export enum NotificationTypeEnum {
   SUCCESS = 'success',

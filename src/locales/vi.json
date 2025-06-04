@@ -34,9 +34,7 @@
     "ON_WAITING": "Đang chờ",
     "IS_EMPTY": "Đang trống",
     "OFFICIAL": "Chính thức",
-    "ON_STANDBY": "Dự phòng",
-    "LEARNING": "Đang học",
-    "UNLEARNED": "Chưa học"
+    "ON_STANDBY": "Dự phòng"
   },
   "SYNC": {
     "ALL": "Tất cả",
@@ -81,19 +79,6 @@
     "SUB_TITLE": "Xin lỗi, bạn không có quyền truy cập vào trang này.",
     "BACK_HOME": "Quay lại"
   },
-  "BREADCRUMB": {
-    "USERS": "Danh sách học viên",
-    "USER_DETAIL": "Chi tiết thông tin học viên",
-    "USER_UPDATE": "Cập nhật thông tin học viên",
-    "USER_CREATE": "Tạo mới thông tin học viên",
-    "USER_ASSIGN": "Gán quyền học viên",
-    "LIST": "Danh sách",
-    "DETAIL": "Chi tiết",
-    "CREATE": "Thêm mới",
-    "UPDATE": "Cập nhật",
-    "PROFILE": "Thông tin người dùng",
-    "PROFILE_UPDATE": "Cập nhật thông tin người dùng"
-  },
   "USER": {
     "ACCOUNT_TITLE": "Thông tin tài khoản",
     "PROFILE_TITLE": "Thông tin cá nhân",
@@ -102,7 +87,7 @@
     "EMAIL": "Email",
     "ADDRESS": "Địa chỉ",
     "ONLY_ADDRESS": "Địa chỉ",
-    "USER_LOW": "người dùng",
+    "USER_LOW": "Người dùng",
     "ROLE": "Vai trò",
     "DATE_OF_BIRTH": "Ngày sinh",
     "PLACEHOLDER": "Nhập thông tin",
@@ -112,7 +97,7 @@
     "GENDER": "Giới tính",
     "STATUS": "Trạng thái",
     "PASSWORD": "Mật khẩu",
-    "CHOOSE_ROLE": "vai trò"
+    "CHOOSE_ROLE": "Vai trò"
   },
   "TABLE": {
     "MANIPULATION": "Thao tác",
@@ -147,17 +132,9 @@
     "COPY": "Sao chép",
     "AVATAR": "Ảnh đại diện",
     "EDIT_IMAGE": "Cắt ảnh",
-    "IMPORT_COURSE": "Nhập báo cáo 1",
-    "IMPORT_TEACHER": "Import giáo viên",
-    "EXPORT_TEACHER": "Export giáo viên",
     "NOTE_AVATAR": "Ảnh hồ sơ giúp người khác nhận ra bạn và cũng giúp bạn nhận biết được rằng mình đã đăng nhập vào tài khoản",
-    "NOTE_AVATAR_STUDENT": "Ảnh hồ sơ giúp người khác nhận ra học viên",
-    "CONFIRM_REVERT": "Bạn có chắc muốn thu hồi thẻ {{name}} không?",
     "TITLE_REVERT": "Thu hồi {{name}}",
-    "IMPORT_MODAL_SUB_CONTENT": "Chỉ hỗ trợ đăng tải một file. Định dạng file được chấp nhận là {{fileExtensions}}",
-    "IMPORT_ERROR_REPORT": "Lỗi nhập BC1 khóa {{course}}",
-    "IMPORT_WARNING_REPORT": "Lỗi tạo mới khóa sau khóa {{course}}",
-    "IMPORT_VEHICLE": "Import xe"
+    "IMPORT_MODAL_SUB_CONTENT": "Chỉ hỗ trợ đăng tải một file. Định dạng file được chấp nhận là {{fileExtensions}}"
   },
   "VALIDATE": {
     "MIN": " {{field}} phải lớn hơn hoặc bằng {{number}}",

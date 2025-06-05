@@ -27,19 +27,26 @@ export default {
     },
     extend: {
       colors: {
-        primaryColor: '#003087',
-        secondaryColor: '#13C296',
-        greenLight6: '#DAF8E6',
-        greenDark: '#1A8245',
-        tableHeadColor: '#E6F0FA',
-        blueLight5: '#E1E8FF',
-        blueDark: '#1C3FB7',
-        dark8: '#E5E7EB',
-        dark3: '#374151',
-        redDark: '#E10E0E',
-        primaryTextColor: '#637381',
-        stroke: '#DFE4EA',
-        gray: '#F9FAFB',
+        primary: {
+          DEFAULT: 'var(--primary-color)',
+          light: 'var(--primary-color-light)',
+          bold: 'var(--primary-color-bold)',
+
+          second: 'var(--primary-second-color)',
+        },
+        pharagraph: {
+          DEFAULT: 'var(--pharagraph-color)',
+        },
+      },
+      backgroundColor: {
+        primary: {
+          DEFAULT: 'var(--primary-background)',
+        },
+        badge: {
+          paid: 'var(--badge--paid)',
+          pending: 'var(--badge-pending)',
+          overdue: 'var(--badge-overdue)',
+        },
       },
     },
   },

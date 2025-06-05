@@ -183,5 +183,9 @@
     "PASSWORD_INPUT": "Nhập mật khẩu",
     "EMAIL_INPUT": "Nhập email",
     "EMAIL": "Email"
+  },
+  "DASHBOARD": {
+    "MENU": "DANH SÁCH",
+    "SEARCH": "Tìm kiếm hoặc nhập lệnh..."
   }
 }

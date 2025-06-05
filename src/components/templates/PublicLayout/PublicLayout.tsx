@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Layout, Image } from 'antd';
+import { Outlet } from 'react-router-dom';
 
-import { getStorageData } from '@app/config';
-import { ACCESS_TOKEN } from '@app/constants';
-import { RootState } from '@app/redux/store';
+import SignInArea from '@app/assets/images/sign_in_area.png';
 
-const PublicLayout: React.FC = () => {
-  const navigate = useNavigate();
-  const { isAuth } = useSelector((state: RootState) => state.auth);
+import './PublicLayout.scss';
 
-  useEffect(() => {
-    if (getStorageData(ACCESS_TOKEN) && isAuth) {
-      navigate('/');
-    }
-  }, [isAuth, getStorageData(ACCESS_TOKEN)]);
-
-  return <Outlet />;
-};
+const PublicLayout = () => (
+  <Layout className='grid grid-cols-2 h-screen w-screen overflow-hidden'>
+    <div>
+      <Outlet />
+    </div>
+    <div>
+      <Image draggable={false} preview={false} src={SignInArea} width={'100%'} alt='logo' />
+    </div>
+  </Layout>
+);
 
 export default PublicLayout;

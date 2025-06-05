@@ -1,3 +1,3 @@
-import { Header } from './HeaderDashboard/Header';
+import { Header } from './HeaderDashboard';
 
 export { Header };

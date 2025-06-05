@@ -182,5 +182,9 @@
     "PASSWORD_INPUT": "Enter Password",
     "EMAIL_INPUT": "Enter Email",
     "EMAIL": "Email"
+  },
+  "DASHBOARD": {
+    "MENU": "MENU",
+    "SEARCH": "Search or type command..."
   }
 }

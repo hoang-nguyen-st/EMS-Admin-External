@@ -1,6 +1,8 @@
 import { Layout, Image } from 'antd';
 import { Outlet } from 'react-router-dom';
 
+import SignInArea from '@app/assets/images/sign_in_area.png';
+
 import './PublicLayout.scss';
 
 const PublicLayout = () => (
@@ -9,13 +11,7 @@ const PublicLayout = () => (
       <Outlet />
     </div>
     <div>
-      <Image
-        draggable={false}
-        preview={false}
-        src={'src/assets/images/sign_in_area.png'}
-        width={'100%'}
-        alt='logo'
-      />
+      <Image draggable={false} preview={false} src={SignInArea} width={'100%'} alt='logo' />
     </div>
   </Layout>
 );

@@ -2,7 +2,7 @@ import { Modal, Row, Typography } from 'antd';
 import { Translation } from 'react-i18next';
 
 import { ModalTypeEnum } from '@app/constants/modalType';
-import './openModal.scss';
+import './OpenModal.scss';
 
 export const openModal = (
   handleOkeAction: () => void,

@@ -28,7 +28,12 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         <I18nextProvider i18n={i18n}>
           <Provider store={store}>
             <Suspense fallback={<Spin />}>
-              <RouterProvider router={router} />
+              <RouterProvider
+                future={{
+                  v7_startTransition: true,
+                }}
+                router={router}
+              />
             </Suspense>
           </Provider>
         </I18nextProvider>

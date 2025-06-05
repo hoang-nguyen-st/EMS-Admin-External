@@ -5,5 +5,26 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   font-family: 'Nunito', sans-serif;
+}
+
+:root {
+  --primary-color: #465fff;
+  --primary-color-light: #ecf3ff;
+  --primary-color-bold: #262e89;
+
+  --primary-second-color: #344054;
+
+  --primary-background: #f8f8f8;
+
+  --badge--paid: #28a745;
+  --badge--pending: #021247;
+  --badge--overdue: #dc3545;
+
+  --pharagraph-color: #ffffff;
+}
+
+body {
+  background: var(--primary-background);
 }

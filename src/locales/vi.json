@@ -182,7 +182,9 @@
     "PASSWORD": "Mật khẩu",
     "PASSWORD_INPUT": "Nhập mật khẩu",
     "EMAIL_INPUT": "Nhập email",
-    "EMAIL": "Email"
+    "EMAIL": "Email",
+    "FORGOT_PASSWORD": "Quên mật khẩu?",
+    "POLICY": "Nhập email và mật khẩu của bạn để đăng nhập!"
   },
   "DASHBOARD": {
     "MENU": "DANH SÁCH",

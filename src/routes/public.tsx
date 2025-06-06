@@ -1,9 +1,15 @@
 import PublicLayout from '@app/components/templates/PublicLayout';
+import { SignIn } from '@app/pages';
 
 const routes = [
   {
     element: <PublicLayout />,
-    children: [],
+    children: [
+      {
+        path: '/sign-in',
+        element: <SignIn />,
+      },
+    ],
   },
 ];
 

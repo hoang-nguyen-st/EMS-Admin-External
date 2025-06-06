@@ -10,8 +10,15 @@ const PublicLayout = () => (
     <div>
       <Outlet />
     </div>
-    <div>
-      <Image draggable={false} preview={false} src={SignInArea} width={'100%'} alt='logo' />
+    <div className='overflow-hidden'>
+      <Image
+        draggable={false}
+        preview={false}
+        src={SignInArea}
+        width={'100%'}
+        height={'100%'}
+        alt='logo'
+      />
     </div>
   </Layout>
 );

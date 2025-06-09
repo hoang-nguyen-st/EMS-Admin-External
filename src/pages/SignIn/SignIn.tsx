@@ -22,7 +22,7 @@ const SignIn = () => {
   };
   return (
     <div className='flex items-center justify-center h-full w-full bg-white'>
-      <div className='w-[35vw]'>
+      <div className='w-[80vw] md:w-[35vw]'>
         <h1 className='text-4xl'>{t('LOGIN.TEXT')}</h1>
         <p className='mt-4 mb-8 text-gray-400'>{t<string>('LOGIN.POLICY')}</p>
         <Form id='form-sign-in-custom' form={form} onFinish={onFinish} layout='vertical'>

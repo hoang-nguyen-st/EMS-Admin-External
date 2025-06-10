@@ -182,7 +182,9 @@
     "PASSWORD": "Password",
     "PASSWORD_INPUT": "Enter Password",
     "EMAIL_INPUT": "Enter Email",
-    "EMAIL": "Email"
+    "EMAIL": "Email",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "POLICY": "Enter your email and password to sign in!"
   },
   "DASHBOARD": {
     "MENU": "MENU",

@@ -1,11 +1,8 @@
 import { SearchOutlined, BellOutlined, MoonOutlined, DownOutlined } from '@ant-design/icons';
-import { Input, Layout, Dropdown } from 'antd';
-import { useEffect } from 'react';
+import { Input, Layout, Dropdown, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
-import { NAVIGATE_URL } from '@app/constants';
 import { useLogout } from '@app/hooks';
 import { RootState } from '@app/redux/store';
 import type { MenuProps } from 'antd';
@@ -42,13 +39,13 @@ export const Header = () => {
         <MoonOutlined className='text-gray-500 text-lg cursor-pointer' />
         <BellOutlined className='text-yellow-400 text-lg cursor-pointer' />
         <Dropdown className='flex items-center gap-x-2' menu={{ items }} trigger={['click']}>
-          <button className='bg-white border-none cursor-pointer'>
+          <Button className='bg-white border-none cursor-pointer shadow-none'>
             <span className='h-8 w-8 bg-red-200 rounded-full'></span>
             <div className='text-black'>{user?.name}</div>
             <div>
               <DownOutlined className='cursor-pointer text-black' />
             </div>
-          </button>
+          </Button>
         </Dropdown>
       </div>
     </HeaderAntd>

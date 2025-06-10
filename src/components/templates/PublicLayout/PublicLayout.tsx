@@ -6,11 +6,11 @@ import SignInArea from '@app/assets/images/sign_in_area.png';
 import './PublicLayout.scss';
 
 const PublicLayout = () => (
-  <Layout className='grid grid-cols-2 h-screen w-screen overflow-hidden'>
+  <Layout className='grid grid-cols-1 md:grid-cols-2 h-screen w-screen overflow-hidden'>
     <div>
       <Outlet />
     </div>
-    <div className='overflow-hidden'>
+    <div className='overflow-hidden hidden md:block'>
       <Image
         draggable={false}
         preview={false}

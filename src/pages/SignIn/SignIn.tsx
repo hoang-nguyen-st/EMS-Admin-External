@@ -1,25 +1,37 @@
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { Rule } from 'antd/lib/form';
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 
 import { useSignInSchema } from './SignInSchema';
 import { yupSync } from '@app/helpers/yupSync';
+import { useLogin } from '@app/hooks';
 import { Credentials } from '@app/interface/user.interface';
-
+import { RootState } from '@app/redux/store';
 import './SignIn.scss';
 
 const SignIn = () => {
+  const { mutate: handleLogin } = useLogin();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const signInSchema = useSignInSchema();
+  const { isAuth } = useSelector((state: RootState) => state.auth);
 
   const validator = [yupSync(signInSchema)] as unknown as Rule[];
   const onFinish = (credentials: Credentials) => {
-    console.log(credentials);
+    handleLogin(credentials);
   };
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/', { replace: true });
+    }
+  }, []);
+
   return (
     <div className='flex items-center justify-center h-full w-full bg-white'>
       <div className='w-[80vw] md:w-[35vw]'>

@@ -187,5 +187,13 @@
   "DASHBOARD": {
     "MENU": "MENU",
     "SEARCH": "Search or type command..."
+  },
+  "SIDEBAR": {
+    "PROJECT": "Manage Project"
+  },
+  "PROJECT_MANAGEMENT": {
+    "TITLE": "Project Management",
+    "ALL": "Manage all project of your",
+    "SEARCH": "Search"
   }
 }

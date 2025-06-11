@@ -1,3 +1,4 @@
+import { FolderOutlined } from '@ant-design/icons';
 import { Layout, Image, Menu, MenuProps } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,15 @@ const SidebarMenu = () => {
   const navigate = useNavigate();
 
   const menuItems: MenuProps['items'] = [
+    {
+      key: '1',
+      label: <p className='text-primary-second'>{t<string>('SIDEBAR.PROJECT')}</p>,
+      icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate('project-management', { replace: true });
+      },
+      className: 'focus:bg-primary-light',
+    },
     // Example
     // {
     //   key: '1',

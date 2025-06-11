@@ -34,6 +34,7 @@ export const API_URL = {
   FIRST_REPORTS: '/report-1',
   DATA_CARD: '/report-1/dashboard-data-card',
   DATA_CHART: '/report-1/dashboard-data-chart',
+  PROJECTS: '/projects',
 };
 
 export const VEHICLES_URL = '/vehicles';

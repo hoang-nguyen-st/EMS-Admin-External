@@ -191,5 +191,13 @@
   "DASHBOARD": {
     "MENU": "DANH SÁCH",
     "SEARCH": "Tìm kiếm hoặc nhập lệnh..."
+  },
+  "SIDEBAR": {
+    "PROJECT": "Quản lý dự án"
+  },
+  "PROJECT_MANAGEMENT": {
+    "TITLE": "Quản lý dự án",
+    "ALL": "Quản lý tất cả dự án của bạn",
+    "SEARCH": "Tìm kiếm dự án"
   }
 }

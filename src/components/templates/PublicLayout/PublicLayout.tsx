@@ -2,7 +2,7 @@ import { Layout, Image } from 'antd';
 import { Outlet } from 'react-router-dom';
 
 import SignInArea from '@app/assets/images/sign_in_area.png';
-
+import Logo from '@app/assets/logo.png';
 import './PublicLayout.scss';
 
 const PublicLayout = () => (
@@ -10,7 +10,7 @@ const PublicLayout = () => (
     <div>
       <Outlet />
     </div>
-    <div className='overflow-hidden hidden md:block'>
+    <div className='overflow-hidden hidden md:block relative'>
       <Image
         draggable={false}
         preview={false}
@@ -19,6 +19,17 @@ const PublicLayout = () => (
         height={'100%'}
         alt='logo'
       />
+      <div className='absolute inset-0 flex items-center justify-center'>
+        <div className='flex flex-col items-center gap-y-4 w-1/2'>
+          <div className='flex items-center gap-x-2'>
+            <Image preview={false} src={Logo} width={40} height={40} />
+            <h1 className='text-white'>EMS</h1>
+          </div>
+          <p className='text-base text-center text-gray-400'>
+            System provides effective energy management solutions
+          </p>
+        </div>
+      </div>
     </div>
   </Layout>
 );

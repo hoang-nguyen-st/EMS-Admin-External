@@ -189,5 +189,8 @@
   "DASHBOARD": {
     "MENU": "DANH SÁCH",
     "SEARCH": "Tìm kiếm hoặc nhập lệnh..."
+  },
+  "PUBLIC_LAYOUT": {
+    "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
   }
 }

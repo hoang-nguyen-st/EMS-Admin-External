@@ -190,5 +190,8 @@
   "DASHBOARD": {
     "MENU": "MENU",
     "SEARCH": "Search or type command..."
+  },
+  "PUBLIC_LAYOUT": {
+    "TITLE": "System provides effective energy management solutions"
   }
 }

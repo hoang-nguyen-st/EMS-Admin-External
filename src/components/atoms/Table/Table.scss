@@ -34,7 +34,7 @@
     color: $text-basic;
 
     a {
-      color: #5646ff;
+      color: #465fff;
       font-weight: normal;
     }
   }
@@ -53,13 +53,13 @@
 
   .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
     .ant-select-selector {
-    border-color: #5646ff !important;
+    border-color: #465fff !important;
     box-shadow: unset !important;
   }
 
   .ant-select:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input)
     .ant-select-selector:hover {
-    border-color: #5646ff !important;
+    border-color: #465fff !important;
     box-shadow: unset !important;
   }
 
@@ -86,7 +86,7 @@
 
   .ant-pagination-item-active a {
     font-size: 18px;
-    color: #5646ff;
+    color: #465fff;
   }
 
   .ant-pagination-prev,

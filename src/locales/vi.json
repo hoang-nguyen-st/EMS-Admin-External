@@ -200,5 +200,8 @@
     "TITLE": "Quản lý dự án",
     "ALL": "Quản lý tất cả dự án của bạn",
     "SEARCH": "Tìm kiếm dự án"
+  },
+  "PUBLIC_LAYOUT": {
+    "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
   }
 }

@@ -1,8 +1,12 @@
 .ant-notification-notice {
-  border-radius: 12px;
-  width: fit-content;
-  padding: 10px;
+  border-radius: 6px;
+  padding: 18px !important;
 }
+
+.ant-notification-notice-wrapper {
+  overflow: hidden !important;
+}
+
 .notification-success {
   background-color: #00c07e;
 }
@@ -20,22 +24,23 @@
 }
 
 .ant-notification-notice-message {
-  color: white;
+  color: white !important;
   font-size: 14px !important;
+  margin-bottom: 0 !important;
 }
 
 .anticon.ant-notification-notice-icon-error {
-  color: white;
+  color: white !important;
 }
 
 .anticon.ant-notification-notice-icon-success {
-  color: white;
+  color: white !important;
 }
 
 .anticon.ant-notification-notice-icon-info {
-  color: white;
+  color: white !important;
 }
 
 .anticon.ant-notification-notice-icon-warning {
-  color: white;
+  color: white !important;
 }

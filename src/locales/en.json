@@ -198,5 +198,8 @@
     "TITLE": "Project Management",
     "ALL": "Manage all project of your",
     "SEARCH": "Search"
+  },
+  "PUBLIC_LAYOUT": {
+    "TITLE": "System provides effective energy management solutions"
   }
 }

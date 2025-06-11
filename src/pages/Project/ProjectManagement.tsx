@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 
 import { formatTime } from '@app/helpers';
 import { useGetProjects } from '@app/hooks/useProject';
-import { Project, ProjectFilters } from '@app/interface/project-management';
+import { Project, ProjectFilters, ProjectType } from '@app/interface/project-management';
 
 const { RangePicker } = DatePicker;
 
@@ -15,7 +15,7 @@ const ProjectManagement = () => {
   const { t } = useTranslation();
   const [filters, setFilters] = useState<ProjectFilters>({
     search: '',
-    projectType: 'business',
+    projectType: ProjectType.BUSINESS,
     page: 1,
     startDate: '',
     take: 9,
@@ -35,9 +35,9 @@ const ProjectManagement = () => {
       search: value,
       page: 1,
     }));
-  }, 1000);
+  }, 500);
 
-  const handleSelectProjectType = (value: ProjectFilters['projectType']) => {
+  const handleSelectProjectType = (value: ProjectType) => {
     setFilters((prev) => ({
       ...prev,
       projectType: value,
@@ -92,7 +92,7 @@ const ProjectManagement = () => {
           </div>
         </div>
         <div className='grid grid-cols-3 gap-4 my-8'>
-          {projects?.data?.data?.map((project: Project) => (
+          {projects?.data?.map((project: Project) => (
             <div
               key={project.id}
               className='bg-white rounded-xl shadow-[0_1px_8px_rgba(0,0,0,0.2)] p-6'
@@ -116,9 +116,9 @@ const ProjectManagement = () => {
         <Pagination
           align='end'
           showQuickJumper
-          current={projects?.data?.meta?.page}
-          pageSize={projects?.data?.meta?.take}
-          total={projects?.data?.meta?.itemCount}
+          current={projects?.meta?.page}
+          pageSize={projects?.meta?.take}
+          total={projects?.meta?.itemCount}
           onChange={handlePageChange}
         />
       </div>

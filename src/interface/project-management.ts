@@ -17,9 +17,15 @@ export interface Pagination {
   hasNextPage: boolean;
 }
 
+export enum ProjectType {
+  BUSINESS = 'business',
+  PRODUCTION = 'production',
+  RESIDENTIAL = 'residential',
+}
+
 export interface ProjectFilters {
   search?: string;
-  projectType: 'business' | 'production' | 'residential';
+  projectType: ProjectType;
   page: number;
   startDate?: string;
   endDate?: string;

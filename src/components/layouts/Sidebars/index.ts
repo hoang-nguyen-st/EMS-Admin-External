@@ -1,3 +1,1 @@
-import { Sidebar } from './SidebarDashboard';
-
-export { Sidebar };
+export * from './SidebarDashboard';

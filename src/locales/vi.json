@@ -97,7 +97,8 @@
     "GENDER": "Giới tính",
     "STATUS": "Trạng thái",
     "PASSWORD": "Mật khẩu",
-    "CHOOSE_ROLE": "Vai trò"
+    "CHOOSE_ROLE": "Vai trò",
+    "LOGOUT": "Đăng xuất"
   },
   "TABLE": {
     "MANIPULATION": "Thao tác",
@@ -175,7 +176,8 @@
     "ACCOUNT_TITLE": "Thông tin tài khoản",
     "PERSONAL_PROFILE": "Thông tin cá nhân",
     "NULL_INFO": "Chưa có thông tin",
-    "PLACEHOLDER_CONFIRM_PASSWORD": "Nhập lại mật khẩu mới"
+    "PLACEHOLDER_CONFIRM_PASSWORD": "Nhập lại mật khẩu mới",
+    "LOGOUT": "Đăng xuất"
   },
   "LOGIN": {
     "TEXT": "Đăng nhập",

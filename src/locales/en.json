@@ -174,7 +174,8 @@
     "ACCOUNT_TITLE": "Account Information",
     "PERSONAL_PROFILE": "Personal Information",
     "NULL_INFO": "No Information",
-    "PLACEHOLDER_CONFIRM_PASSWORD": "Re-enter New Password"
+    "PLACEHOLDER_CONFIRM_PASSWORD": "Re-enter New Password",
+    "LOGOUT": "Logout"
   },
   "LOGIN": {
     "TEXT": "Login",

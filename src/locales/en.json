@@ -190,5 +190,10 @@
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"
+  },
+  "USER_MANAGEMENT": {
+    "TITLE": "User Management",
+    "DESCRIPTION": "Manage all users in one place. Control access, assign roles, and monitor activity on your platform.",
+    "SEARCH": "Search users"
   }
 }

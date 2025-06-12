@@ -1,6 +1,7 @@
 import { lazy } from 'react';
 
 import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
+import { UserManagement } from '@app/pages';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
 const NotFound = lazy(() => import('@app/pages/NotFound/NotFound'));
@@ -20,7 +21,12 @@ const routes = [
       },
       {
         element: <DashboardLayout />,
-        children: [],
+        children: [
+          {
+            path: 'user-management',
+            element: <UserManagement />,
+          }
+        ],
       },
     ],
   },

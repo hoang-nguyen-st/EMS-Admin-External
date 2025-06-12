@@ -31,9 +31,9 @@ interface PaginateOptions {
   pageCount: number;
 }
 
-type TableProps = {
+interface TableProps {
   columns: ColumnsType<any>;
-  dataSource: [];
+  dataSource: any[];
   loading?: boolean;
   onChange?: (
     pagination: TablePaginationConfig,
@@ -75,9 +75,8 @@ export const Table: React.FC<TableProps> = ({
         locale={{
           emptyText: <EmptyData />,
         }}
-        className={`${disablePaginate === true ? 'br12' : ''} ${
-          hiddenScrollX ? 'hidden-scrollx' : ''
-        }`}
+        className={`${disablePaginate === true ? 'br12' : ''} ${hiddenScrollX ? 'hidden-scrollx' : ''
+          }`}
         summary={summary}
       />
       {disablePaginate === false && (

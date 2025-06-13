@@ -13,21 +13,21 @@ export const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
   const location = useLocation();
   const menuItems: MenuProps['items'] = [
     // Example
-    {
-      key: '1',
-      label: (
-        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
-          {t<string>('SIDEBAR PROJECT')}
-        </p>
-      ),
-      icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
-      onClick: () => {
-        navigate('', { replace: true });
-      },
-      className: `focus:bg-primary-light !bg-white ${
-        location.pathname === '/' && '!bg-primary-light'
-      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
-    },
+    // {
+    //   key: '1',
+    //   label: (
+    //     <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+    //       {t<string>('SIDEBAR PROJECT')}
+    //     </p>
+    //   ),
+    //   icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
+    //   onClick: () => {
+    //     navigate('', { replace: true });
+    //   },
+    //   className: `focus:bg-primary-light !bg-white ${
+    //     location.pathname === '/' && '!bg-primary-light'
+    //   } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    // },
   ];
   return (
     <Sider

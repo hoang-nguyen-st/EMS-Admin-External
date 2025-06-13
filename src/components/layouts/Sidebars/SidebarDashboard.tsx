@@ -1,3 +1,4 @@
+import { UserOutlined } from '@ant-design/icons';
 import { Layout, Image, Menu, MenuProps } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,15 @@ const SidebarMenu = () => {
   const navigate = useNavigate();
 
   const menuItems: MenuProps['items'] = [
+    {
+      key: 'user-management',
+      label: <p className='text-primary-second'>{t<string>('USER_MANAGEMENT.TITLE')}</p>,
+      icon: <UserOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate('user-management', { replace: true });
+      },
+      className: 'focus:bg-primary-light',
+    },
     // Example
     // {
     //   key: '1',

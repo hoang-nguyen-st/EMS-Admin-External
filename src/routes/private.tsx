@@ -25,7 +25,7 @@ const routes = [
           {
             path: 'user-management',
             element: <UserManagement />,
-          }
+          },
         ],
       },
     ],

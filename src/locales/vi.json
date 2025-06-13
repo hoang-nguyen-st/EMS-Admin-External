@@ -203,5 +203,10 @@
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
+  },
+  "USER_MANAGEMENT": {
+    "TITLE": "Quản lý người dùng",
+    "DESCRIPTION": "Quản lý tất cả người dùng ở một nơi. Kiểm soát quyền truy cập, chỉ định vai trò và theo dõi hoạt động trên nền tảng của bạn.",
+    "SEARCH": "Tìm kiếm người dùng"
   }
 }

@@ -27,11 +27,11 @@ export const useGetUsers = (params: GetUsersParams) =>
       const { data } = await getUsersAPI(params);
       return data;
     },
-    {
-      enabled: false,
-      keepPreviousData: true,
-      cacheTime: 0,
-    },
+    // {
+    //   enabled: false,
+    //   keepPreviousData: true,
+    //   cacheTime: 0,
+    // },
   );
 
 export const useGetUserById = (id: number) =>

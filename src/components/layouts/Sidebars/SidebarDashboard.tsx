@@ -1,4 +1,4 @@
-import { FolderOutlined } from '@ant-design/icons';
+import { FolderOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Image, Menu, MenuProps } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,14 @@ const SidebarMenu = () => {
       icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
       onClick: () => {
         navigate('project-management', { replace: true });
+      },
+    },
+    {
+      key: 'user-management',
+      label: <p className='text-primary-second'>{t<string>('USER_MANAGEMENT.TITLE')}</p>,
+      icon: <UserOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate('user-management', { replace: true });
       },
       className: 'focus:bg-primary-light',
     },

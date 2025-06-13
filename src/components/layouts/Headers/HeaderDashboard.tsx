@@ -1,4 +1,10 @@
-import { SearchOutlined, BellOutlined, MoonOutlined, DownOutlined } from '@ant-design/icons';
+import {
+  SearchOutlined,
+  DownOutlined,
+  MenuOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons';
 import { Input, Layout, Dropdown, Button } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -9,7 +15,15 @@ import type { MenuProps } from 'antd';
 
 const { Header: HeaderAntd } = Layout;
 
-export const Header = () => {
+export const Header = ({
+  collapsed,
+  handleCollapsed,
+  toggleMobileDrawer,
+}: {
+  collapsed: boolean;
+  handleCollapsed: () => void;
+  toggleMobileDrawer: () => void;
+}) => {
   const { t } = useTranslation();
   const { mutate: logout } = useLogout();
   const { user } = useSelector((state: RootState) => state.auth);
@@ -27,17 +41,30 @@ export const Header = () => {
   ];
 
   return (
-    <HeaderAntd id='header-dashboard' className='px-6 bg-white flex items-center justify-between'>
-      <div>
+    <HeaderAntd
+      id='header-dashboard'
+      className='px-6 bg-white flex items-center justify-between shadow-sm'
+    >
+      <div className='flex items-center gap-x-4'>
+        <Button
+          type='text'
+          icon={<MenuOutlined />}
+          onClick={toggleMobileDrawer}
+          className='text-2xl md:hidden'
+        />
+        <Button
+          type='text'
+          icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          onClick={handleCollapsed}
+          className='text-2xl hidden md:block'
+        />
         <Input
           placeholder={t<string>('DASHBOARD.SEARCH')}
-          className='w-[430px] py-2 bg-gray-100'
+          className='w-[220px] md:w-[430px] py-2 bg-gray-100'
           prefix={<SearchOutlined className='text-gray-500 text-2xl mr-2' />}
         />
       </div>
       <div className='flex items-center space-x-4'>
-        <MoonOutlined className='text-gray-500 text-lg cursor-pointer' />
-        <BellOutlined className='text-yellow-400 text-lg cursor-pointer' />
         <Dropdown className='flex items-center gap-x-2' menu={{ items }} trigger={['click']}>
           <Button className='bg-white border-none cursor-pointer shadow-none'>
             <span className='h-8 w-8 bg-red-200 rounded-full'></span>

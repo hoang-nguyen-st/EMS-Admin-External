@@ -11,17 +11,18 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { useLogout } from '@app/hooks';
-import { CollapseProps, CollapseHandle } from '@app/interface/common.interface';
 import { RootState } from '@app/redux/store';
 import type { MenuProps } from 'antd';
 
 const { Header: HeaderAntd } = Layout;
 
-export const Header = ({
-  collapsed,
-  handleCollapsed,
-  toggleMobileDrawer,
-}: CollapseProps & CollapseHandle) => {
+export interface HeaderProps {
+  handleCollapsed: () => void;
+  toggleMobileDrawer: () => void;
+  collapsed: boolean;
+}
+
+export const Header: FC<HeaderProps> = ({ collapsed, handleCollapsed, toggleMobileDrawer }) => {
   const { t } = useTranslation();
   const { mutate: logout } = useLogout();
   const { user } = useSelector((state: RootState) => state.auth);

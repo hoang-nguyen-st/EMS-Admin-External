@@ -186,7 +186,8 @@
   },
   "DASHBOARD": {
     "MENU": "MENU",
-    "SEARCH": "Search or type command..."
+    "SEARCH": "Search or type command...",
+    "TITLE": "Dashboard"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"

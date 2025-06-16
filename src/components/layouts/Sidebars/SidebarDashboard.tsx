@@ -1,35 +1,36 @@
-import { FolderOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
+import { AppstoreOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from '@app/assets/logo.png';
-import { CollapseProps } from '@app/interface/common.interface';
-
 const { Sider } = Layout;
 
-export const Sidebar: FC<CollapseProps> = ({ collapsed }) => {
+export interface SidebarProps {
+  collapsed: boolean;
+}
+
+export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const menuItems: MenuProps['items'] = [
-    // Example
-    // {
-    //   key: '1',
-    //   label: (
-    //     <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
-    //       {t<string>('SIDEBAR PROJECT')}
-    //     </p>
-    //   ),
-    //   icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
-    //   onClick: () => {
-    //     navigate('', { replace: true });
-    //   },
-    //   className: `focus:bg-primary-light !bg-white ${
-    //     location.pathname === '/' && '!bg-primary-light'
-    //   } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
-    // },
+    {
+      key: 'dashboard-overview',
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('DASHBOARD.TITLE')}
+        </p>
+      ),
+      icon: <AppstoreOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate('/', { replace: true });
+      },
+      className: `focus:bg-primary-light !bg-white ${
+        location.pathname === '/' && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
   ];
   return (
     <Sider

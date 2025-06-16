@@ -1,65 +1,60 @@
-import { Layout, Image, Menu, MenuProps } from 'antd';
-import { useState } from 'react';
+import { AppstoreOutlined } from '@ant-design/icons';
+import { Layout, Menu, Image, MenuProps } from 'antd';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import logo from '@app/assets/logo.png';
-import './SidebarDashboard.scss';
-
+import Logo from '@app/assets/logo.png';
 const { Sider } = Layout;
 
-const SidebarMenu = () => {
+export interface SidebarProps {
+  collapsed: boolean;
+}
+
+export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const menuItems: MenuProps['items'] = [
-    // Example
-    // {
-    //   key: '1',
-    //   label: <p className='text-primary-second'>{t<string>('SIDEBAR.PROJECT')}</p>,
-    //   icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
-    //   onClick: () => {
-    //     navigate('sign-in', { replace: true })
-    //   },
-    //   className: "focus:bg-primary-light"
-    // },
+    {
+      key: 'dashboard-overview',
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('DASHBOARD.TITLE')}
+        </p>
+      ),
+      icon: <AppstoreOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate('/', { replace: true });
+      },
+      className: `focus:bg-primary-light !bg-white ${
+        location.pathname === '/' && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
   ];
-
-  return <Menu theme='light' mode='inline' items={menuItems} className='rounded-xl' />;
-};
-
-const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  const { t } = useTranslation();
-
-  const handleCollapse = (collapsed: boolean) => {
-    setIsCollapsed(collapsed);
-  };
-
   return (
     <Sider
+      trigger={null}
       collapsible
-      collapsed={isCollapsed}
-      onCollapse={handleCollapse}
+      collapsed={collapsed}
       width={292}
-      className='h-screen bg-white border-[1px] shadow-md overflow-hidden'
+      className='min-h-screen bg-white shadow-md'
     >
-      <div className='px-6 pt-10 mb-2'>
-        <div className='flex items-center gap-x-2'>
-          <Image preview={false} src={logo} alt='logo' />
-          {!isCollapsed && <h1 className='text-2xl'>EMS</h1>}
-        </div>
-        <div className='mt-8'>
-          <p className={`text-gray-400 ${isCollapsed ? 'text-sm' : ''}`}>
-            {t<string>('DASHBOARD.MENU')}
-          </p>
-        </div>
+      <div
+        className={`${
+          collapsed ? 'p-4 justify-center' : 'p-6 justify-start'
+        } bg-white flex items-center gap-x-2`}
+      >
+        <Image src={Logo} preview={false} />
+        {!collapsed && <p className='text-2xl font-bold'>EMS</p>}
       </div>
-      <div className='px-6'>
-        <SidebarMenu />
-      </div>
+      <Menu
+        theme='dark'
+        mode='inline'
+        className='!bg-white'
+        defaultSelectedKeys={['1']}
+        items={menuItems}
+      />
     </Sider>
   );
 };
-
-export { Sidebar, SidebarMenu };

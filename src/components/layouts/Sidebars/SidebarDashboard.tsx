@@ -1,13 +1,15 @@
 import { FolderOutlined, HomeOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import Logo from '@app/assets/logo.png';
+import { CollapseProps } from '@app/interface/common.interface';
 
 const { Sider } = Layout;
 
-export const Sidebar = ({ collapsed }: { collapsed: boolean }) => {
+export const Sidebar: FC<CollapseProps> = ({ collapsed }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();

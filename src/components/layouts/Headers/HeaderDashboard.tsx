@@ -6,10 +6,12 @@ import {
   MenuFoldOutlined,
 } from '@ant-design/icons';
 import { Input, Layout, Dropdown, Button } from 'antd';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 
 import { useLogout } from '@app/hooks';
+import { CollapseProps, CollapseHandle } from '@app/interface/common.interface';
 import { RootState } from '@app/redux/store';
 import type { MenuProps } from 'antd';
 
@@ -19,11 +21,7 @@ export const Header = ({
   collapsed,
   handleCollapsed,
   toggleMobileDrawer,
-}: {
-  collapsed: boolean;
-  handleCollapsed: () => void;
-  toggleMobileDrawer: () => void;
-}) => {
+}: CollapseProps & CollapseHandle) => {
   const { t } = useTranslation();
   const { mutate: logout } = useLogout();
   const { user } = useSelector((state: RootState) => state.auth);

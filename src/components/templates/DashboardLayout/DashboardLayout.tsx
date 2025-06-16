@@ -8,6 +8,8 @@ import { Sidebar } from '@app/components/layouts/Sidebars';
 import { NAVIGATE_URL } from '@app/constants';
 import { RootState } from '@app/redux/store';
 
+import './DashboardLayout.scss';
+
 function DashboardLayout() {
   const { isAuth } = useSelector((state: RootState) => state.auth);
   const [collapsed, setCollapsed] = useState(false);
@@ -40,7 +42,7 @@ function DashboardLayout() {
         onClose={() => setMobileDrawerOpen(false)}
         open={mobileDrawerOpen}
         width={292}
-        className='md:hidden'
+        className='md:hidden sidebar-custom'
       >
         <Sidebar collapsed={false} />
       </Drawer>

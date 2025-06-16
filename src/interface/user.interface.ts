@@ -1,12 +1,16 @@
 import { GetListParams } from './common.interface';
 
 export interface UserColumns {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone: string;
   status: string;
-  operation: string;
+  address: string;
+  avatar?: string;
+  dateOfBirth: string;
+  identityId: string;
+  createdAt: string;
 }
 
 export interface Credentials {
@@ -61,7 +65,14 @@ export interface AssignPermissionParams {
   permissions: number[];
 }
 
+export enum UserStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+}
+
 export interface GetUsersParams extends GetListParams {
   search: string;
-  status: string | null;
+  status?: UserStatus;
+  startDate?: string | null;
+  endDate?: string | null;
 }

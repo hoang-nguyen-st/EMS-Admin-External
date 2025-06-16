@@ -1,4 +1,4 @@
-import { AppstoreOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, UserOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -30,6 +30,15 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       className: `focus:bg-primary-light !bg-white ${
         location.pathname === '/' && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
+    {
+      key: 'user-management',
+      label: <p className='text-primary-second'>{t<string>('USER_MANAGEMENT.TITLE')}</p>,
+      icon: <UserOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate('user-management', { replace: true });
+      },
+      className: 'focus:bg-primary-light',
     },
   ];
   return (

@@ -5,10 +5,13 @@ import { Dayjs } from 'dayjs';
 import { debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
+import { UserStatus, API_URL } from '@app/constants';
 import { formatTime } from '@app/helpers';
 import { useGetUsers } from '@app/hooks';
-import { GetUsersParams, UserColumns, UserStatus } from '@app/interface/user.interface';
+import { GetUsersParams, UserColumns } from '@app/interface/user.interface';
+
 import './UserManagement.scss';
 
 const { RangePicker } = DatePicker;
@@ -24,27 +27,30 @@ const columns: ColumnsType<any> = [
     render: (status: string) => (
       <span className={`status-tag ${status.toLowerCase()}`}>{status}</span>
     ),
+    className: '!text-center',
   },
   {
     title: 'Actions',
     key: 'actions',
     render: (_, record) => (
-      <>
+      <div className='text-center'>
         {record.status === 'active' ? (
           <EditOutlined className='text-lg' />
         ) : (
           <PlusOutlined className='text-lg' />
         )}
-      </>
+      </div>
     ),
+    className: '!text-center',
   },
 ];
 
 const UserManagement = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
-    status: UserStatus.ACTIVE,
+    status: UserStatus.DEFAULT,
     page: 1,
     take: 10,
   });
@@ -101,7 +107,7 @@ const UserManagement = () => {
     <div>
       <h1>{t<string>('USER_MANAGEMENT.TITLE')}</h1>
       <p className='my-4'>{t<string>('USER_MANAGEMENT.DESCRIPTION')}</p>
-      <div className='bg-white rounded-xl p-8'>
+      <div className='bg-white rounded-xl p-8 shadow'>
         <div className='grid grid-cols-2'>
           <div className='w-1/2'>
             <Input
@@ -117,8 +123,9 @@ const UserManagement = () => {
               className={'h-10 w-40'}
               value={filters.status}
               options={[
-                { value: 'active', label: 'Active' },
-                { value: 'inactive', label: 'Inactive' },
+                { value: UserStatus.DEFAULT, label: 'Status' },
+                { value: UserStatus.ACTIVE, label: 'Active' },
+                { value: UserStatus.INACTIVE, label: 'Inactive' },
               ]}
             />
             <RangePicker
@@ -133,6 +140,12 @@ const UserManagement = () => {
             columns={columns}
             dataSource={users}
             pagination={false}
+            onRow={(record) => ({
+              onClick: () => {
+                navigate(`${API_URL.USER_MANAGEMENT}/${record.key}`, { replace: true });
+              },
+              style: { cursor: 'pointer' },
+            })}
             id='user-management-table'
           />
           <Pagination

@@ -1,4 +1,6 @@
 import { GetListParams } from './common.interface';
+import { UserStatus } from '@app/constants';
+import { ProjectUserDetail } from '@app/interface/project-user.interface';
 
 export interface UserColumns {
   id: string;
@@ -65,14 +67,31 @@ export interface AssignPermissionParams {
   permissions: number[];
 }
 
-export enum UserStatus {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-}
-
 export interface GetUsersParams extends GetListParams {
   search: string;
   status?: UserStatus;
-  startDate?: string | null;
-  endDate?: string | null;
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface UserDetailProject {
+  id: string;
+  createdAt: string;
+  createdBy: string | null;
+  updatedAt: string;
+  updatedBy: string | null;
+  deletedAt: string | null;
+  deletedBy: string | null;
+  email: string;
+  phone: string;
+  password: string | null;
+  status: 'inactive' | string;
+  name: string;
+  dateOfBirth: string | null;
+  address: string | null;
+  identityId: string | null;
+  refreshToken: string | null;
+  avatar: string | null;
+  projectUsers: ProjectUserDetail[];
+  projectsCount: number;
 }

@@ -96,7 +96,8 @@
     "GENDER": "Gender",
     "STATUS": "Status",
     "PASSWORD": "Password",
-    "CHOOSE_ROLE": "Role"
+    "CHOOSE_ROLE": "Role",
+    "RETURN": "Return"
   },
   "TABLE": {
     "MANIPULATION": "Actions",
@@ -207,5 +208,16 @@
     "TITLE": "User Management",
     "DESCRIPTION": "Manage all users in one place. Control access, assign roles, and monitor activity on your platform.",
     "SEARCH": "Search users"
+  },
+  "USER_DETAIL": {
+    "CONTACT": "Contact Information",
+    "NO_INFORMATION": "No information provided",
+    "PROJECTS": "Projects",
+    "PROJECT_NAME": "Name project",
+    "PROJECT_ALL": "Projects",
+    "NO_PROJECT": "No project!",
+    "ROLE": "Role",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive"
   }
 }

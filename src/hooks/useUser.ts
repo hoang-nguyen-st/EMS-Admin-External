@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { GetUsersParams, UserDetail } from '@app/interface/user.interface';
+import { GetUsersParams, UserDetail, UserDetailProject } from '@app/interface/user.interface';
 import { createUser, deleteUserAPI, getUserByIdAPI, getUsersAPI, updateUser } from '@app/services';
 
 export const useCreateUser = () => {
@@ -21,21 +21,13 @@ export const useCreateUser = () => {
 };
 
 export const useGetUsers = (params: GetUsersParams) =>
-  useQuery(
-    [QUERY_KEY.USERS, params.search, params.status, params.page, params.take],
-    async () => {
-      const { data } = await getUsersAPI(params);
-      return data;
-    },
-    // {
-    //   enabled: false,
-    //   keepPreviousData: true,
-    //   cacheTime: 0,
-    // },
-  );
+  useQuery([QUERY_KEY.USERS, params.search, params.status, params.page, params.take], async () => {
+    const { data } = await getUsersAPI(params);
+    return data;
+  });
 
-export const useGetUserById = (id: number) =>
-  useQuery([QUERY_KEY.USERS, id], async () => {
+export const useGetUserById = (id: string) =>
+  useQuery<UserDetailProject>([QUERY_KEY.USERS, id], async () => {
     const { data } = await getUserByIdAPI(id);
     return data.data;
   });

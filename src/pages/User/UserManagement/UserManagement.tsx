@@ -5,6 +5,7 @@ import { Dayjs } from 'dayjs';
 import { debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { formatTime } from '@app/helpers';
 import { useGetUsers } from '@app/hooks';
@@ -42,6 +43,7 @@ const columns: ColumnsType<any> = [
 
 const UserManagement = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
     status: UserStatus.ACTIVE,
@@ -133,6 +135,12 @@ const UserManagement = () => {
             columns={columns}
             dataSource={users}
             pagination={false}
+            onRow={(record) => ({
+              onClick: () => {
+                navigate(`/user/${record.key}`, { replace: true });
+              },
+              style: { cursor: 'pointer' },
+            })}
             id='user-management-table'
           />
           <Pagination

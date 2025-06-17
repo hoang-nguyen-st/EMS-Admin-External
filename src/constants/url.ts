@@ -4,6 +4,7 @@ export const API_URL = {
   PERMISSIONS: '/permissions',
   PERMISSION: '/permission',
   USERS: '/users',
+  USER_MANAGEMENT: '/user-management',
   ASSIGN_PERMISSION: '/users/assign-permission',
   LOGIN: '/auth/login',
   REFRESH_TOKEN: '/auth/refresh',

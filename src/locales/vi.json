@@ -98,7 +98,8 @@
     "STATUS": "Trạng thái",
     "PASSWORD": "Mật khẩu",
     "CHOOSE_ROLE": "Vai trò",
-    "LOGOUT": "Đăng xuất"
+    "LOGOUT": "Đăng xuất",
+    "RETURN": "Trở về"
   },
   "TABLE": {
     "MANIPULATION": "Thao tác",
@@ -198,5 +199,16 @@
     "TITLE": "Quản lý người dùng",
     "DESCRIPTION": "Quản lý tất cả người dùng ở một nơi. Kiểm soát quyền truy cập, chỉ định vai trò và theo dõi hoạt động trên nền tảng của bạn.",
     "SEARCH": "Tìm kiếm người dùng"
+  },
+  "USER_DETAIL": {
+    "CONTACT": "Thông tin liên lạc",
+    "NO_INFORMATION": "Không có không tin được cung cấp",
+    "PROJECTS": "Danh sách dự án",
+    "PROJECT_NAME": "Tên dự án",
+    "PROJECT_ALL": "Tổng số dự án",
+    "NO_PROJECT": "Không có dự án!",
+    "ROLE": "Vai trò",
+    "ACTIVE": "Kích hoạt",
+    "INACTIVE": "Không hoạt động"
   }
 }

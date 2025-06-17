@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
 import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
-import { UserManagement } from '@app/pages';
+import { UserDetail, UserManagement } from '@app/pages';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
 const NotFound = lazy(() => import('@app/pages/NotFound/NotFound'));
@@ -30,6 +30,10 @@ const routes: RouteObject[] = [
           {
             path: 'user-management',
             element: <UserManagement />,
+          },
+          {
+            path: 'user/:id',
+            element: <UserDetail />,
           },
         ],
       },

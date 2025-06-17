@@ -22,7 +22,7 @@ const UserDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { data: user } = useGetUserById(id!);
   return (
-    <>
+    <div>
       <Link className='text-primary-second flex items-center gap-x-1' to={API_URL.USER_MANAGEMENT}>
         <LeftOutlined />
         {t<string>('USER.RETURN')}
@@ -80,7 +80,7 @@ const UserDetail = () => {
                 <FolderOutlined className='text-xl' />
               </div>
               <div className='flex-col'>
-                <p>{t<string>('USER_DETAIL.PROJECT_NAME')}</p>
+                <p>{t<string>('USER_DETAIL.PROJECT_ALL')}</p>
                 <p className='text-2xl font-bold'>{user?.projectsCount}</p>
               </div>
             </div>
@@ -133,7 +133,7 @@ const UserDetail = () => {
         </div>
         <div></div>
       </div>
-    </>
+    </div>
   );
 };
 

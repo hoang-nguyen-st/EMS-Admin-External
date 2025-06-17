@@ -84,13 +84,11 @@ export interface UserDetailProject {
   deletedBy?: string;
   email: string;
   phone: string;
-  password?: string;
-  status: 'inactive' | string;
+  status: UserStatus;
   name: string;
   dateOfBirth?: string;
   address?: string;
   identityId?: string;
-  refreshToken?: string;
   avatar?: string;
   projectUsers: ProjectUserDetail[];
   projectsCount: number;

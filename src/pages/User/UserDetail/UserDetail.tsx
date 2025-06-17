@@ -12,7 +12,7 @@ import { useParams, Link } from 'react-router-dom';
 
 import companyDefault from '@app/assets/images/company_default.jpg';
 import defaultAvatar from '@app/assets/images/default-avatar-profile.webp';
-import { API_URL } from '@app/constants';
+import { API_URL, UserStatus } from '@app/constants';
 import { formatTime } from '@app/helpers';
 import { useGetUserById } from '@app/hooks';
 import { ProjectUserDetail } from '@app/interface/project-user.interface';
@@ -51,9 +51,9 @@ const UserDetail = () => {
           </div>
           <div>
             <Button className='text-base'>
-              {user.status === 'active'
-                ? t<string>('USER_DETAIL.ACTIVE')
-                : t<string>('USER_DETAIL.INACTIVE')}
+              {user.status === UserStatus.ACTIVE
+                ? t('USER_DETAIL.ACTIVE')
+                : t('USER_DETAIL.INACTIVE')}
             </Button>
           </div>
         </div>
@@ -63,21 +63,19 @@ const UserDetail = () => {
             <div className='flex-col items-end space-y-2 text-gray-600'>
               <div className='flex items-center gap-x-2'>
                 <MailOutlined className='text-lg text-blue-900' />
-                {user.email || t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.email || t('USER_DETAIL.NO_INFORMATION')}
               </div>
               <div className='flex items-center gap-x-2'>
                 <PhoneOutlined className='text-lg text-green-600' />
-                {user.phone || t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.phone || t('USER_DETAIL.NO_INFORMATION')}
               </div>
               <div className='flex items-center gap-x-2'>
                 <CalendarFilled className='text-lg text-gray-400' />{' '}
-                {user.dateOfBirth
-                  ? formatTime(user.dateOfBirth)
-                  : t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.dateOfBirth ? formatTime(user.dateOfBirth) : t('USER_DETAIL.NO_INFORMATION')}
               </div>
               <div className='flex items-center gap-x-2'>
                 <EnvironmentOutlined className='text-lg text-red-600' />
-                {user.address || t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.address || t('USER_DETAIL.NO_INFORMATION')}
               </div>
             </div>
           </div>
@@ -87,7 +85,7 @@ const UserDetail = () => {
                 <FolderOutlined className='text-xl' />
               </div>
               <div className='flex-col'>
-                <p>{t<string>('USER_DETAIL.PROJECT_ALL')}</p>
+                <p>{t('USER_DETAIL.PROJECT_ALL')}</p>
                 <p className='text-2xl font-bold'>{user.projectsCount}</p>
               </div>
             </div>
@@ -98,13 +96,13 @@ const UserDetail = () => {
         <div className='p-8 bg-white shadow mt-6 rounded-xl'>
           <div className='flex items-center text-primary-bold gap-x-2 text-xl'>
             <FolderOutlined />
-            <p>{t<string>('USER_DETAIL.PROJECTS')}</p>
+            <p>{t('USER_DETAIL.PROJECTS')}</p>
           </div>
-          {(user.projectUsers?.length || 0) > 0 ? (
+          {user.projectUsers && user.projectUsers.length > 0 ? (
             <div>
               <div className='flex items-center justify-between my-4'>
-                <p>{t<string>('USER_DETAIL.PROJECT_NAME')}</p>
-                <p>{t<string>('USER_DETAIL.ROLE')}</p>
+                <p>{t('USER_DETAIL.PROJECT_NAME')}</p>
+                <p>{t('USER_DETAIL.ROLE')}</p>
               </div>
               {user.projectUsers.map((projectUser: ProjectUserDetail) => (
                 <div

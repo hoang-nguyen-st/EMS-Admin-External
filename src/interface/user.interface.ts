@@ -77,21 +77,21 @@ export interface GetUsersParams extends GetListParams {
 export interface UserDetailProject {
   id: string;
   createdAt: string;
-  createdBy: string | null;
+  createdBy?: string;
   updatedAt: string;
-  updatedBy: string | null;
-  deletedAt: string | null;
-  deletedBy: string | null;
+  updatedBy?: string;
+  deletedAt?: string;
+  deletedBy?: string;
   email: string;
   phone: string;
-  password: string | null;
+  password?: string;
   status: 'inactive' | string;
   name: string;
-  dateOfBirth: string | null;
-  address: string | null;
-  identityId: string | null;
-  refreshToken: string | null;
-  avatar: string | null;
+  dateOfBirth?: string;
+  address?: string;
+  identityId?: string;
+  refreshToken?: string;
+  avatar?: string;
   projectUsers: ProjectUserDetail[];
   projectsCount: number;
 }

@@ -116,11 +116,12 @@ const UserManagement = () => {
           </div>
           <div className='flex items-center gap-4 justify-end mb-4'>
             <Select
+              allowClear
               onChange={handleSelectProjectType}
               className={'h-10 w-40'}
               value={filters.status}
+              placeholder={'Status'}
               options={[
-                { value: UserStatus.DEFAULT, label: 'Status' },
                 { value: UserStatus.ACTIVE, label: 'Active' },
                 { value: UserStatus.INACTIVE, label: 'Inactive' },
               ]}

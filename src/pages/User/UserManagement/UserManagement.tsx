@@ -5,11 +5,13 @@ import { Dayjs } from 'dayjs';
 import { debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
-import { UserStatus } from '@app/constants';
+import { UserStatus, API_URL } from '@app/constants';
 import { formatTime } from '@app/helpers';
 import { useGetUsers } from '@app/hooks';
 import { GetUsersParams, UserColumns } from '@app/interface/user.interface';
+
 import './UserManagement.scss';
 
 const { RangePicker } = DatePicker;
@@ -45,6 +47,7 @@ const columns: ColumnsType<any> = [
 
 const UserManagement = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
     status: UserStatus.DEFAULT,
@@ -96,6 +99,10 @@ const UserManagement = () => {
     }));
   };
 
+  const handleRedirectUserDetail = (key: string) => {
+    navigate(`${API_URL.USER_MANAGEMENT}/${key}`, { replace: true });
+  };
+
   useEffect(() => {
     refetch();
   }, [filters]);
@@ -138,6 +145,10 @@ const UserManagement = () => {
             columns={columns}
             dataSource={users}
             pagination={false}
+            onRow={(record) => ({
+              onClick: () => handleRedirectUserDetail(record.key),
+            })}
+            className='cursor-pointer'
             id='user-management-table'
           />
           <Pagination

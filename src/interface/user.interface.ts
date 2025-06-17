@@ -1,5 +1,6 @@
 import { GetListParams } from './common.interface';
 import { UserStatus } from '@app/constants';
+import { ProjectUserDetail } from '@app/interface/project-user.interface';
 
 export interface UserColumns {
   id: string;
@@ -71,4 +72,24 @@ export interface GetUsersParams extends GetListParams {
   status?: UserStatus;
   startDate?: string;
   endDate?: string;
+}
+
+export interface UserDetailProject {
+  id: string;
+  createdAt: string;
+  createdBy?: string;
+  updatedAt: string;
+  updatedBy?: string;
+  deletedAt?: string;
+  deletedBy?: string;
+  email: string;
+  phone: string;
+  status: UserStatus;
+  name: string;
+  dateOfBirth?: string;
+  address?: string;
+  identityId?: string;
+  avatar?: string;
+  projectUsers: ProjectUserDetail[];
+  projectsCount: number;
 }

@@ -147,8 +147,8 @@ const UserManagement = () => {
             pagination={false}
             onRow={(record) => ({
               onClick: () => handleRedirectUserDetail(record.key),
-              style: { cursor: 'pointer' },
             })}
+            className='cursor-pointer'
             id='user-management-table'
           />
           <Pagination

@@ -32,7 +32,7 @@ const UserDetail = () => {
     <div>
       <Link className='text-primary-second flex items-center gap-x-1' to={API_URL.USER_MANAGEMENT}>
         <LeftOutlined />
-        {t<string>('USER.RETURN')}
+        {t('USER.RETURN')}
       </Link>
       <div className='rounded-xl shadow p-8 mt-4 bg-white space-y-4'>
         <div className='flex items-center justify-between'>
@@ -43,9 +43,7 @@ const UserDetail = () => {
             <div className='space-y-1'>
               <h1>{user.name}</h1>
               <p className='text-base text-gray-500'>
-                {user.dateOfBirth
-                  ? formatTime(user.dateOfBirth)
-                  : t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.dateOfBirth ? formatTime(user.dateOfBirth) : t('USER_DETAIL.NO_INFORMATION')}
               </p>
             </div>
           </div>

@@ -7,10 +7,11 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import { UserStatus } from '@app/constants';
+import { UserStatus, API_URL } from '@app/constants';
 import { formatTime } from '@app/helpers';
 import { useGetUsers } from '@app/hooks';
 import { GetUsersParams, UserColumns } from '@app/interface/user.interface';
+
 import './UserManagement.scss';
 
 const { RangePicker } = DatePicker;
@@ -141,7 +142,7 @@ const UserManagement = () => {
             pagination={false}
             onRow={(record) => ({
               onClick: () => {
-                navigate(`/user/${record.key}`, { replace: true });
+                navigate(`${API_URL.USER_MANAGEMENT}/${record.key}`, { replace: true });
               },
               style: { cursor: 'pointer' },
             })}

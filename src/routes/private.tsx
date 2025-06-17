@@ -32,7 +32,7 @@ const routes: RouteObject[] = [
             element: <UserManagement />,
           },
           {
-            path: 'user/:id',
+            path: 'user-management/:id',
             element: <UserDetail />,
           },
         ],

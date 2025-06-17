@@ -48,7 +48,13 @@ const UserDetail = () => {
             </div>
           </div>
           <div>
-            <Button className='text-base'>
+            <Button
+              className={`text-base px-8 py-5 rounded-2xl ${
+                user.status === UserStatus.ACTIVE
+                  ? 'bg-[#039855] text-white hover:!text-[#039855] hover:!border-[#A9B4BE]'
+                  : 'bg-[#A9B4BE] text-black hover:!text-black hover:!border-[#A9B4BE]'
+              }`}
+            >
               {user.status === UserStatus.ACTIVE
                 ? t('USER_DETAIL.ACTIVE')
                 : t('USER_DETAIL.INACTIVE')}
@@ -84,7 +90,7 @@ const UserDetail = () => {
               </div>
               <div className='flex-col'>
                 <p>{t('USER_DETAIL.PROJECT_ALL')}</p>
-                <p className='text-2xl font-bold'>{user.projectsCount}</p>
+                <p className='text-2xl font-bold'>{user.projectsCount || '0'}</p>
               </div>
             </div>
           </div>

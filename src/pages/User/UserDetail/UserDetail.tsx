@@ -6,7 +6,7 @@ import {
   EnvironmentOutlined,
   FolderOutlined,
 } from '@ant-design/icons';
-import { Image, Button } from 'antd';
+import { Image, Button, Empty, Spin } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { useParams, Link } from 'react-router-dom';
 
@@ -20,7 +20,14 @@ import { ProjectUserDetail } from '@app/interface/project-user.interface';
 const UserDetail = () => {
   const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
-  const { data: user } = useGetUserById(id!);
+  const { data: user, isLoading } = useGetUserById(id!);
+
+  if (isLoading || !user) {
+    return (
+      <div className='w-full text-center'>{isLoading ? <Spin size='large' /> : <Empty />}</div>
+    );
+  }
+
   return (
     <div>
       <Link className='text-primary-second flex items-center gap-x-1' to={API_URL.USER_MANAGEMENT}>
@@ -34,17 +41,17 @@ const UserDetail = () => {
               <Image className='w-full h-full object-cover' preview={false} src={defaultAvatar} />
             </div>
             <div className='space-y-1'>
-              <h1>{user?.name}</h1>
+              <h1>{user.name}</h1>
               <p className='text-base text-gray-500'>
-                {user?.dateOfBirth
-                  ? formatTime(user?.dateOfBirth)
+                {user.dateOfBirth
+                  ? formatTime(user.dateOfBirth)
                   : t<string>('USER_DETAIL.NO_INFORMATION')}
               </p>
             </div>
           </div>
           <div>
             <Button className='text-base'>
-              {user?.status === 'active'
+              {user.status === 'active'
                 ? t<string>('USER_DETAIL.ACTIVE')
                 : t<string>('USER_DETAIL.INACTIVE')}
             </Button>
@@ -56,21 +63,21 @@ const UserDetail = () => {
             <div className='flex-col items-end space-y-2 text-gray-600'>
               <div className='flex items-center gap-x-2'>
                 <MailOutlined className='text-lg text-blue-900' />
-                {user?.email || t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.email || t<string>('USER_DETAIL.NO_INFORMATION')}
               </div>
               <div className='flex items-center gap-x-2'>
                 <PhoneOutlined className='text-lg text-green-600' />
-                {user?.phone || t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.phone || t<string>('USER_DETAIL.NO_INFORMATION')}
               </div>
               <div className='flex items-center gap-x-2'>
                 <CalendarFilled className='text-lg text-gray-400' />{' '}
-                {user?.dateOfBirth
-                  ? formatTime(user?.dateOfBirth)
+                {user.dateOfBirth
+                  ? formatTime(user.dateOfBirth)
                   : t<string>('USER_DETAIL.NO_INFORMATION')}
               </div>
               <div className='flex items-center gap-x-2'>
                 <EnvironmentOutlined className='text-lg text-red-600' />
-                {user?.address || t<string>('USER_DETAIL.NO_INFORMATION')}
+                {user.address || t<string>('USER_DETAIL.NO_INFORMATION')}
               </div>
             </div>
           </div>
@@ -81,7 +88,7 @@ const UserDetail = () => {
               </div>
               <div className='flex-col'>
                 <p>{t<string>('USER_DETAIL.PROJECT_ALL')}</p>
-                <p className='text-2xl font-bold'>{user?.projectsCount}</p>
+                <p className='text-2xl font-bold'>{user.projectsCount}</p>
               </div>
             </div>
           </div>
@@ -93,13 +100,13 @@ const UserDetail = () => {
             <FolderOutlined />
             <p>{t<string>('USER_DETAIL.PROJECTS')}</p>
           </div>
-          {(user?.projectUsers?.length || 0) > 0 ? (
+          {(user.projectUsers?.length || 0) > 0 ? (
             <div>
               <div className='flex items-center justify-between my-4'>
                 <p>{t<string>('USER_DETAIL.PROJECT_NAME')}</p>
                 <p>{t<string>('USER_DETAIL.ROLE')}</p>
               </div>
-              {user?.projectUsers.map((projectUser: ProjectUserDetail) => (
+              {user.projectUsers.map((projectUser: ProjectUserDetail) => (
                 <div
                   key={projectUser.id}
                   className='py-4 shadow-[0px_-1px_0px_0px_rgba(0,0,0,0.2)]'
@@ -110,12 +117,12 @@ const UserDetail = () => {
                         <Image
                           className='w-full h-full object-cover'
                           preview={false}
-                          src={projectUser?.project?.image || companyDefault}
+                          src={projectUser.project.image || companyDefault}
                         />
                       </div>
                       <div>
-                        <p className='text-sm font-bold'>{projectUser?.project?.name}</p>
-                        <p className='text-gray-500'>{projectUser?.project?.projectType}</p>
+                        <p className='text-sm font-bold'>{projectUser.project.name}</p>
+                        <p className='text-gray-500'>{projectUser.project.projectType}</p>
                       </div>
                     </div>
                     <div className='font-bold bg-primary-bold py-2 px-4 rounded-full text-white'>
@@ -127,7 +134,7 @@ const UserDetail = () => {
             </div>
           ) : (
             <div>
-              <h1 className='text-base'>{t('USER_DETAIL.NO_PROJECT')}</h1>
+              <Empty />
             </div>
           )}
         </div>

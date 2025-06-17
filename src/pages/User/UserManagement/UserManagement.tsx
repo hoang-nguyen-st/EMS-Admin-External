@@ -99,6 +99,10 @@ const UserManagement = () => {
     }));
   };
 
+  const handleRedirectUserDetail = (key: string) => {
+    navigate(`${API_URL.USER_MANAGEMENT}/${key}`, { replace: true });
+  };
+
   useEffect(() => {
     refetch();
   }, [filters]);
@@ -141,9 +145,7 @@ const UserManagement = () => {
             dataSource={users}
             pagination={false}
             onRow={(record) => ({
-              onClick: () => {
-                navigate(`${API_URL.USER_MANAGEMENT}/${record.key}`, { replace: true });
-              },
+              onClick: () => handleRedirectUserDetail(record.key),
               style: { cursor: 'pointer' },
             })}
             id='user-management-table'

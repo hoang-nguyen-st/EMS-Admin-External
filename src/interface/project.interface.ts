@@ -3,7 +3,7 @@ export interface ProjectDetail {
   name: string;
   projectType: 'business' | string;
   status: 'active' | string;
-  image: string | null;
+  image?: string;
   creationTime: string;
-  description: string | null;
+  description?: string;
 }

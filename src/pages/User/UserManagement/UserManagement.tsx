@@ -6,9 +6,10 @@ import { debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { UserStatus } from '@app/constants';
 import { formatTime } from '@app/helpers';
 import { useGetUsers } from '@app/hooks';
-import { GetUsersParams, UserColumns, UserStatus } from '@app/interface/user.interface';
+import { GetUsersParams, UserColumns } from '@app/interface/user.interface';
 import './UserManagement.scss';
 
 const { RangePicker } = DatePicker;
@@ -24,19 +25,21 @@ const columns: ColumnsType<any> = [
     render: (status: string) => (
       <span className={`status-tag ${status.toLowerCase()}`}>{status}</span>
     ),
+    className: '!text-center',
   },
   {
     title: 'Actions',
     key: 'actions',
     render: (_, record) => (
-      <>
+      <div className='text-center'>
         {record.status === 'active' ? (
           <EditOutlined className='text-lg' />
         ) : (
           <PlusOutlined className='text-lg' />
         )}
-      </>
+      </div>
     ),
+    className: '!text-center',
   },
 ];
 
@@ -44,7 +47,7 @@ const UserManagement = () => {
   const { t } = useTranslation();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
-    status: UserStatus.ACTIVE,
+    status: UserStatus.DEFAULT,
     page: 1,
     take: 10,
   });
@@ -101,7 +104,7 @@ const UserManagement = () => {
     <div>
       <h1>{t<string>('USER_MANAGEMENT.TITLE')}</h1>
       <p className='my-4'>{t<string>('USER_MANAGEMENT.DESCRIPTION')}</p>
-      <div className='bg-white rounded-xl p-8'>
+      <div className='bg-white rounded-xl p-8 shadow'>
         <div className='grid grid-cols-2'>
           <div className='w-1/2'>
             <Input
@@ -113,12 +116,14 @@ const UserManagement = () => {
           </div>
           <div className='flex items-center gap-4 justify-end mb-4'>
             <Select
+              allowClear
               onChange={handleSelectProjectType}
               className={'h-10 w-40'}
               value={filters.status}
+              placeholder={'Status'}
               options={[
-                { value: 'active', label: 'Active' },
-                { value: 'inactive', label: 'Inactive' },
+                { value: UserStatus.ACTIVE, label: 'Active' },
+                { value: UserStatus.INACTIVE, label: 'Inactive' },
               ]}
             />
             <RangePicker

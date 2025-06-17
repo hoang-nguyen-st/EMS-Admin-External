@@ -24,16 +24,16 @@ const routes: RouteObject[] = [
         element: <DashboardLayout />,
         children: [
           {
+            path: '/',
+            element: <h1>Dashboard Overview</h1>,
+          },
+          {
             path: '/project-management',
             element: <ProjectManagement />,
           },
           {
             path: 'user-management',
             element: <UserManagement />,
-          },
-          {
-            path: '/',
-            element: <h1>Dashboard Overview</h1>,
           },
         ],
       },

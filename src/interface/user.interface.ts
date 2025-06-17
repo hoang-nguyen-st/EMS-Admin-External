@@ -1,4 +1,5 @@
 import { GetListParams } from './common.interface';
+import { UserStatus } from '@app/constants';
 
 export interface UserColumns {
   id: string;
@@ -65,14 +66,9 @@ export interface AssignPermissionParams {
   permissions: number[];
 }
 
-export enum UserStatus {
-  ACTIVE = 'active',
-  INACTIVE = 'inactive',
-}
-
 export interface GetUsersParams extends GetListParams {
   search: string;
   status?: UserStatus;
-  startDate?: string | null;
-  endDate?: string | null;
+  startDate?: string;
+  endDate?: string;
 }

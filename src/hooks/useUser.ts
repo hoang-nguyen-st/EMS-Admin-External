@@ -21,18 +21,10 @@ export const useCreateUser = () => {
 };
 
 export const useGetUsers = (params: GetUsersParams) =>
-  useQuery(
-    [QUERY_KEY.USERS, params.search, params.status, params.page, params.take],
-    async () => {
-      const { data } = await getUsersAPI(params);
-      return data;
-    },
-    // {
-    //   enabled: false,
-    //   keepPreviousData: true,
-    //   cacheTime: 0,
-    // },
-  );
+  useQuery([QUERY_KEY.USERS, params.search, params.status, params.page, params.take], async () => {
+    const { data } = await getUsersAPI(params);
+    return data;
+  });
 
 export const useGetUserById = (id: string) =>
   useQuery<UserDetailProject>([QUERY_KEY.USERS, id], async () => {

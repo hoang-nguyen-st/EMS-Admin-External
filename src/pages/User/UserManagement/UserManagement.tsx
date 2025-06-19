@@ -14,36 +14,35 @@ import './UserManagement.scss';
 
 const { RangePicker } = DatePicker;
 
-const columns: ColumnsType<any> = [
-  { title: 'Full Name', dataIndex: 'name', key: 'fullName' },
-  { title: 'Email', dataIndex: 'email', key: 'email' },
-  { title: 'Phone', dataIndex: 'phone', key: 'phone' },
-  { title: 'Joined Date', dataIndex: 'createdAt', key: 'createdAt' },
-  {
-    title: 'Status',
-    dataIndex: 'status',
-    render: (status: string) => (
-      <span className={`status-tag ${status.toLowerCase()}`}>{status}</span>
-    ),
-    className: '!text-center',
-  },
-  {
-    title: 'Actions',
-    key: 'actions',
-    render: (_, record) => (
-      <div className='text-center'>
-        {record.status === 'active' ? (
-          <EditOutlined className='text-lg' />
-        ) : (
-          <PlusOutlined className='text-lg' />
-        )}
-      </div>
-    ),
-    className: '!text-center',
-  },
-];
-
 const UserManagement = () => {
+  const columns: ColumnsType<any> = [
+    { title: 'Full Name', dataIndex: 'name', key: 'fullName' },
+    { title: 'Email', dataIndex: 'email', key: 'email' },
+    { title: 'Phone', dataIndex: 'phone', key: 'phone' },
+    { title: 'Joined Date', dataIndex: 'createdAt', key: 'createdAt' },
+    {
+      title: 'Status',
+      dataIndex: 'status',
+      render: (status: string) => (
+        <span className={`status-tag ${status.toLowerCase()}`}>{status}</span>
+      ),
+      className: '!text-center',
+    },
+    {
+      title: 'Actions',
+      key: 'actions',
+      render: (_, record) => (
+        <div className='text-center'>
+          {record.status === 'active' ? (
+            <EditOutlined className='text-lg' />
+          ) : (
+            <PlusOutlined className='text-lg' />
+          )}
+        </div>
+      ),
+      className: '!text-center',
+    },
+  ];
   const { t } = useTranslation();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',

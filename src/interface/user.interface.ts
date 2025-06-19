@@ -1,8 +1,5 @@
-import { Dayjs } from 'dayjs';
-
 import { GetListParams } from './common.interface';
 import { UserStatus } from '@app/constants';
-import { ProjectUserDetail } from '@app/interface/project-user.interface';
 
 export interface UserColumns {
   id: string;
@@ -74,55 +71,4 @@ export interface GetUsersParams extends GetListParams {
   status?: UserStatus;
   startDate?: string;
   endDate?: string;
-}
-
-export interface UserTableProps {
-  data: {
-    data: UserColumns[];
-    meta: {
-      page: number;
-      take: number;
-      itemCount: number;
-    };
-  };
-  onPageChange: (page: number) => void;
-  onAddUser: (record: any) => void;
-  onEditUser: (record: any) => void;
-}
-
-export interface UserFilterProps {
-  filters: {
-    search: string;
-    status?: UserStatus;
-  };
-  onSearchChange: (value: string) => void;
-  onStatusChange: (value: UserStatus) => void;
-  onDateChange: (dates: [Dayjs | null, Dayjs | null] | null, dateStrings: [string, string]) => void;
-}
-
-export interface UserModalProps {
-  visible: boolean;
-  user: any;
-  onCancel: () => void;
-  onSubmit: () => void;
-}
-
-export interface UserDetailProject {
-  id: string;
-  createdAt: string;
-  createdBy?: string;
-  updatedAt: string;
-  updatedBy?: string;
-  deletedAt?: string;
-  deletedBy?: string;
-  email: string;
-  phone: string;
-  status: UserStatus;
-  name: string;
-  dateOfBirth?: string;
-  address?: string;
-  identityId?: string;
-  avatar?: string;
-  projectUsers: ProjectUserDetail[];
-  projectsCount: number;
 }

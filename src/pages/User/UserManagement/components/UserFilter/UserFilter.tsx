@@ -1,12 +1,22 @@
 import { SearchOutlined } from '@ant-design/icons';
 import { Input, Select, DatePicker } from 'antd';
+import { Dayjs } from 'dayjs';
 import { debounce } from 'lodash';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { UserStatus } from '@app/constants';
-import { UserFilterProps } from '@app/interface/user.interface';
 const { RangePicker } = DatePicker;
+
+export interface UserFilterProps {
+  filters: {
+    search: string;
+    status?: UserStatus;
+  };
+  onSearchChange: (value: string) => void;
+  onStatusChange: (value: UserStatus) => void;
+  onDateChange: (dates: [Dayjs | null, Dayjs | null] | null, dateStrings: [string, string]) => void;
+}
 
 const UserFilter: FC<UserFilterProps> = ({
   filters,
@@ -27,7 +37,7 @@ const UserFilter: FC<UserFilterProps> = ({
           <Input
             onChange={(e) => handleSearchProject(e.currentTarget.value)}
             placeholder={t<string>('USER_MANAGEMENT.SEARCH')}
-            className='h-10 bg-white'
+            className='h-10 bg-white rounded-lg'
             prefix={<SearchOutlined className='text-gray-500 text-2xl mr-2' />}
           />
         </div>

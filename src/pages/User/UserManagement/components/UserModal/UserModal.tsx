@@ -2,11 +2,17 @@ import { Button, Modal } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { UserModalProps } from '@app/interface/user.interface';
+import { UserColumns } from '@app/interface/user.interface';
+
+export interface UserModalProps {
+  visible: boolean;
+  user: UserColumns | null;
+  onCancel: () => void;
+  onSubmit: () => void;
+}
 
 const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) => {
   const { t } = useTranslation();
-
   return (
     <Modal
       title={

@@ -6,13 +6,13 @@ import { useNavigate } from 'react-router-dom';
 import { UserTable, UserFilter, UserModal } from './components';
 import { API_URL, UserStatus } from '@app/constants';
 import { useGetUsers } from '@app/hooks';
-import { GetUsersParams } from '@app/interface/user.interface';
+import { GetUsersParams, UserColumns } from '@app/interface/user.interface';
 import './UserManagement.scss';
 
 const UserManagement = () => {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const [selectedUser, setSelectedUser] = useState<UserColumns | null>(null);
   const navigate = useNavigate();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
@@ -23,12 +23,12 @@ const UserManagement = () => {
 
   const { data, refetch } = useGetUsers(filters);
 
-  const handleAddUser = (record: any) => {
+  const handleAddUser = (record: UserColumns) => {
     setSelectedUser(record);
     setIsModalVisible(true);
   };
 
-  const handleEditUser = (record: any) => {
+  const handleEditUser = (record: UserColumns) => {
     setSelectedUser(record);
     setIsModalVisible(true);
   };
@@ -60,15 +60,12 @@ const UserManagement = () => {
   const handleStatusChange = (value: UserStatus) => {
     setFilters((prev) => ({
       ...prev,
-      status: value,
+      status: value ? value : UserStatus.DEFAULT,
       page: 1,
     }));
   };
 
-  const handleDateChange = (
-    dates: [Dayjs | null, Dayjs | null] | null,
-    dateStrings: [string, string],
-  ) => {
+  const handleDateChange = (dates: [Dayjs | null, Dayjs | null] | null) => {
     setFilters((prev) => ({
       ...prev,
       startDate: dates && dates[0] ? dates[0].format('YYYY-MM-DD') : '',

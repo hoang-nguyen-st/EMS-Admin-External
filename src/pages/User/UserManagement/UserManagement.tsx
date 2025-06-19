@@ -2,7 +2,7 @@ import { Dayjs } from 'dayjs';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { UserTable, UserFilter, UserModal } from './components';
+import { UserTable, UserModal } from './components';
 import { UserStatus } from '@app/constants';
 import { useGetUsers } from '@app/hooks';
 import { GetUsersParams, UserColumns } from '@app/interface/user.interface';
@@ -78,24 +78,21 @@ const UserManagement = () => {
   return (
     <div className='user-management'>
       <h1>{t<string>('USER_MANAGEMENT.TITLE')}</h1>
-      <p className='my-4'>{t<string>('USER_MANAGEMENT.DESCRIPTION')}</p>
+      <p className='my-4'>{t('USER_MANAGEMENT.DESCRIPTION')}</p>
       <div className='bg-white rounded-xl p-8 shadow'>
-        <UserFilter
-          filters={filters}
-          onSearchChange={handleSearchChange}
-          onStatusChange={handleStatusChange}
-          onDateChange={handleDateChange}
-        />
         <div className='space-y-4'>
           <UserTable
             data={data}
+            filters={filters}
+            onSearchChange={handleSearchChange}
+            onStatusChange={handleStatusChange}
+            onDateChange={handleDateChange}
             onPageChange={handlePageChange}
             onAddUser={handleAddUser}
             onEditUser={handleEditUser}
           />
         </div>
       </div>
-
       <UserModal
         visible={isModalVisible}
         user={selectedUser}

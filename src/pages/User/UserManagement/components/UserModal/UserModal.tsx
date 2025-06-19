@@ -1,7 +1,8 @@
-import { Button, Modal } from 'antd';
+import { Modal } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { UserStatus } from '@app/constants';
 import { UserColumns } from '@app/interface/user.interface';
 
 export interface UserModalProps {
@@ -13,10 +14,15 @@ export interface UserModalProps {
 
 const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) => {
   const { t } = useTranslation();
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <Modal
       title={
-        user?.status === 'active'
+        user.status === UserStatus.ACTIVE
           ? t<string>('USER_MANAGEMENT.EDIT')
           : t<string>('USER_MANAGEMENT.ADD')
       }

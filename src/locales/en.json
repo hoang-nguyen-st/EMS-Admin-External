@@ -195,6 +195,8 @@
   "USER_MANAGEMENT": {
     "TITLE": "User Management",
     "DESCRIPTION": "Manage all users in one place. Control access, assign roles, and monitor activity on your platform.",
-    "SEARCH": "Search users"
+    "SEARCH": "Search users",
+    "ADD": "Add user",
+    "EDIT": "Edit user"
   }
 }

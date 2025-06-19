@@ -19,12 +19,15 @@ export interface UserTableProps {
   onPageChange: (page: number) => void;
   onAddUser: (record: UserColumns) => void;
   onEditUser: (record: UserColumns) => void;
+  onRowClick: (id: string) => void;
 }
+
 const UserTable: FC<UserTableProps & TableProps> = ({
   data,
   onPageChange,
   onAddUser,
   onEditUser,
+  onRowClick,
 }) => {
   const { t } = useTranslation();
   const { meta } = data || {};
@@ -58,6 +61,7 @@ const UserTable: FC<UserTableProps & TableProps> = ({
           className='text-center !bg-transparent shadow-none border-none'
           onClick={(e) => {
             e.preventDefault();
+            e.stopPropagation();
             if (record.status === 'inactive') {
               onAddUser(record);
             } else {
@@ -76,9 +80,25 @@ const UserTable: FC<UserTableProps & TableProps> = ({
     },
   ];
 
+  const handleRowClick = (record: UserColumns) => {
+    return {
+      onClick: () => {
+        if (onRowClick) {
+          onRowClick(record.id);
+        }
+      },
+    };
+  };
+
   return (
     <div className='user-table'>
-      <Table columns={columns} dataSource={users} pagination={false} id='user-management-table' />
+      <Table
+        columns={columns}
+        dataSource={users}
+        pagination={false}
+        id='user-management-table'
+        onRow={handleRowClick}
+      />
       {meta ? (
         <Pagination
           align='end'

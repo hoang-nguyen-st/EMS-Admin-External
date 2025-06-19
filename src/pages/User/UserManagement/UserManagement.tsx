@@ -98,6 +98,7 @@ const UserManagement = () => {
             onPageChange={handlePageChange}
             onAddUser={handleAddUser}
             onEditUser={handleEditUser}
+            onRowClick={handleRedirectUserDetail}
           />
         </div>
       </div>

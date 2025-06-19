@@ -95,35 +95,3 @@ export interface UserDetailProject {
   projectUsers: ProjectUserDetail[];
   projectsCount: number;
 }
-
-export interface UserTableProps {
-  data: {
-    data: UserColumns[];
-    meta: {
-      page: number;
-      take: number;
-      itemCount: number;
-    };
-  };
-  onPageChange: (page: number) => void;
-  onAddUser: (record: any) => void;
-  onEditUser: (record: any) => void;
-  onRowClick?: (key: string) => void;
-}
-
-export interface UserFilterProps {
-  filters: {
-    search: string;
-    status?: UserStatus;
-  };
-  onSearchChange: (value: string) => void;
-  onStatusChange: (value: UserStatus) => void;
-  onDateChange: (dates: [Dayjs | null, Dayjs | null] | null, dateStrings: [string, string]) => void;
-}
-
-export interface UserModalProps {
-  visible: boolean;
-  user: any;
-  onCancel: () => void;
-  onSubmit: () => void;
-}

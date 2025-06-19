@@ -26,7 +26,7 @@ export const useGetUsers = (params: GetUsersParams) =>
     return data;
   });
 
-export const useGetUserById = (id: number) =>
+export const useGetUserById = (id: string) =>
   useQuery([QUERY_KEY.USERS, id], async () => {
     const { data } = await getUserByIdAPI(id);
     return data.data;

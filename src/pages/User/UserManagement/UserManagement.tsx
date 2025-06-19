@@ -1,9 +1,10 @@
 import { Dayjs } from 'dayjs';
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import { UserTable, UserFilter, UserModal } from './components';
-import { UserStatus } from '@app/constants';
+import { API_URL, UserStatus } from '@app/constants';
 import { useGetUsers } from '@app/hooks';
 import { GetUsersParams } from '@app/interface/user.interface';
 import './UserManagement.scss';
@@ -12,6 +13,7 @@ const UserManagement = () => {
   const { t } = useTranslation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState<any>(null);
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
     status: UserStatus.DEFAULT,
@@ -72,6 +74,10 @@ const UserManagement = () => {
       startDate: dates && dates[0] ? dates[0].format('YYYY-MM-DD') : '',
       endDate: dates && dates[1] ? dates[1].format('YYYY-MM-DD') : '',
     }));
+  };
+
+  const handleRedirectUserDetail = (key: string) => {
+    navigate(`${API_URL.USER_MANAGEMENT}/${key}`, { replace: true });
   };
 
   useEffect(() => {

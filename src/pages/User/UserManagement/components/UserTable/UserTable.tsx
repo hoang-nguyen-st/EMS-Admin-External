@@ -1,32 +1,43 @@
 import { EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Table, Pagination } from 'antd';
+import { Button, Table, Pagination, TableProps } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { formatTime } from '@app/helpers';
-import { UserColumns, UserTableProps } from '@app/interface/user.interface';
+import { UserColumns } from '@app/interface/user.interface';
 
-const UserTable: FC<UserTableProps> = ({
+export interface UserTableProps {
+  data: {
+    data: UserColumns[];
+    meta: {
+      page: number;
+      take: number;
+      itemCount: number;
+    };
+  };
+  onPageChange: (page: number) => void;
+  onAddUser: (record: UserColumns) => void;
+  onEditUser: (record: UserColumns) => void;
+}
+const UserTable: FC<UserTableProps & TableProps> = ({
   data,
   onPageChange,
   onAddUser,
   onEditUser,
-  onRowClick,
 }) => {
   const { t } = useTranslation();
+  const { meta } = data || {};
+  const users =
+    data && data.data
+      ? data.data.map((user: UserColumns) => ({
+          ...user,
+          key: user.id,
+          createdAt: formatTime(user.createdAt),
+        }))
+      : [];
 
-  const handleRowClick = (record: any) => {
-    return {
-      onClick: () => {
-        if (onRowClick) {
-          onRowClick(record.key);
-        }
-      },
-    };
-  };
-
-  const columns: ColumnsType<any> = [
+  const columns: ColumnsType<UserColumns> = [
     { title: 'Full Name', dataIndex: 'name', key: 'fullName' },
     { title: 'Email', dataIndex: 'email', key: 'email' },
     { title: 'Phone', dataIndex: 'phone', key: 'phone' },
@@ -65,36 +76,22 @@ const UserTable: FC<UserTableProps> = ({
     },
   ];
 
-  const users = data?.data.map((user: UserColumns) => {
-    return {
-      key: user.id,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      createdAt: formatTime(user.createdAt),
-      status: user.status,
-    };
-  });
-
   return (
     <div className='user-table'>
-      <Table
-        columns={columns}
-        dataSource={users}
-        pagination={false}
-        id='user-management-table'
-        onRow={handleRowClick}
-        rowClassName='cursor-pointer hover:bg-gray-50'
-      />
-      <Pagination
-        align='end'
-        showQuickJumper
-        current={data?.meta?.page}
-        pageSize={data?.meta?.take}
-        total={data?.meta?.itemCount}
-        onChange={onPageChange}
-        className='mt-6'
-      />
+      <Table columns={columns} dataSource={users} pagination={false} id='user-management-table' />
+      {meta ? (
+        <Pagination
+          align='end'
+          showQuickJumper
+          current={meta.page}
+          pageSize={meta.take}
+          total={meta.itemCount}
+          onChange={onPageChange}
+          className='mt-6'
+        />
+      ) : (
+        <span>Nothing</span>
+      )}
     </div>
   );
 };

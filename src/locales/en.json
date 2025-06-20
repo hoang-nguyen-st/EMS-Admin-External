@@ -197,6 +197,15 @@
     "DESCRIPTION": "Manage all users in one place. Control access, assign roles, and monitor activity on your platform.",
     "SEARCH": "Search users",
     "ADD": "Add user",
-    "EDIT": "Edit user"
+    "EDIT": "Edit user",
+    "FULLNAME": "Full name",
+    "PHONE": "Phone",
+    "JOIN_DATE": "Joined Date",
+    "STATUS": "Status",
+    "ACTION": "Action",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "START_DATE": "Start date",
+    "END_DATE": "End date"
   }
 }

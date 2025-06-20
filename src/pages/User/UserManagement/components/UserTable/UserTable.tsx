@@ -58,8 +58,8 @@ const UserTable: FC<UserTableProps> = ({
 
   const columns: ColumnsType<UserColumns> = [
     {
-      title: 'Full Name',
-      dataIndex: 'name',
+      title: t<string>('USER_MANAGEMENT.FULLNAME'),
+      dataIndex: 'fullname',
       key: 'fullName',
       render: (_, record) => (
         <div>
@@ -73,11 +73,23 @@ const UserTable: FC<UserTableProps> = ({
         </div>
       ),
     },
-    { title: 'Email', dataIndex: 'email', key: 'email' },
-    { title: 'Phone', dataIndex: 'phone', key: 'phone' },
-    { title: 'Joined Date', dataIndex: 'createdAt', key: 'createdAt' },
     {
-      title: 'Status',
+      title: 'Email',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: t<string>('USER_MANAGEMENT.PHONE'),
+      dataIndex: 'phone',
+      key: 'phone',
+    },
+    {
+      title: t<string>('USER_MANAGEMENT.JOIN_DATE'),
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+    },
+    {
+      title: t<string>('USER_MANAGEMENT.STATUS'),
       dataIndex: 'status',
       render: (status: string) => (
         <span className={`status-tag ${status.toLowerCase()}`}>
@@ -87,13 +99,12 @@ const UserTable: FC<UserTableProps> = ({
       className: '!text-center',
     },
     {
-      title: 'Actions',
+      title: t<string>('USER_MANAGEMENT.ACTION'),
       key: 'actions',
       render: (_, record) => (
         <Button
           className='text-center !bg-transparent shadow-none border-none'
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={() => {
             if (record.status === UserStatus.INACTIVE) {
               onAddUser(record);
             } else {
@@ -115,8 +126,8 @@ const UserTable: FC<UserTableProps> = ({
   return (
     <div className='user-table'>
       <div className='user-filter mb-4'>
-        <div className='grid grid-cols-2'>
-          <div className='w-1/2'>
+        <div className='flex flex-col md:grid md:grid-cols-2 gap-4'>
+          <div className='w-full md:w-1/2'>
             <Input
               onChange={(e) => handleSearchProject(e.currentTarget.value)}
               placeholder={t<string>('USER_MANAGEMENT.SEARCH')}
@@ -124,27 +135,35 @@ const UserTable: FC<UserTableProps> = ({
               prefix={<SearchOutlined className='text-gray-500 text-2xl mr-2' />}
             />
           </div>
-          <div className='flex items-center gap-4 justify-end'>
+          <div className='flex flex-col sm:flex-row items-center gap-4 justify-end'>
             <Select
               allowClear
               onChange={onStatusChange}
-              className='h-10 w-40'
+              className='h-10 w-full sm:w-40'
               value={filters.status || undefined}
-              placeholder='Status'
+              placeholder={t<string>('USER_MANAGEMENT.STATUS')}
               options={[
-                { value: UserStatus.ACTIVE, label: 'Active' },
-                { value: UserStatus.INACTIVE, label: 'Inactive' },
+                { value: UserStatus.ACTIVE, label: t<string>('USER_MANAGEMENT.ACTIVE') },
+                { value: UserStatus.INACTIVE, label: t<string>('USER_MANAGEMENT.INACTIVE') },
               ]}
             />
             <RangePicker
               onChange={onDateChange}
-              className='px-6 py-2 rounded-lg'
+              className='px-6 py-2 rounded-lg w-full sm:w-auto'
               format='DD/MM/YYYY'
             />
           </div>
         </div>
       </div>
-      <Table id='user-management-table' columns={columns} dataSource={users} pagination={false} />
+      <div className='table-wrapper'>
+        <Table
+          id='user-management-table'
+          columns={columns}
+          dataSource={users}
+          pagination={false}
+          scroll={{ x: 'max-content' }}
+        />
+      </div>
       {meta && (
         <Pagination
           align='end'

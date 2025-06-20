@@ -93,7 +93,9 @@ const UserTable: FC<UserTableProps> = ({
       dataIndex: 'status',
       render: (status: string) => (
         <span className={`status-tag ${status.toLowerCase()}`}>
-          {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
+          {status === UserStatus.ACTIVE
+            ? t('USER_MANAGEMENT.ACTIVE')
+            : t('USER_MANAGEMENT.INACTIVE')}
         </span>
       ),
       className: '!text-center',

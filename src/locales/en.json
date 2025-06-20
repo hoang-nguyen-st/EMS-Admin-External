@@ -218,6 +218,8 @@
     "NO_PROJECT": "No project!",
     "ROLE": "Role",
     "ACTIVE": "Active",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "START_DATE": "Start date",
+    "END_DATE": "End date"
   }
 }

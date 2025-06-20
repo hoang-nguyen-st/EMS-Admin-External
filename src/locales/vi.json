@@ -220,6 +220,8 @@
     "NO_PROJECT": "Không có dự án!",
     "ROLE": "Vai trò",
     "ACTIVE": "Kích hoạt",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
   }
 }

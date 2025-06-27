@@ -211,7 +211,18 @@
   "USER_MANAGEMENT": {
     "TITLE": "Quản lý người dùng",
     "DESCRIPTION": "Quản lý tất cả người dùng ở một nơi. Kiểm soát quyền truy cập, chỉ định vai trò và theo dõi hoạt động trên nền tảng của bạn.",
-    "SEARCH": "Tìm kiếm người dùng"
+    "SEARCH": "Tìm kiếm người dùng",
+    "ADD": "Thêm người dùng",
+    "EDIT": "Chỉnh sửa người dùng",
+    "ACTIVE": "Kích hoạt",
+    "INACTIVE": "Không hoạt động",
+    "FULLNAME": "Họ và tên",
+    "PHONE": "Số điện thoại",
+    "JOIN_DATE": "Ngày tham gia",
+    "STATUS": "Trạng thái",
+    "ACTION": "Hành động",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",
@@ -222,6 +233,8 @@
     "NO_PROJECT": "Không có dự án!",
     "ROLE": "Vai trò",
     "ACTIVE": "Kích hoạt",
-    "INACTIVE": "Không hoạt động"
+    "INACTIVE": "Inactive",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
   }
 }

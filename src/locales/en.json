@@ -209,7 +209,18 @@
   "USER_MANAGEMENT": {
     "TITLE": "User Management",
     "DESCRIPTION": "Manage all users in one place. Control access, assign roles, and monitor activity on your platform.",
-    "SEARCH": "Search users"
+    "SEARCH": "Search users",
+    "ADD": "Add user",
+    "EDIT": "Edit user",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "FULLNAME": "Full name",
+    "PHONE": "Phone",
+    "JOIN_DATE": "Joined Date",
+    "STATUS": "Status",
+    "ACTION": "Action",
+    "START_DATE": "Start date",
+    "END_DATE": "End date"
   },
   "USER_DETAIL": {
     "CONTACT": "Contact Information",
@@ -220,6 +231,8 @@
     "NO_PROJECT": "No project!",
     "ROLE": "Role",
     "ACTIVE": "Active",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "START_DATE": "Start date",
+    "END_DATE": "End date"
   }
 }

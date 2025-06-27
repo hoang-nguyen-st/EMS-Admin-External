@@ -232,6 +232,12 @@
     "ROLE": "Role",
     "ACTIVE": "Active",
     "INACTIVE": "Inactive",
+    "EDIT": "Edit user",
+    "FULLNAME": "Full name",
+    "PHONE": "Phone",
+    "JOIN_DATE": "Joined Date",
+    "STATUS": "Status",
+    "ACTION": "Action",
     "START_DATE": "Start date",
     "END_DATE": "End date"
   }

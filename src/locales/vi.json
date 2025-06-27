@@ -211,7 +211,16 @@
     "DESCRIPTION": "Quản lý tất cả người dùng ở một nơi. Kiểm soát quyền truy cập, chỉ định vai trò và theo dõi hoạt động trên nền tảng của bạn.",
     "SEARCH": "Tìm kiếm người dùng",
     "ADD": "Thêm người dùng",
-    "EDIT": "Chỉnh sửa người dùng"
+    "EDIT": "Chỉnh sửa người dùng",
+    "FULLNAME": "Họ và tên",
+    "PHONE": "Số điện thoại",
+    "JOIN_DATE": "Ngày tham gia",
+    "STATUS": "Trạng thái",
+    "ACTION": "Hành động",
+    "ACTIVE": "Đang hoạt động",
+    "INACTIVE": "Không hoạt động",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",

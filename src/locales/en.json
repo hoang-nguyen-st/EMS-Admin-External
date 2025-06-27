@@ -194,7 +194,9 @@
     "TITLE": "Dashboard"
   },
   "SIDEBAR": {
-    "PROJECT": "Manage Project"
+    "DASHBOARD": "Dashboard",
+    "PROJECT": "Project Management",
+    "USER": "User Management"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Project Management",

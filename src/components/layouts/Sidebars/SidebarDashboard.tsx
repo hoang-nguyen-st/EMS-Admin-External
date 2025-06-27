@@ -1,10 +1,12 @@
-import { AppstoreOutlined, UserOutlined } from '@ant-design/icons';
+import { FolderOutlined, UserOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from '@app/assets/logo.png';
+import { NAVIGATE_URL } from '@app/constants';
+
 const { Sider } = Layout;
 
 export interface SidebarProps {
@@ -17,28 +19,49 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
   const location = useLocation();
   const menuItems: MenuProps['items'] = [
     {
-      key: 'dashboard-overview',
+      key: '/',
       label: (
         <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
-          {t<string>('DASHBOARD.TITLE')}
+          {t<string>('SIDEBAR.DASHBOARD')}
         </p>
       ),
       icon: <AppstoreOutlined className='!text-2xl !text-primary-second' />,
       onClick: () => {
         navigate('/', { replace: true });
       },
-      className: `focus:bg-primary-light !bg-white ${
+      className: `focus:bg-primary-light ${
         location.pathname === '/' && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
     {
-      key: 'user-management',
-      label: <p className='text-primary-second'>{t<string>('USER_MANAGEMENT.TITLE')}</p>,
+      key: NAVIGATE_URL.PROJECT_MANAGEMENT,
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.PROJECT')}
+        </p>
+      ),
+      icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate(NAVIGATE_URL.PROJECT_MANAGEMENT, { replace: true });
+      },
+      className: `focus:bg-primary-light ${
+        location.pathname === NAVIGATE_URL.PROJECT_MANAGEMENT && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
+    {
+      key: NAVIGATE_URL.USER_MANAGEMENT,
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.USER')}
+        </p>
+      ),
       icon: <UserOutlined className='!text-2xl !text-primary-second' />,
       onClick: () => {
-        navigate('user-management', { replace: true });
+        navigate(NAVIGATE_URL.USER_MANAGEMENT, { replace: true });
       },
-      className: 'focus:bg-primary-light',
+      className: `focus:bg-primary-light ${
+        location.pathname === NAVIGATE_URL.USER_MANAGEMENT && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
   ];
   return (

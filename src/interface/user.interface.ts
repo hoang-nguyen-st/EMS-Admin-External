@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs';
+
 import { GetListParams } from './common.interface';
 import { UserStatus } from '@app/constants';
 

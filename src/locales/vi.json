@@ -196,7 +196,9 @@
     "TITLE": "Bảng điều khiển"
   },
   "SIDEBAR": {
-    "PROJECT": "Quản lý dự án"
+    "DASHBOARD": "Bảng điều khiển",
+    "PROJECT": "Quản lý dự án",
+    "USER": "Quản lý người dùng"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Quản lý dự án",

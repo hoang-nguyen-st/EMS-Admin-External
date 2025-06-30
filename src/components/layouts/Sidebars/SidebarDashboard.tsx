@@ -45,7 +45,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
         navigate(NAVIGATE_URL.PROJECT_MANAGEMENT, { replace: true });
       },
       className: `focus:bg-primary-light ${
-        location.pathname === NAVIGATE_URL.PROJECT_MANAGEMENT && '!bg-primary-light'
+        location.pathname.includes(NAVIGATE_URL.PROJECT_MANAGEMENT) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
     {
@@ -60,7 +60,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
         navigate(NAVIGATE_URL.USER_MANAGEMENT, { replace: true });
       },
       className: `focus:bg-primary-light ${
-        location.pathname === NAVIGATE_URL.USER_MANAGEMENT && '!bg-primary-light'
+        location.pathname.includes(NAVIGATE_URL.USER_MANAGEMENT) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
   ];

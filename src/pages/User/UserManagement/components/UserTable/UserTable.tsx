@@ -155,7 +155,7 @@ const UserTable: FC<UserTableProps> = ({
               format='DD/MM/YYYY'
             />
             <Button onClick={onAddUser} className='px-6 py-5 bg-[#465FFF] text-white'>
-              Add User
+              {t('USER_MANAGEMENT.ADD')}
             </Button>
           </div>
         </div>

@@ -242,7 +242,8 @@
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",
-
+    "PENDING": "Chưa giải quyết",
+    "BLOCKED": "Bị khóa",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày két thúc"
   }

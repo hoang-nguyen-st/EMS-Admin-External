@@ -1,3 +1,4 @@
+import { SyncOutlined } from '@ant-design/icons';
 import { Modal, Button, Form, Input, DatePicker } from 'antd';
 import { Rule } from 'antd/lib/form';
 import { FC, useState, useEffect } from 'react';
@@ -23,7 +24,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
   const signInSchema = useSignInSchema();
 
   const validator = [yupSync(signInSchema)] as unknown as Rule[];
-  const { mutate: handleCreateUser } = useCreateUserByAdmin();
+  const { mutate: handleCreateUser, isLoading } = useCreateUserByAdmin();
   const onFinish = (credentials: CreateUserDto) => {
     handleCreateUser(credentials, {
       onSuccess: () => {
@@ -100,6 +101,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
           </Form.Item>
           <Form.Item>
             <Button
+              loading={isLoading && { icon: <SyncOutlined spin /> }}
               type='primary'
               htmlType='submit'
               className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-2xl hover:!bg-primary-second hover:text-black transition duration-300'

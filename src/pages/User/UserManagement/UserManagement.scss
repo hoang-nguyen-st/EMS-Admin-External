@@ -13,28 +13,4 @@
   .ant-table-tbody tr:nth-child(even) {
     background-color: #f3f8ff;
   }
-  .status-tag {
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 500;
-    font-size: 13px;
-  }
-
-  .status-tag {
-    padding: 8px 16px;
-    border-radius: 20px;
-    color: white;
-  }
-
-  .status-tag.active {
-    background-color: #28a745;
-  }
-
-  .status-tag.inactive {
-    background-color: #8b969f;
-  }
-
-  .status-tag.pending {
-    background-color: #262e89;
-  }
 }

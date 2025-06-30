@@ -74,3 +74,11 @@ export interface GetUsersParams extends GetListParams {
   startDate?: string;
   endDate?: string;
 }
+
+export interface CreateUserDto {
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  dateOfBirth: string;
+}

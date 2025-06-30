@@ -1,9 +1,13 @@
-import { Modal } from 'antd';
+import { SyncOutlined } from '@ant-design/icons';
+import { Modal, Button, Form, Input, DatePicker } from 'antd';
+import { Rule } from 'antd/lib/form';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { UserStatus } from '@app/constants';
-import { UserColumns } from '@app/interface/user.interface';
+import { useSignInSchema } from './UserModalSchema';
+import { yupSync } from '@app/helpers/yupSync';
+import { useCreateUserByAdmin } from '@app/hooks';
+import { CreateUserDto, UserColumns } from '@app/interface/user.interface';
 
 export interface UserModalProps {
   visible: boolean;
@@ -15,6 +19,20 @@ export interface UserModalProps {
 const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) => {
   const { t } = useTranslation();
   const [isMounted, setIsMounted] = useState(false);
+
+  const [form] = Form.useForm();
+  const signInSchema = useSignInSchema();
+
+  const validator = [yupSync(signInSchema)] as unknown as Rule[];
+  const { mutate: handleCreateUser, isLoading } = useCreateUserByAdmin();
+  const onFinish = (credentials: CreateUserDto) => {
+    handleCreateUser(credentials, {
+      onSuccess: () => {
+        onCancel();
+        form.resetFields();
+      },
+    });
+  };
 
   useEffect(() => {
     if (visible) {
@@ -37,7 +55,63 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
       onCancel={onCancel}
       afterClose={handleAfterClose}
       footer={[]}
-    ></Modal>
+      width={'60%'}
+    >
+      <h1 className='text-center'>
+        {user ? t<string>('USER_MANAGEMENT.EDIT') : t<string>('USER_MANAGEMENT.ADD')}
+      </h1>
+      <Form form={form} onFinish={onFinish} layout='vertical' className='px-12'>
+        <div className='grid md:grid-template-columns-[repeat(auto-fit,minmax(200px,1fr))] gap-x-12 mt-4'>
+          <Form.Item label={t<string>('USER.NAME')} name='name' rules={validator}>
+            <Input className='w-full py-3 pl-4 pr-3' placeholder={t<string>('USER.NAME')} />
+          </Form.Item>
+          <Form.Item label={t<string>('USER.EMAIL')} name='email' rules={validator}>
+            <Input
+              name='email'
+              className='w-full py-3 pl-4 pr-3'
+              placeholder={t<string>('USER.EMAIL')}
+            />
+          </Form.Item>
+          <Form.Item label={t<string>('USER.PHONE')} name='phone' rules={validator}>
+            <Input className='w-full py-3 pl-4 pr-3' placeholder={t<string>('USER.PHONE')} />
+          </Form.Item>
+          <Form.Item label={t<string>('USER.DATE_OF_BIRTH')} name='dateOfBirth' rules={validator}>
+            <DatePicker
+              placeholder={t<string>('USER.DATE_OF_BIRTH')}
+              className='py-3 w-full pr-3'
+            />
+          </Form.Item>
+          <Form.Item
+            label={t<string>('USER.ADDRESS')}
+            name='address'
+            rules={validator}
+            className='col-span-2'
+          >
+            <Input className='w-full py-3 pl-4 pr-3' placeholder={t<string>('USER.ADDRESS')} />
+          </Form.Item>
+        </div>
+        <div className='flex items-center justify-end gap-x-4'>
+          <Form.Item>
+            <Button
+              onClick={onCancel}
+              className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-2xl hover:text-black transition duration-300'
+            >
+              {t('BUTTON.CANCEL')}
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            <Button
+              loading={isLoading && { icon: <SyncOutlined spin /> }}
+              type='primary'
+              htmlType='submit'
+              className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-2xl hover:!bg-primary-second hover:text-black transition duration-300'
+            >
+              {t('BUTTON.CREATE')}
+            </Button>
+          </Form.Item>
+        </div>
+      </Form>
+    </Modal>
   );
 };
 

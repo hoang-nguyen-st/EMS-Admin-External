@@ -212,6 +212,8 @@
     "ACTION": "Hành động",
     "ACTIVE": "Đang hoạt động",
     "INACTIVE": "Không hoạt động",
+    "PENDING": "Chưa giải quyết",
+    "BLOCKED": "Bị khóa",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày két thúc"
   }

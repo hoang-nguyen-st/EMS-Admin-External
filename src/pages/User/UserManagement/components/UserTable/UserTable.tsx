@@ -56,6 +56,17 @@ const UserTable: FC<UserTableProps> = ({
     onSearchChange(value);
   }, 500);
 
+  const setStatus = (status: UserStatus) => {
+    switch (status) {
+      case UserStatus.ACTIVE:
+        return t('USER_MANAGEMENT.ACTIVE');
+      case UserStatus.INACTIVE:
+        return t('USER_MANAGEMENT.INACTIVE');
+      case UserStatus.PENDING:
+        return t('USER_MANAGEMENT.PENDING');
+    }
+  };
+
   const columns: ColumnsType<UserColumns> = [
     {
       title: t<string>('USER_MANAGEMENT.FULLNAME'),
@@ -92,17 +103,18 @@ const UserTable: FC<UserTableProps> = ({
       title: t<string>('USER_MANAGEMENT.STATUS'),
       dataIndex: 'status',
       render: (status: string) => (
-        <span className={`status-tag ${status.toLowerCase()}`}>
-          {(() => {
-            switch (status) {
-              case UserStatus.ACTIVE:
-                return t('USER_MANAGEMENT.ACTIVE');
-              case UserStatus.INACTIVE:
-                return t('USER_MANAGEMENT.INACTIVE');
-              case UserStatus.PENDING:
-                return t('USER_MANAGEMENT.PENDING');
-            }
-          })()}
+        <span
+          className={`px-4 py-2 rounded-2xl text-white ${
+            status === UserStatus.ACTIVE
+              ? 'bg-[#28a745]'
+              : status === UserStatus.PENDING
+              ? 'bg-[#262e89]'
+              : status === UserStatus.INACTIVE
+              ? 'bg-[#8b969f]'
+              : ''
+          }`}
+        >
+          {setStatus(status as UserStatus)}
         </span>
       ),
       className: '!text-center',

@@ -216,6 +216,8 @@
     "EDIT": "Chỉnh sửa người dùng",
     "ACTIVE": "Kích hoạt",
     "INACTIVE": "Không hoạt động",
+    "PENDING": "Chưa giải quyết",
+    "BLOCKED": "Bị khóa",
     "FULLNAME": "Họ và tên",
     "PHONE": "Số điện thoại",
     "JOIN_DATE": "Ngày tham gia",
@@ -240,6 +242,7 @@
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",
+
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày két thúc"
   }

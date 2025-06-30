@@ -21,8 +21,7 @@ const UserManagement = () => {
 
   const { data, refetch } = useGetUsers(filters);
 
-  const handleAddUser = (record: UserColumns) => {
-    setSelectedUser(record);
+  const handleAddUser = () => {
     setIsModalVisible(true);
   };
 

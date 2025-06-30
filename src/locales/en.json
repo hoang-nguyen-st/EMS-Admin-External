@@ -214,6 +214,8 @@
     "EDIT": "Edit user",
     "ACTIVE": "Active",
     "INACTIVE": "Inactive",
+    "PENDING": "Pending",
+    "BLOCKED": "Blocked",
     "FULLNAME": "Full name",
     "PHONE": "Phone",
     "JOIN_DATE": "Joined Date",

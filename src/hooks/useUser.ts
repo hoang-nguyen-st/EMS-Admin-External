@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules/index';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { CreateUserByAdmin, GetUsersParams, UserDetail } from '@app/interface/user.interface';
+import { CreateUserDto, GetUsersParams, UserDetail } from '@app/interface/user.interface';
 import {
   createUser,
   deleteUserAPI,
@@ -31,7 +31,7 @@ export const useCreateUser = () => {
 export const useCreateUserByAdmin = () => {
   const queryClient = useQueryClient();
   return useMutation(
-    async (data: CreateUserByAdmin) => {
+    async (data: CreateUserDto) => {
       return await createUserByAdmin(data);
     },
     {

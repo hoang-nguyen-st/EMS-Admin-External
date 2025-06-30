@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_URL } from '@app/constants';
-import { CreateUserByAdmin, GetUsersParams, UserDetail } from '@app/interface/user.interface';
+import { CreateUserDto, GetUsersParams, UserDetail } from '@app/interface/user.interface';
 
 export const getUsersAPI = async (params: GetUsersParams) =>
   await axios.get(API_URL.USERS, { params });
@@ -21,5 +21,5 @@ export const createUser = async (formData: FormData) =>
     headers: { 'Content-Type': 'multipart/form-data' },
   });
 
-export const createUserByAdmin = async (data: CreateUserByAdmin) =>
+export const createUserByAdmin = async (data: CreateUserDto) =>
   await axios.post(API_URL.USERS, data);

@@ -92,7 +92,17 @@ const UserTable: FC<UserTableProps> = ({
       title: t<string>('USER_MANAGEMENT.STATUS'),
       dataIndex: 'status',
       render: (status: string) => (
-        <span className={`status-tag ${status.toLowerCase()}`}>
+        <span
+          className={`px-4 py-2 rounded-2xl text-white ${
+            status === UserStatus.ACTIVE
+              ? 'bg-[#28a745]'
+              : status === UserStatus.PENDING
+              ? 'bg-[#262e89]'
+              : status === UserStatus.INACTIVE
+              ? 'bg-[#8b969f]'
+              : ''
+          }`}
+        >
           {(() => {
             switch (status) {
               case UserStatus.ACTIVE:

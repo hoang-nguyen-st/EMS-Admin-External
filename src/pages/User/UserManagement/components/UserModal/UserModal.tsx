@@ -32,7 +32,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
 
   return (
     <Modal
-      title={user ? t<string>('USER_MANAGEMENT.EDIT') : t<string>('USER_MANAGEMENT.ADD')}
+      title={user ? 'USER_MANAGEMENT.EDIT' : 'USER_MANAGEMENT.ADD'}
       open={visible}
       onCancel={onCancel}
       afterClose={handleAfterClose}

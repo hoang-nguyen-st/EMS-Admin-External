@@ -56,6 +56,17 @@ const UserTable: FC<UserTableProps> = ({
     onSearchChange(value);
   }, 500);
 
+  const setStatus = (status: UserStatus) => {
+    switch (status) {
+      case UserStatus.ACTIVE:
+        return t('USER_MANAGEMENT.ACTIVE');
+      case UserStatus.INACTIVE:
+        return t('USER_MANAGEMENT.INACTIVE');
+      case UserStatus.PENDING:
+        return t('USER_MANAGEMENT.PENDING');
+    }
+  };
+
   const columns: ColumnsType<UserColumns> = [
     {
       title: t<string>('USER_MANAGEMENT.FULLNAME'),
@@ -103,16 +114,7 @@ const UserTable: FC<UserTableProps> = ({
               : ''
           }`}
         >
-          {(() => {
-            switch (status) {
-              case UserStatus.ACTIVE:
-                return t('USER_MANAGEMENT.ACTIVE');
-              case UserStatus.INACTIVE:
-                return t('USER_MANAGEMENT.INACTIVE');
-              case UserStatus.PENDING:
-                return t('USER_MANAGEMENT.PENDING');
-            }
-          })()}
+          {setStatus(status as UserStatus)}
         </span>
       ),
       className: '!text-center',

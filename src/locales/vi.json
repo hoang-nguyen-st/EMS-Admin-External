@@ -194,9 +194,14 @@
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
     "PROJECT": "Quản lý dự án",
-    "USER": "Quản lý người dùng"
+    "USER": "Quản lý người dùng",
+    "DEVICE": "Quản lý thiết bị"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
+  },
+  "DEVICE_MANAGEMENT": {
+    "TITLE": "Quản lý thiết bị",
+    "ALL": "Quản lý tất cả thiết bị"
   }
 }

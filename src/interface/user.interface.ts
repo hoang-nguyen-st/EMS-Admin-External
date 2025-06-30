@@ -72,3 +72,11 @@ export interface GetUsersParams extends GetListParams {
   startDate?: string;
   endDate?: string;
 }
+
+export interface CreateUserByAdmin {
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  dateOfBirth: string;
+}

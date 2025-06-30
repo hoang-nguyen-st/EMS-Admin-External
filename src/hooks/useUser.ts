@@ -1,9 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
+import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules/index';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { GetUsersParams, UserDetail } from '@app/interface/user.interface';
-import { createUser, deleteUserAPI, getUserByIdAPI, getUsersAPI, updateUser } from '@app/services';
+import { CreateUserByAdmin, GetUsersParams, UserDetail } from '@app/interface/user.interface';
+import {
+  createUser,
+  deleteUserAPI,
+  getUserByIdAPI,
+  getUsersAPI,
+  updateUser,
+  createUserByAdmin,
+} from '@app/services';
 
 export const useCreateUser = () => {
   const navigate = useNavigate();
@@ -15,6 +23,24 @@ export const useCreateUser = () => {
     {
       onSuccess({ message }) {
         navigate(NAVIGATE_URL.USERS);
+      },
+    },
+  );
+};
+
+export const useCreateUserByAdmin = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (data: CreateUserByAdmin) => {
+      return await createUserByAdmin(data);
+    },
+    {
+      onSuccess: ({ data }) => {
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USERS] });
+        openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
+      },
+      onError: ({ response }) => {
+        openNotificationWithIcon(NotificationTypeEnum.ERROR, response.data.message);
       },
     },
   );

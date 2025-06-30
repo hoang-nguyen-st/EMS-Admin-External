@@ -1,4 +1,4 @@
-import { SearchOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { SearchOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Input, Select, DatePicker, Table, Pagination, TableProps } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { Dayjs } from 'dayjs';
@@ -30,7 +30,7 @@ export interface UserTableProps extends TableProps<UserColumns> {
   onStatusChange: (value: UserStatus) => void;
   onDateChange: (dates: [Dayjs | null, Dayjs | null] | null, dateStrings: [string, string]) => void;
   onPageChange: (page: number) => void;
-  onAddUser: (record: UserColumns) => void;
+  onAddUser: () => void;
   onEditUser: (record: UserColumns) => void;
 }
 
@@ -55,6 +55,17 @@ const UserTable: FC<UserTableProps> = ({
   const handleSearchProject = debounce((value: string) => {
     onSearchChange(value);
   }, 500);
+
+  const setStatus = (status: UserStatus) => {
+    switch (status) {
+      case UserStatus.ACTIVE:
+        return t('USER_MANAGEMENT.ACTIVE');
+      case UserStatus.INACTIVE:
+        return t('USER_MANAGEMENT.INACTIVE');
+      case UserStatus.PENDING:
+        return t('USER_MANAGEMENT.PENDING');
+    }
+  };
 
   const columns: ColumnsType<UserColumns> = [
     {
@@ -92,10 +103,18 @@ const UserTable: FC<UserTableProps> = ({
       title: t<string>('USER_MANAGEMENT.STATUS'),
       dataIndex: 'status',
       render: (status: string) => (
-        <span className={`status-tag ${status.toLowerCase()}`}>
-          {status === UserStatus.ACTIVE
-            ? t('USER_MANAGEMENT.ACTIVE')
-            : t('USER_MANAGEMENT.INACTIVE')}
+        <span
+          className={`px-4 py-2 rounded-2xl text-white ${
+            status === UserStatus.ACTIVE
+              ? 'bg-[#28a745]'
+              : status === UserStatus.PENDING
+              ? 'bg-[#262e89]'
+              : status === UserStatus.INACTIVE
+              ? 'bg-[#8b969f]'
+              : ''
+          }`}
+        >
+          {setStatus(status as UserStatus)}
         </span>
       ),
       className: '!text-center',
@@ -107,18 +126,10 @@ const UserTable: FC<UserTableProps> = ({
         <Button
           className='text-center !bg-transparent shadow-none border-none'
           onClick={() => {
-            if (record.status === UserStatus.INACTIVE) {
-              onAddUser(record);
-            } else {
-              onEditUser(record);
-            }
+            onEditUser(record);
           }}
         >
-          {record.status === UserStatus.ACTIVE ? (
-            <EditOutlined className='text-lg' />
-          ) : (
-            <PlusOutlined className='text-lg' />
-          )}
+          <EditOutlined className='text-lg' />
         </Button>
       ),
       className: '!text-center',
@@ -141,12 +152,13 @@ const UserTable: FC<UserTableProps> = ({
             <Select
               allowClear
               onChange={onStatusChange}
-              className='h-10 w-full sm:w-40'
+              className='h-10 w-full sm:w-48'
               value={filters.status || undefined}
               placeholder={t<string>('USER_MANAGEMENT.STATUS')}
               options={[
                 { value: UserStatus.ACTIVE, label: t<string>('USER_MANAGEMENT.ACTIVE') },
                 { value: UserStatus.INACTIVE, label: t<string>('USER_MANAGEMENT.INACTIVE') },
+                { value: UserStatus.PENDING, label: t<string>('USER_MANAGEMENT.PENDING') },
               ]}
             />
             <RangePicker
@@ -154,6 +166,9 @@ const UserTable: FC<UserTableProps> = ({
               className='px-6 py-2 rounded-lg w-full sm:w-auto'
               format='DD/MM/YYYY'
             />
+            <Button onClick={onAddUser} className='px-6 py-5 bg-[#465FFF] text-white'>
+              {t('USER_MANAGEMENT.ADD')}
+            </Button>
           </div>
         </div>
       </div>

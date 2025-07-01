@@ -1,5 +1,5 @@
 import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { Rule } from 'antd/lib/form';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,13 +8,14 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { useSignInSchema } from './SignInSchema';
 import { yupSync } from '@app/helpers/yupSync';
-import { useLogin } from '@app/hooks';
+import { useActivateAccount, useLogin } from '@app/hooks';
 import { Credentials } from '@app/interface/user.interface';
 import { RootState } from '@app/redux/store';
 import './SignIn.scss';
 
 const SignIn = () => {
   const { mutate: handleLogin } = useLogin();
+  const { mutate: handleActivateAccount } = useActivateAccount();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -22,6 +23,7 @@ const SignIn = () => {
   const { isAuth } = useSelector((state: RootState) => state.auth);
 
   const validator = [yupSync(signInSchema)] as unknown as Rule[];
+
   const onFinish = (credentials: Credentials) => {
     handleLogin(credentials);
   };
@@ -29,8 +31,16 @@ const SignIn = () => {
   useEffect(() => {
     if (isAuth) {
       navigate('/', { replace: true });
+      return;
     }
-  }, []);
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const activateToken = searchParams.get('activateToken');
+    if (activateToken) {
+      handleActivateAccount(activateToken);
+      navigate('/sign-in', { replace: true });
+    }
+  }, [isAuth]);
 
   return (
     <div className='flex items-center justify-center h-full w-full bg-white'>

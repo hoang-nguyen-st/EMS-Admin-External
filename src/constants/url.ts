@@ -8,6 +8,7 @@ export const API_URL = {
   ASSIGN_PERMISSION: '/users/assign-permission',
   LOGIN: '/auth/login',
   REFRESH_TOKEN: '/auth/refresh',
+  ACTIVATE_ACCOUNT: '/auth/activate',
   GET_PROFILE: '/users/me',
   UPDATE_PROFILE: '/users/profile',
   UPLOAD_AVATAR: '/users/avatar',

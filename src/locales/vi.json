@@ -196,7 +196,9 @@
     "TITLE": "Bảng điều khiển"
   },
   "SIDEBAR": {
-    "PROJECT": "Quản lý dự án"
+    "DASHBOARD": "Bảng điều khiển",
+    "PROJECT": "Quản lý dự án",
+    "USER": "Quản lý người dùng"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Quản lý dự án",
@@ -209,7 +211,20 @@
   "USER_MANAGEMENT": {
     "TITLE": "Quản lý người dùng",
     "DESCRIPTION": "Quản lý tất cả người dùng ở một nơi. Kiểm soát quyền truy cập, chỉ định vai trò và theo dõi hoạt động trên nền tảng của bạn.",
-    "SEARCH": "Tìm kiếm người dùng"
+    "SEARCH": "Tìm kiếm người dùng",
+    "ADD": "Thêm người dùng",
+    "EDIT": "Chỉnh sửa người dùng",
+    "ACTIVE": "Kích hoạt",
+    "INACTIVE": "Không hoạt động",
+    "ACTION": "Hành động",
+    "PENDING": "Chưa giải quyết",
+    "BLOCKED": "Bị khóa",
+    "FULLNAME": "Họ và tên",
+    "PHONE": "Số điện thoại",
+    "JOIN_DATE": "Ngày tham gia",
+    "STATUS": "Trạng thái",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",
@@ -220,6 +235,15 @@
     "NO_PROJECT": "Không có dự án!",
     "ROLE": "Vai trò",
     "ACTIVE": "Kích hoạt",
-    "INACTIVE": "Không hoạt động"
+    "INACTIVE": "Không hoạt động",
+    "EDIT": "Chỉnh sửa người dùng",
+    "FULLNAME": "Họ và tên",
+    "PHONE": "Số điện thoại",
+    "JOIN_DATE": "Ngày tham gia",
+    "STATUS": "Trạng thái",
+    "BLOCKED": "Bị khóa",
+    "ACTION": "Hành động",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
   }
 }

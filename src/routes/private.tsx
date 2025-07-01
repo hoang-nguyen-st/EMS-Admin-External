@@ -29,16 +29,8 @@ const routes: RouteObject[] = [
             element: <h1>Dashboard Overview</h1>,
           },
           {
-            path: '/project-management',
+            path: NAVIGATE_URL.PROJECT_MANAGEMENT,
             element: <ProjectManagement />,
-          },
-          {
-            path: 'user-management',
-            element: <UserManagement />,
-          },
-          {
-            path: '/',
-            element: <h1>Dashboard Overview</h1>,
           },
           {
             path: NAVIGATE_URL.USER_MANAGEMENT,

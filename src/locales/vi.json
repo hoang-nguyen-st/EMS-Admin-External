@@ -217,7 +217,7 @@
     "ACTIVE": "Kích hoạt",
     "INACTIVE": "Không hoạt động",
     "ACTION": "Hành động",
-    "PENDING": "Chưa giải quyết",
+    "PENDING": "Chờ xác thực",
     "BLOCKED": "Bị khóa",
     "FULLNAME": "Họ và tên",
     "PHONE": "Số điện thoại",

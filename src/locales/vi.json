@@ -217,12 +217,12 @@
     "ACTIVE": "Kích hoạt",
     "INACTIVE": "Không hoạt động",
     "PENDING": "Chờ xác thực",
+    "ACTION": "Hành động",
     "BLOCKED": "Bị khóa",
     "FULLNAME": "Họ và tên",
     "PHONE": "Số điện thoại",
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
-    "ACTION": "Hành động",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày két thúc"
   },
@@ -241,8 +241,8 @@
     "PHONE": "Số điện thoại",
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
-    "ACTION": "Hành động",
     "BLOCKED": "Bị khóa",
+    "ACTION": "Hành động",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày két thúc"
   }

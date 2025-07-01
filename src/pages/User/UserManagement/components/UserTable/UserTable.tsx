@@ -109,9 +109,7 @@ const UserTable: FC<UserTableProps> = ({
               ? 'bg-[#28a745]'
               : status === UserStatus.PENDING
               ? 'bg-[#262e89]'
-              : status === UserStatus.INACTIVE
-              ? 'bg-[#8b969f]'
-              : ''
+              : 'bg-[#8b969f]'
           }`}
         >
           {setStatus(status as UserStatus)}

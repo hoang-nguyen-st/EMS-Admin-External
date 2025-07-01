@@ -216,7 +216,7 @@
     "EDIT": "Chỉnh sửa người dùng",
     "ACTIVE": "Kích hoạt",
     "INACTIVE": "Không hoạt động",
-    "PENDING": "Chưa giải quyết",
+    "PENDING": "Chờ xác thực",
     "BLOCKED": "Bị khóa",
     "FULLNAME": "Họ và tên",
     "PHONE": "Số điện thoại",
@@ -242,6 +242,7 @@
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",
+    "BLOCKED": "Bị khóa",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày két thúc"
   }

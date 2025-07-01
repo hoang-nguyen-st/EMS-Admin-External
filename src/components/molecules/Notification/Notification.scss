@@ -1,41 +1,43 @@
-.ant-notification-notice {
-  border-radius: 12px;
-  width: fit-content;
-  padding: 10px;
-}
-.notification-success {
-  background-color: #00c07e;
-}
+.ant-notification-notice-wrapper {
+  .ant-notification-notice {
+    border-radius: 6px;
+    padding: 18px !important;
+  }
+  .notification-success {
+    background-color: #00c07e;
+  }
 
-.notification-error {
-  background-color: #fb303e;
-}
+  .notification-error {
+    background-color: #fb303e;
+  }
 
-.notification-warning {
-  background-color: #f5a623;
-}
+  .notification-warning {
+    background-color: #f5a623;
+  }
 
-.notification-info {
-  background-color: #465fff;
-}
+  .notification-info {
+    background-color: #465fff;
+  }
 
-.ant-notification-notice-message {
-  color: white;
-  font-size: 14px !important;
-}
+  .ant-notification-notice-message {
+    color: white !important;
+    font-size: 14px !important;
+    margin-bottom: 0 !important;
+  }
 
-.anticon.ant-notification-notice-icon-error {
-  color: white;
-}
+  .anticon.ant-notification-notice-icon-error {
+    color: white !important;
+  }
 
-.anticon.ant-notification-notice-icon-success {
-  color: white;
-}
+  .anticon.ant-notification-notice-icon-success {
+    color: white !important;
+  }
 
-.anticon.ant-notification-notice-icon-info {
-  color: white;
-}
+  .anticon.ant-notification-notice-icon-info {
+    color: white !important;
+  }
 
-.anticon.ant-notification-notice-icon-warning {
-  color: white;
+  .anticon.ant-notification-notice-icon-warning {
+    color: white !important;
+  }
 }

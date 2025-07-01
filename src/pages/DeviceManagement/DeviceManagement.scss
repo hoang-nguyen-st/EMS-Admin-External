@@ -1,0 +1,16 @@
+#device-management-table {
+  .ant-table-thead th {
+    background-color: #262e89;
+    color: white;
+    padding: 10px 16px;
+  }
+  .ant-table-thead th.ant-table-cell:before {
+    background-color: transparent;
+  }
+  .ant-table-tbody tr {
+    color: #3b5571;
+  }
+  .ant-table-tbody tr:nth-child(even) {
+    background-color: #f3f8ff;
+  }
+}

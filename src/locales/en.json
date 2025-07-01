@@ -200,6 +200,18 @@
   },
   "DEVICE_MANAGEMENT": {
     "TITLE": "Devices Management",
-    "ALL": "Manage all Device"
+    "ALL": "Manage all Device",
+    "SEARCH": "Search device...",
+    "NO": "NO",
+    "NAME": "Name",
+    "DEVICE_ID": "DevUI",
+    "SENSOR_ID": "Sensor ID",
+    "LOCATION": "Location",
+    "FIELD": "Field",
+    "DEVICE_TYPE": "Device type",
+    "ACTION": "Actions",
+    "ELECTRIC": "Electric",
+    "GAS": "Gas",
+    "WATER": "Water"
   }
 }

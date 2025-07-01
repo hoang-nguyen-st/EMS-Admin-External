@@ -202,6 +202,18 @@
   },
   "DEVICE_MANAGEMENT": {
     "TITLE": "Quản lý thiết bị",
-    "ALL": "Quản lý tất cả thiết bị"
+    "ALL": "Quản lý tất cả thiết bị",
+    "SEARCH": "Tìm kiếm thiết bị...",
+    "NO": "STT",
+    "NAME": "Tên thiết bị",
+    "DEVICE_ID": "ID thiết bị",
+    "SENSOR_ID": "ID cảm biến",
+    "LOCATION": "Vị trí",
+    "FIELD": "Trường",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "ACTION": "Hành động",
+    "ELECTRIC": "Điện",
+    "GAS": "Gas",
+    "WATER": "Nước"
   }
 }

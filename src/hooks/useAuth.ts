@@ -11,7 +11,7 @@ import { removeStorageData, setStorageData } from '@app/config';
 import { ACCESS_TOKEN, NAVIGATE_URL, REFRESH_TOKEN, USER_PROFILE } from '@app/constants';
 import { Credentials } from '@app/interface/user.interface';
 import { logout, login } from '@app/redux/features/auth/authSlice';
-import { loginApi, getLogout } from '@app/services';
+import { loginApi, getLogout, getActivateAccount } from '@app/services';
 
 export const useLogin = () => {
   const navigate = useNavigate();
@@ -61,6 +61,23 @@ export const useLogout = () => {
         dispatchAuth(logout());
 
         navigate(NAVIGATE_URL.SIGN_IN);
+      },
+    },
+  );
+};
+
+export const useActivateAccount = () => {
+  return useMutation(
+    async (token: string) => {
+      const { data } = await getActivateAccount(token);
+      return data;
+    },
+    {
+      onSuccess: ({ message }) => {
+        openNotificationWithIcon(NotificationTypeEnum.SUCCESS, message);
+      },
+      onError({ response }) {
+        openNotificationWithIcon(NotificationTypeEnum.ERROR, response.data.message);
       },
     },
   );

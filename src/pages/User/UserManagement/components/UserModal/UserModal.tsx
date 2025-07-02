@@ -31,17 +31,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
   }
 
   return (
-    <Modal
-      title={
-        user?.status === UserStatus.ACTIVE
-          ? t<string>('USER_MANAGEMENT.EDIT')
-          : t<string>('USER_MANAGEMENT.ADD')
-      }
-      open={visible}
-      onCancel={onCancel}
-      afterClose={handleAfterClose}
-      footer={[]}
-    ></Modal>
+    <Modal open={visible} onCancel={onCancel} afterClose={handleAfterClose} footer={[]}></Modal>
   );
 };
 

@@ -224,6 +224,8 @@
     "ROLE": "Role",
     "ACTIVE": "Active",
     "INACTIVE": "Inactive",
+    "PENDING": "Pending",
+    "BLOCKED": "Blocked",
     "START_DATE": "Start date",
     "END_DATE": "End date"
   }

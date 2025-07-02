@@ -72,6 +72,7 @@ const UserTable: FC<UserTableProps> = ({
       title: t<string>('USER_MANAGEMENT.FULLNAME'),
       dataIndex: 'fullname',
       key: 'fullName',
+      width: 150,
       render: (_, record) => (
         <div>
           <Link
@@ -122,6 +123,7 @@ const UserTable: FC<UserTableProps> = ({
     {
       title: t<string>('USER_MANAGEMENT.ACTION'),
       key: 'actions',
+      fixed: 'right',
       render: (_, record) => (
         <Button
           className='text-center !bg-transparent shadow-none border-none'

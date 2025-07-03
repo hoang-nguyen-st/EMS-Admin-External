@@ -69,7 +69,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       trigger={null}
       collapsible
       collapsed={collapsed}
-      width={292}
+      width={210}
       className='min-h-screen bg-white shadow-md'
     >
       <div

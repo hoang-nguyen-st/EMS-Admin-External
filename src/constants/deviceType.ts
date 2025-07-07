@@ -1,4 +1,4 @@
-export enum ResourceType {
+export enum DeviceType {
   DEFAULT = '',
   ELECTRIC = 'electric',
   WATER = 'water',

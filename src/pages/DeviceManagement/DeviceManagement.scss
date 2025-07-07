@@ -13,4 +13,7 @@
   .ant-table-tbody tr:nth-child(even) {
     background-color: #f3f8ff;
   }
+  .ant-table-row:nth-child(even) .ant-table-cell {
+    background-color: #f3f8ff;
+  }
 }

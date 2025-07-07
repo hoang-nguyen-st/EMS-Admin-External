@@ -208,12 +208,17 @@
     "NAME": "Tên thiết bị",
     "DEVICE_ID": "ID thiết bị",
     "SENSOR_ID": "ID cảm biến",
-    "LOCATION": "Vị trí",
+    "ZONE": "Khu vực",
     "FIELD": "Trường",
+    "NO_FIELD": "Trường chưa được định danh",
     "DEVICE_TYPE": "Loại thiết bị",
+    "STATUS": "Trạng thái",
     "ACTION": "Hành động",
     "ELECTRIC": "Điện",
     "GAS": "Gas",
-    "WATER": "Nước"
+    "WATER": "Nước",
+    "DEFAULT": "Thiết bị chưa định danh",
+    "ACTIVE": "Đang hoạt động",
+    "INACTIVE": "Không hoạt động"
   }
 }

@@ -1,4 +1,5 @@
 import { Select } from 'antd';
+import { FC } from 'react';
 
 import { DeviceProps } from '@app/interface/device.interface';
 import { ZoneDto } from '@app/interface/zone.interface';
@@ -17,13 +18,15 @@ interface SelectDeviceProps {
   placeholder: string;
   options: OptionDeviceProps[];
   className?: string;
-  devices?: DeviceProps[];
-  zones?: ZoneDto[];
 }
 
-const SelectDevice = ({ ...props }: SelectDeviceProps) => {
-  const { handleDeviceChange, setFilters, placeholder, className, options } = props;
-
+const SelectDevice: FC<SelectDeviceProps> = ({
+  handleDeviceChange,
+  setFilters,
+  placeholder,
+  className,
+  options,
+}) => {
   return (
     <Select
       allowClear

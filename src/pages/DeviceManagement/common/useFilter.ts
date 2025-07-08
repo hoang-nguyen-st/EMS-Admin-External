@@ -26,12 +26,12 @@ export const handleZoneChange = (
 };
 
 export const handleDeviceChange = (
-  deviceType: string,
+  deviceType: DeviceType,
   setFilters: React.Dispatch<React.SetStateAction<DeviceProps>>,
 ) => {
   setFilters((prev) => ({
     ...prev,
-    deviceType: deviceType as DeviceType,
+    deviceType,
     page: 1,
   }));
 };

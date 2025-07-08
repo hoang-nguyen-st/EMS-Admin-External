@@ -1,0 +1,24 @@
+import { ZoneDto } from './zone.interface';
+import { DeviceType } from '@app/constants';
+
+export interface DeviceProps {
+  search?: string;
+  status?: boolean;
+  deviceType?: DeviceType;
+  page: number;
+  take: number;
+  zone?: string;
+}
+
+export interface DeviceResponseProps {
+  id: string;
+  devEUI: string;
+  name: string;
+  type: string;
+  createdTime: string;
+  deviceType: string;
+  description: string;
+  fieldCalculate: string;
+  status: boolean;
+  zone: ZoneDto;
+}

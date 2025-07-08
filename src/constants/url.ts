@@ -19,6 +19,7 @@ export const API_URL = {
   LOGOUT: '/auth/logout',
   CABINS: '/cabins',
   DEVICES: '/devices',
+  ZONES: '/zones',
   ALL_DEVICES_ACTIVE: '/devices/all-active',
   HISTORY_REGISTRIES: '/history-registries',
   MAINTENANCES: '/maintenances',

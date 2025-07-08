@@ -1,11 +1,12 @@
 import { debounce } from 'lodash';
+import { Dispatch, SetStateAction } from 'react';
 
 import { DeviceType } from '@app/constants';
 import { DeviceProps } from '@app/interface/device.interface';
 
 export const handleSearchChange = (
   value: string,
-  setFilters: React.Dispatch<React.SetStateAction<DeviceProps>>,
+  setFilters: Dispatch<SetStateAction<DeviceProps>>,
 ) => {
   setFilters((prev) => ({
     ...prev,
@@ -16,7 +17,7 @@ export const handleSearchChange = (
 
 export const handleZoneChange = (
   zone: string,
-  setFilters: React.Dispatch<React.SetStateAction<DeviceProps>>,
+  setFilters: Dispatch<SetStateAction<DeviceProps>>,
 ) => {
   setFilters((prev) => ({
     ...prev,
@@ -27,7 +28,7 @@ export const handleZoneChange = (
 
 export const handleDeviceChange = (
   deviceType: DeviceType,
-  setFilters: React.Dispatch<React.SetStateAction<DeviceProps>>,
+  setFilters: Dispatch<SetStateAction<DeviceProps>>,
 ) => {
   setFilters((prev) => ({
     ...prev,
@@ -38,7 +39,7 @@ export const handleDeviceChange = (
 
 export const handlePageChange = (
   page: number,
-  setFilters: React.Dispatch<React.SetStateAction<DeviceProps>>,
+  setFilters: Dispatch<SetStateAction<DeviceProps>>,
 ) => {
   setFilters((prev) => ({
     ...prev,

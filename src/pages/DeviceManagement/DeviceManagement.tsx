@@ -1,28 +1,56 @@
 import { SearchOutlined, EditOutlined } from '@ant-design/icons';
-import { Button, Input, Select, Table, Pagination } from 'antd';
+import { Button, Input, Table, Pagination } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { debounce } from 'lodash';
+import { TFunction } from 'i18next';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
-import { DeviceType } from '@app/constants';
+import {
+  handlePageChange,
+  handleSearchProject,
+  handleDeviceChange,
+  handleZoneChange,
+} from './common/useFilter';
+import SelectDevice from './components/SelectDevice';
+import { DeviceType, NAVIGATE_URL } from '@app/constants';
 import { useGetDevices } from '@app/hooks/useDevice';
-import { deviceProps, DeviceResponseProps } from '@app/interface/device.interface';
+import { useGetZones } from '@app/hooks/useZone';
+import { DeviceResponseProps, DeviceProps } from '@app/interface/device.interface';
+import { ZoneDto } from '@app/interface/zone.interface';
 
 import './DeviceManagement.scss';
 
+const getNameDeviceType = (deviceType: string, t: TFunction) => {
+  switch (deviceType) {
+    case DeviceType.WATER:
+      return t('DEVICE_MANAGEMENT.WATER');
+    case DeviceType.ELECTRIC:
+      return t('DEVICE_MANAGEMENT.ELECTRIC');
+    case DeviceType.GAS:
+      return t('DEVICE_MANAGEMENT.GAS');
+    default:
+      return;
+  }
+};
+
 const DeviceManagement = () => {
   const { t } = useTranslation();
-  const [filters, setFilters] = useState<deviceProps>({
+  const { data: zonesData } = useGetZones();
+  const [filters, setFilters] = useState<DeviceProps>({
     search: '',
     deviceType: DeviceType.DEFAULT,
     page: 1,
     take: 10,
+    zone: undefined,
   });
 
-  const { data, refetch, isLoading } = useGetDevices(filters);
-
-  const { data: devicesResponse, meta } = data || {};
+  const {
+    data: devicesData,
+    refetch: refetchDevices,
+    isLoading: isLoadingDevices,
+  } = useGetDevices(filters);
+  const { data: devicesResponse, meta } = devicesData || {};
 
   const devices =
     devicesResponse?.map((device: DeviceResponseProps) => ({
@@ -30,57 +58,32 @@ const DeviceManagement = () => {
       key: device.id,
     })) ?? [];
 
-  const handleSearchChange = (value: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      search: value,
-      page: 1,
-    }));
-  };
-
-  const handleDeviceChange = (deviceType: DeviceType) => {
-    setFilters((prev) => ({
-      ...prev,
-      deviceType,
-      page: 1,
-    }));
-  };
-
-  const handlePageChange = (page: number) => {
-    setFilters((prev) => ({
-      ...prev,
-      page,
-    }));
-  };
-
   useEffect(() => {
-    refetch();
-  }, [filters]);
-
-  const getNameDeviceType = (deviceType: string) => {
-    switch (deviceType) {
-      case DeviceType.WATER:
-        return t<string>('DEVICE_MANAGEMENT.WATER');
-      case DeviceType.ELECTRIC:
-        return t<string>('DEVICE_MANAGEMENT.ELECTRIC');
-      case DeviceType.GAS:
-        return t<string>('DEVICE_MANAGEMENT.GAS');
-      default:
-        return t<string>('DEVICE_MANAGEMENT.DEFAULT');
-    }
-  };
+    refetchDevices();
+  }, [filters, refetchDevices]);
 
   const columns: ColumnsType<DeviceResponseProps> = [
     {
-      title: t('DEVICE_MANAGEMENT.NO'),
+      title: t('DEVICE_MANAGEMENT.INDEX'),
       dataIndex: 'no',
       key: 'no',
-      render: (_, record, index) => index + 1,
+      render: (_, __, index) => index + 1,
     },
     {
       title: t('DEVICE_MANAGEMENT.NAME'),
       dataIndex: 'name',
       key: 'name',
+      render: (_, record) => {
+        return (
+          <Link
+            className='underline underline-offset-2 text-primary hover:underline'
+            to={`${NAVIGATE_URL.DEVICE_MANAGEMENT}/${record.id}`}
+            replace={true}
+          >
+            {record.name}
+          </Link>
+        );
+      },
     },
     {
       title: t('DEVICE_MANAGEMENT.DEVICE_ID'),
@@ -90,27 +93,23 @@ const DeviceManagement = () => {
     },
     {
       title: t('DEVICE_MANAGEMENT.ZONE'),
-      dataIndex: 'location',
-      key: 'location',
+      dataIndex: 'zone',
+      key: 'zone',
       render: (_, record) => {
-        if (record.zone) {
-          return record.zone.name;
-        }
-        return 'no';
+        return record.zone && record.zone.name;
       },
     },
     {
       title: t('DEVICE_MANAGEMENT.FIELD'),
       dataIndex: 'field',
       key: 'field',
-      render: (_, record) =>
-        `${record.fieldCalculate ? record.fieldCalculate : t('DEVICE_MANAGEMENT.NO_FIELD')}`,
+      render: (_, record) => record.fieldCalculate,
     },
     {
       title: t('DEVICE_MANAGEMENT.DEVICE_TYPE'),
       dataIndex: 'deviceType',
       key: 'deviceType',
-      render: (_, record) => <span>{getNameDeviceType(record.deviceType)}</span>,
+      render: (_, record) => <span>{getNameDeviceType(record.deviceType, t)}</span>,
     },
     {
       title: t('DEVICE_MANAGEMENT.STATUS'),
@@ -118,8 +117,8 @@ const DeviceManagement = () => {
       key: 'status',
       render: (status: string) => (
         <span
-          className={`px-4 py-2 rounded-2xl text-white ${
-            status ? 'bg-[#28a745]' : 'bg-[#ff513a1c] text-red-500'
+          className={`px-4 py-2 rounded-2xl ${
+            status ? 'bg-[#28a745] text-white' : 'bg-[#ff41411e] text-red-500'
           }`}
         >
           {status ? t('DEVICE_MANAGEMENT.ACTIVE') : t('DEVICE_MANAGEMENT.INACTIVE')}
@@ -129,7 +128,7 @@ const DeviceManagement = () => {
     {
       title: t('DEVICE_MANAGEMENT.ACTION'),
       key: 'actions',
-      render: (_) => (
+      render: () => (
         <Button className='text-center !bg-transparent shadow-none border-none'>
           <EditOutlined className='text-lg' />
         </Button>
@@ -138,10 +137,6 @@ const DeviceManagement = () => {
       fixed: 'right',
     },
   ];
-
-  const handleSearchProject = debounce((value: string) => {
-    handleSearchChange(value);
-  }, 500);
 
   return (
     <div className='device-management'>
@@ -154,22 +149,27 @@ const DeviceManagement = () => {
               <div className='flex flex-col md:grid md:grid-cols-2 gap-4'>
                 <div className='w-full md:w-1/2'>
                   <Input
-                    onChange={(e) => handleSearchProject(e.currentTarget.value)}
+                    onChange={(e) => handleSearchProject(e.currentTarget.value, setFilters)}
                     placeholder={t<string>('DEVICE_MANAGEMENT.SEARCH')}
                     className='h-10 bg-white rounded-lg'
                     prefix={<SearchOutlined className='text-gray-500 text-2xl mr-2' />}
                   />
                 </div>
                 <div className='flex flex-col sm:flex-row items-center gap-4 justify-end'>
-                  <Select
-                    allowClear
-                    className='h-10 w-full sm:w-48'
+                  <SelectDevice
+                    handleDeviceChange={handleZoneChange}
+                    setFilters={setFilters}
                     placeholder={t<string>('DEVICE_MANAGEMENT.ZONE')}
+                    options={
+                      zonesData?.map((zone: ZoneDto) => ({
+                        value: zone.id,
+                        label: zone.name,
+                      })) ?? []
+                    }
                   />
-                  <Select
-                    allowClear
-                    onChange={handleDeviceChange}
-                    className='h-10 w-full sm:w-48'
+                  <SelectDevice
+                    handleDeviceChange={handleDeviceChange}
+                    setFilters={setFilters}
                     placeholder={t<string>('DEVICE_MANAGEMENT.DEVICE_TYPE')}
                     options={[
                       {
@@ -186,7 +186,7 @@ const DeviceManagement = () => {
             <Table
               id='device-management-table'
               dataSource={devices}
-              loading={isLoading}
+              loading={isLoadingDevices}
               columns={columns}
               pagination={false}
               scroll={{ x: 'max-content' }}
@@ -199,7 +199,7 @@ const DeviceManagement = () => {
                 current={meta.page}
                 pageSize={meta.take}
                 total={meta.itemCount}
-                onChange={handlePageChange}
+                onChange={(page) => handlePageChange(page, setFilters)}
               />
             )}
           </div>

@@ -1,12 +1,13 @@
-import { Zone } from './zone.interface';
+import { ZoneDto } from './zone.interface';
 import { DeviceType } from '@app/constants';
 
-export interface deviceProps {
+export interface DeviceProps {
   search?: string;
   status?: boolean;
   deviceType?: DeviceType;
   page: number;
   take: number;
+  zone?: string;
 }
 
 export interface DeviceResponseProps {
@@ -19,5 +20,5 @@ export interface DeviceResponseProps {
   description: string;
   fieldCalculate: string;
   status: boolean;
-  zone: Zone;
+  zone: ZoneDto;
 }

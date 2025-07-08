@@ -1,4 +1,4 @@
-export interface Zone {
+export interface ZoneDto {
   id: string;
   name: string;
   status: string;

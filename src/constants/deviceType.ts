@@ -1,5 +1,5 @@
 export enum DeviceType {
-  DEFAULT = '',
+  DEFAULT = 'default',
   ELECTRIC = 'electric',
   WATER = 'water',
   GAS = 'gas',

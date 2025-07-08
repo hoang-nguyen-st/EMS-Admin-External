@@ -42,7 +42,6 @@ const DeviceManagement = () => {
     deviceType: DeviceType.DEFAULT,
     page: 1,
     take: 10,
-    zone: undefined,
   });
 
   const {
@@ -168,7 +167,9 @@ const DeviceManagement = () => {
                     }
                   />
                   <SelectDevice
-                    handleDeviceChange={handleDeviceChange}
+                    handleDeviceChange={(value, setFilters) =>
+                      handleDeviceChange(value as DeviceType, setFilters)
+                    }
                     setFilters={setFilters}
                     placeholder={t<string>('DEVICE_MANAGEMENT.DEVICE_TYPE')}
                     options={[

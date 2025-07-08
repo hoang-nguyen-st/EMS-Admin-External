@@ -13,26 +13,13 @@ import {
   handleZoneChange,
 } from './common/useFilter';
 import SelectDevice from './components/SelectDevice';
-import { DeviceType, NAVIGATE_URL } from '@app/constants';
+import { DeviceType, getNameDeviceType, NAVIGATE_URL } from '@app/constants';
 import { useGetDevices } from '@app/hooks/useDevice';
 import { useGetZones } from '@app/hooks/useZone';
 import { DeviceResponseProps, DeviceProps } from '@app/interface/device.interface';
 import { ZoneDto } from '@app/interface/zone.interface';
 
 import './DeviceManagement.scss';
-
-const getNameDeviceType = (deviceType: string, t: TFunction) => {
-  switch (deviceType) {
-    case DeviceType.WATER:
-      return t('DEVICE_MANAGEMENT.WATER');
-    case DeviceType.ELECTRIC:
-      return t('DEVICE_MANAGEMENT.ELECTRIC');
-    case DeviceType.GAS:
-      return t('DEVICE_MANAGEMENT.GAS');
-    default:
-      return;
-  }
-};
 
 const DeviceManagement = () => {
   const { t } = useTranslation();
@@ -86,9 +73,9 @@ const DeviceManagement = () => {
     },
     {
       title: t('DEVICE_MANAGEMENT.DEVICE_ID'),
-      dataIndex: 'devUI',
-      key: 'devUI',
-      render: (_, record) => record.devEUI,
+      dataIndex: 'devEUI',
+      key: 'devEUI',
+      render: (value: string) => value,
     },
     {
       title: t('DEVICE_MANAGEMENT.ZONE'),
@@ -100,15 +87,15 @@ const DeviceManagement = () => {
     },
     {
       title: t('DEVICE_MANAGEMENT.FIELD'),
-      dataIndex: 'field',
-      key: 'field',
-      render: (_, record) => record.fieldCalculate,
+      dataIndex: 'fieldCalculate',
+      key: 'fieldCalculate',
+      render: (value: string) => value,
     },
     {
       title: t('DEVICE_MANAGEMENT.DEVICE_TYPE'),
       dataIndex: 'deviceType',
       key: 'deviceType',
-      render: (_, record) => <span>{getNameDeviceType(record.deviceType, t)}</span>,
+      render: (value: string) => <span>{getNameDeviceType(value, t)}</span>,
     },
     {
       title: t('DEVICE_MANAGEMENT.STATUS'),

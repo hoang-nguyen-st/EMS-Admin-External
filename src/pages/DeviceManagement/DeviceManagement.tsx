@@ -1,4 +1,10 @@
-import { SearchOutlined, EditOutlined } from '@ant-design/icons';
+import {
+  SearchOutlined,
+  EditOutlined,
+  BarcodeOutlined,
+  ThunderboltOutlined,
+  FireOutlined,
+} from '@ant-design/icons';
 import { Button, Input, Table, Pagination } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { useEffect, useState } from 'react';
@@ -8,7 +14,7 @@ import { Link } from 'react-router-dom';
 import { handleFilterChange, handleSearchDevice } from './common/useFilter';
 import SelectDevice from './components/SelectDevice';
 import { DeviceType, getNameDeviceType, NAVIGATE_URL } from '@app/constants';
-import { useGetDevices } from '@app/hooks/useDevice';
+import { useGetDevices, useGetDeviceSummarize } from '@app/hooks/useDevice';
 import { useGetZones } from '@app/hooks/useZone';
 import { DeviceResponseProps, DeviceProps } from '@app/interface/device.interface';
 import { ZoneDto } from '@app/interface/zone.interface';
@@ -18,6 +24,7 @@ import './DeviceManagement.scss';
 const DeviceManagement = () => {
   const { t } = useTranslation();
   const { data: zonesData } = useGetZones();
+  const { data: deviceSummarize } = useGetDeviceSummarize();
   const [filters, setFilters] = useState<DeviceProps>({
     search: '',
     deviceType: DeviceType.DEFAULT,
@@ -118,10 +125,58 @@ const DeviceManagement = () => {
     },
   ];
 
+  const getCount = (type: string) => deviceSummarize?.find((d) => d.type === type)?.count || 0;
+
+  const deviceStats = [
+    {
+      icon: <BarcodeOutlined style={{ fontSize: 28, color: '#222' }} />,
+      title: t('DEVICE_MANAGEMENT.TOTAL_DEVICE') || 'Total Device',
+      count: getCount(DeviceType.TOTAL),
+      bgColor: 'bg-[#F3F5F7]',
+    },
+    {
+      icon: <ThunderboltOutlined style={{ fontSize: 28, color: '#FFD600' }} />,
+      title: t('DEVICE_MANAGEMENT.ELECTRICITY_DEVICE') || 'Electricity Device',
+      count: getCount(DeviceType.ELECTRIC),
+      bgColor: 'bg-[#FFF7E0]',
+    },
+    {
+      icon: <FireOutlined style={{ fontSize: 28, color: '#6C8AE4' }} />,
+      title: t('DEVICE_MANAGEMENT.WATER_DEVICE') || 'Water Device',
+      count: getCount(DeviceType.WATER),
+      bgColor: 'bg-[#EAF2FF]',
+    },
+    {
+      icon: <FireOutlined style={{ fontSize: 28, color: '#FF4D4F' }} />,
+      title: t('DEVICE_MANAGEMENT.GAS_DEVICE') || 'Gas Device',
+      count: getCount(DeviceType.GAS),
+      bgColor: 'bg-[#FFEAEA]',
+    },
+  ];
+
   return (
     <div className='device-management'>
       <h1>{t<string>('DEVICE_MANAGEMENT.TITLE')}</h1>
       <p className='my-4'>{t('DEVICE_MANAGEMENT.ALL')}</p>
+      {/* Device stats row */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8'>
+        {deviceStats.map((stat) => (
+          <div
+            key={stat.title}
+            className='bg-white rounded-2xl shadow-sm px-6 py-5 pr-8 min-w-[180px] flex items-center gap-4 border border-[#ececec]'
+          >
+            <div
+              className={`rounded-xl w-14 h-14 flex items-center justify-center ${stat.bgColor}`}
+            >
+              {stat.icon}
+            </div>
+            <div>
+              <div className='text-[#5B6B7A] text-[15px] font-medium'>{stat.title}</div>
+              <div className='text-[#1D3557] font-bold text-[28px] mt-0.5'>{stat.count}</div>
+            </div>
+          </div>
+        ))}
+      </div>
       <div className='bg-white rounded-xl p-8 shadow'>
         <div className='space-y-4'>
           <div>

@@ -5,6 +5,7 @@ export enum DeviceType {
   ELECTRIC = 'electric',
   WATER = 'water',
   GAS = 'gas',
+  TOTAL = 'total',
 }
 
 export const getNameDeviceType = (deviceType: string, t: TFunction) => {

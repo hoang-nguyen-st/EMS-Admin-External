@@ -10,6 +10,11 @@ export interface DeviceProps {
   zone?: string;
 }
 
+export interface DeviceTotalTypeProps {
+  type: string;
+  count: number;
+}
+
 export interface DeviceResponseProps {
   id: string;
   devEUI: string;

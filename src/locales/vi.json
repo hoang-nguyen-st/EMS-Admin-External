@@ -267,6 +267,10 @@
     "WATER": "Nước",
     "DEFAULT": "Thiết bị chưa định danh",
     "ACTIVE": "Đang hoạt động",
-    "INACTIVE": "Không hoạt động"
+    "INACTIVE": "Không hoạt động",
+    "TOTAL_DEVICE": "Tổng số thiết bị",
+    "ELECTRICITY_DEVICE": "Thiết bị điện",
+    "WATER_DEVICE": "Thiết bị nước",
+    "GAS_DEVICE": "Thiết bị gas"
   }
 }

@@ -218,6 +218,10 @@
     "WATER": "Water",
     "DEFAULT": "Device not identified",
     "ACTIVE": "Active",
-    "INACTIVE": "Inactive"
+    "INACTIVE": "Inactive",
+    "TOTAL_DEVICE": "Total Device",
+    "ELECTRICITY_DEVICE": "Electricity Device",
+    "WATER_DEVICE": "Water Device",
+    "GAS_DEVICE": "Gas Device"
   }
 }

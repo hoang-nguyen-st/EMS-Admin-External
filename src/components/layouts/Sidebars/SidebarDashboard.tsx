@@ -1,4 +1,9 @@
-import { FolderOutlined, UserOutlined, AppstoreOutlined } from '@ant-design/icons';
+import {
+  FolderOutlined,
+  UserOutlined,
+  AppstoreOutlined,
+  DatabaseOutlined,
+} from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -61,6 +66,21 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       },
       className: `focus:bg-primary-light ${
         location.pathname.includes(NAVIGATE_URL.USER_MANAGEMENT) && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
+    {
+      key: NAVIGATE_URL.DEVICE_MANAGEMENT,
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.DEVICE')}
+        </p>
+      ),
+      icon: <DatabaseOutlined className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate(NAVIGATE_URL.DEVICE_MANAGEMENT, { replace: true });
+      },
+      className: `focus:bg-primary-light ${
+        location.pathname.includes(NAVIGATE_URL.DEVICE_MANAGEMENT) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
   ];

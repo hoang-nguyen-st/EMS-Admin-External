@@ -194,9 +194,36 @@
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
     "PROJECT": "Quản lý dự án",
-    "USER": "Quản lý người dùng"
+    "USER": "Quản lý người dùng",
+    "DEVICE": "Quản lý thiết bị"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
+  },
+  "DEVICE_MANAGEMENT": {
+    "TITLE": "Quản lý thiết bị",
+    "ALL": "Quản lý tất cả thiết bị",
+    "SEARCH": "Tìm kiếm thiết bị...",
+    "INDEX": "STT",
+    "NAME": "Tên thiết bị",
+    "DEVICE_ID": "ID thiết bị",
+    "SENSOR_ID": "ID cảm biến",
+    "ZONE": "Khu vực",
+    "FIELD": "Trường",
+    "NO_FIELD": "Trường chưa được định danh",
+    "NO_ZONE": "Khu vực chưa được định danh",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "STATUS": "Trạng thái",
+    "ACTION": "Hành động",
+    "ELECTRIC": "Điện",
+    "GAS": "Gas",
+    "WATER": "Nước",
+    "DEFAULT": "Thiết bị chưa định danh",
+    "ACTIVE": "Đang hoạt động",
+    "INACTIVE": "Không hoạt động",
+    "TOTAL_DEVICE": "Tổng số thiết bị",
+    "ELECTRICITY_DEVICE": "Thiết bị điện",
+    "WATER_DEVICE": "Thiết bị nước",
+    "GAS_DEVICE": "Thiết bị gas"
   }
 }

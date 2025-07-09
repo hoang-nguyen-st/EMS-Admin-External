@@ -1,17 +1,11 @@
 import { SearchOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Input, Table, Pagination } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { TFunction } from 'i18next';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import {
-  handlePageChange,
-  handleSearchProject,
-  handleDeviceChange,
-  handleZoneChange,
-} from './common/useFilter';
+import { handleFilterChange, handleSearchDevice } from './common/useFilter';
 import SelectDevice from './components/SelectDevice';
 import { DeviceType, getNameDeviceType, NAVIGATE_URL } from '@app/constants';
 import { useGetDevices } from '@app/hooks/useDevice';
@@ -32,14 +26,14 @@ const DeviceManagement = () => {
   });
 
   const {
-    data: devicesData,
+    data: devicesResponse,
     refetch: refetchDevices,
     isLoading: isLoadingDevices,
   } = useGetDevices(filters);
-  const { data: devicesResponse, meta } = devicesData || {};
+  const { data: devicesData, meta } = devicesResponse || {};
 
   const devices =
-    devicesResponse?.map((device: DeviceResponseProps) => ({
+    devicesData?.map((device: DeviceResponseProps) => ({
       ...device,
       key: device.id,
     })) ?? [];
@@ -135,7 +129,7 @@ const DeviceManagement = () => {
               <div className='flex flex-col md:grid md:grid-cols-2 gap-4'>
                 <div className='w-full md:w-1/2'>
                   <Input
-                    onChange={(e) => handleSearchProject(e.currentTarget.value, setFilters)}
+                    onChange={(e) => handleSearchDevice(e.currentTarget.value, setFilters)}
                     placeholder={t<string>('DEVICE_MANAGEMENT.SEARCH')}
                     className='h-10 bg-white rounded-lg'
                     prefix={<SearchOutlined className='text-gray-500 text-2xl mr-2' />}
@@ -143,7 +137,7 @@ const DeviceManagement = () => {
                 </div>
                 <div className='flex flex-col sm:flex-row items-center gap-4 justify-end'>
                   <SelectDevice
-                    handleDeviceChange={handleZoneChange}
+                    handleDeviceChange={(value) => handleFilterChange('zone', value, setFilters)}
                     setFilters={setFilters}
                     placeholder={t<string>('DEVICE_MANAGEMENT.ZONE')}
                     options={
@@ -154,8 +148,8 @@ const DeviceManagement = () => {
                     }
                   />
                   <SelectDevice
-                    handleDeviceChange={(value, setFilters) =>
-                      handleDeviceChange(value as DeviceType, setFilters)
+                    handleDeviceChange={(value) =>
+                      handleFilterChange('deviceType', value as DeviceType, setFilters)
                     }
                     setFilters={setFilters}
                     placeholder={t<string>('DEVICE_MANAGEMENT.DEVICE_TYPE')}
@@ -187,7 +181,7 @@ const DeviceManagement = () => {
                 current={meta.page}
                 pageSize={meta.take}
                 total={meta.itemCount}
-                onChange={(page) => handlePageChange(page, setFilters)}
+                onChange={(page) => handleFilterChange('page', page, setFilters)}
               />
             )}
           </div>

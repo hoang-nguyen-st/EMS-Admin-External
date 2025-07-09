@@ -7,5 +7,5 @@ import { getZoneAPI } from '@app/services/zoneAPI';
 export const useGetZones = () =>
   useQuery<ZoneDto[]>([QUERY_KEY.ZONES], async () => {
     const { data } = await getZoneAPI();
-    return data as ZoneDto[];
+    return data;
   });

@@ -1,4 +1,3 @@
-import { SettingOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
 import { CircleUserRound, FolderRoot, LayoutGrid } from 'lucide-react';
 import { FC } from 'react';
@@ -64,16 +63,6 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       className: `focus:bg-primary-light ${
         location.pathname.includes(NAVIGATE_URL.USER_MANAGEMENT) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
-    },
-    {
-      key: 'price-setting',
-      icon: <SettingOutlined style={{ fontSize: 22 }} />,
-      label: (
-        <span className={collapsed ? 'text-gray-800' : 'text-primary-second'}>
-          {t<string>('Price Setting')}
-        </span>
-      ),
-      className: 'custom-submenu',
     },
   ];
   return (

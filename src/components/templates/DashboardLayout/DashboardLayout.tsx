@@ -41,7 +41,7 @@ function DashboardLayout() {
         closable={true}
         onClose={() => setMobileDrawerOpen(false)}
         open={mobileDrawerOpen}
-        width={292}
+        width={220}
         className='md:hidden sidebar-custom'
       >
         <Sidebar collapsed={false} />

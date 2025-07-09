@@ -1,11 +1,12 @@
-import { FolderOutlined, UserOutlined, AppstoreOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, MenuProps } from 'antd';
+import { CircleUserRound, FolderRoot, LayoutGrid } from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from '@app/assets/logo.png';
 import { NAVIGATE_URL } from '@app/constants';
+import './SidebarDashboard.scss';
 
 const { Sider } = Layout;
 
@@ -25,7 +26,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
           {t<string>('SIDEBAR.DASHBOARD')}
         </p>
       ),
-      icon: <AppstoreOutlined className='!text-2xl !text-primary-second' />,
+      icon: <LayoutGrid className='!text-2xl !text-primary-second' />,
       onClick: () => {
         navigate('/', { replace: true });
       },
@@ -37,10 +38,10 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       key: NAVIGATE_URL.PROJECT_MANAGEMENT,
       label: (
         <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
-          {t<string>('SIDEBAR.PROJECT')}
+          {t<string>('SIDEBAR.LOCATION')}
         </p>
       ),
-      icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
+      icon: <FolderRoot className='!text-2xl !text-primary-second' />,
       onClick: () => {
         navigate(NAVIGATE_URL.PROJECT_MANAGEMENT, { replace: true });
       },
@@ -55,7 +56,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
           {t<string>('SIDEBAR.USER')}
         </p>
       ),
-      icon: <UserOutlined className='!text-2xl !text-primary-second' />,
+      icon: <CircleUserRound className='!text-2xl !text-primary-second' />,
       onClick: () => {
         navigate(NAVIGATE_URL.USER_MANAGEMENT, { replace: true });
       },
@@ -69,7 +70,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       trigger={null}
       collapsible
       collapsed={collapsed}
-      width={210}
+      width={220}
       className='min-h-screen bg-white shadow-md'
     >
       <div

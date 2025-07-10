@@ -191,9 +191,9 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
-    "PROJECT": "Project Management",
     "USER": "User Management",
-    "DEVICE": "Device Management"
+    "DEVICE": "Device Management",
+    "LOCATION": "Location Management"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"

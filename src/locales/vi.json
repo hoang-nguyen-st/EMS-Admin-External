@@ -193,9 +193,9 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
-    "PROJECT": "Quản lý dự án",
     "USER": "Quản lý người dùng",
-    "DEVICE": "Quản lý thiết bị"
+    "DEVICE": "Quản lý thiết bị",
+    "LOCATION": "Quản lý địa điểm"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"

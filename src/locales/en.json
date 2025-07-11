@@ -197,12 +197,14 @@
     "DASHBOARD": "Dashboard",
     "PROJECT": "Project Management",
     "USER": "User Management",
+    "LOCATION": "Location Management",
     "DEVICE": "Device Management"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Project Management",
     "ALL": "Manage all project of your",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "USER": "User Management"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"

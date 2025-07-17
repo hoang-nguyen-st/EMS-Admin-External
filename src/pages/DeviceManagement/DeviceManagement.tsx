@@ -1,17 +1,12 @@
-import {
-  SearchOutlined,
-  EditOutlined,
-  BarcodeOutlined,
-  ThunderboltOutlined,
-  FireOutlined,
-} from '@ant-design/icons';
 import { Button, Input, Table, Pagination } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
+import { Edit, Search, Barcode, Flame, Droplet, Cable, SlidersHorizontal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { handleFilterChange, handleSearchDevice } from './common/useFilter';
+import { DeviceModal } from './components';
 import SelectDevice from './components/SelectDevice';
 import { DeviceType, getNameDeviceType, NAVIGATE_URL } from '@app/constants';
 import { useGetDevices, useGetDeviceSummarize } from '@app/hooks/useDevice';
@@ -31,7 +26,7 @@ const DeviceManagement = () => {
     page: 1,
     take: 10,
   });
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     data: devicesResponse,
     refetch: refetchDevices,
@@ -116,8 +111,11 @@ const DeviceManagement = () => {
       title: t('DEVICE_MANAGEMENT.ACTION'),
       key: 'actions',
       render: () => (
-        <Button className='text-center !bg-transparent shadow-none border-none'>
-          <EditOutlined className='text-lg' />
+        <Button
+          className='text-center !bg-transparent shadow-none border-none'
+          onClick={() => setIsModalOpen(true)}
+        >
+          <SlidersHorizontal className='text-lg' />
         </Button>
       ),
       className: '!text-center',
@@ -129,26 +127,26 @@ const DeviceManagement = () => {
 
   const deviceStats = [
     {
-      icon: <BarcodeOutlined style={{ fontSize: 28, color: '#222' }} />,
-      title: t('DEVICE_MANAGEMENT.TOTAL_DEVICE') || 'Total Device',
+      icon: <Barcode className='text-2xl text-black' />,
+      title: t('DEVICE_MANAGEMENT.TOTAL_DEVICE'),
       count: getCount(DeviceType.TOTAL),
       bgColor: 'bg-[#F3F5F7]',
     },
     {
-      icon: <ThunderboltOutlined style={{ fontSize: 28, color: '#FFD600' }} />,
-      title: t('DEVICE_MANAGEMENT.ELECTRICITY_DEVICE') || 'Electricity Device',
+      icon: <Cable className='text-2xl text-[#FFD600]' />,
+      title: t('DEVICE_MANAGEMENT.ELECTRICITY_DEVICE'),
       count: getCount(DeviceType.ELECTRIC),
       bgColor: 'bg-[#FFF7E0]',
     },
     {
-      icon: <FireOutlined style={{ fontSize: 28, color: '#6C8AE4' }} />,
-      title: t('DEVICE_MANAGEMENT.WATER_DEVICE') || 'Water Device',
+      icon: <Droplet className='text-2xl text-[#6C8AE4]' />,
+      title: t('DEVICE_MANAGEMENT.WATER_DEVICE'),
       count: getCount(DeviceType.WATER),
       bgColor: 'bg-[#EAF2FF]',
     },
     {
-      icon: <FireOutlined style={{ fontSize: 28, color: '#FF4D4F' }} />,
-      title: t('DEVICE_MANAGEMENT.GAS_DEVICE') || 'Gas Device',
+      icon: <Flame className='text-2xl text-[#FF4D4F]' />,
+      title: t('DEVICE_MANAGEMENT.GAS_DEVICE'),
       count: getCount(DeviceType.GAS),
       bgColor: 'bg-[#FFEAEA]',
     },
@@ -158,7 +156,6 @@ const DeviceManagement = () => {
     <div className='device-management'>
       <h1>{t<string>('DEVICE_MANAGEMENT.TITLE')}</h1>
       <p className='my-4'>{t('DEVICE_MANAGEMENT.ALL')}</p>
-      {/* Device stats row */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8'>
         {deviceStats.map((stat) => (
           <div
@@ -187,7 +184,7 @@ const DeviceManagement = () => {
                     onChange={(e) => handleSearchDevice(e.currentTarget.value, setFilters)}
                     placeholder={t<string>('DEVICE_MANAGEMENT.SEARCH')}
                     className='h-10 bg-white rounded-lg'
-                    prefix={<SearchOutlined className='text-gray-500 text-2xl mr-2' />}
+                    prefix={<Search className='text-gray-500 text-2xl mr-2' />}
                   />
                 </div>
                 <div className='flex flex-col sm:flex-row items-center gap-4 justify-end'>
@@ -236,12 +233,17 @@ const DeviceManagement = () => {
                 current={meta.page}
                 pageSize={meta.take}
                 total={meta.itemCount}
-                onChange={(page) => handleFilterChange('page', page, setFilters)}
+                onChange={(page) => handleFilterChange('', page, setFilters)}
               />
             )}
           </div>
         </div>
       </div>
+      <DeviceModal
+        open={isModalOpen}
+        onCancel={() => setIsModalOpen(false)}
+        onSave={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };

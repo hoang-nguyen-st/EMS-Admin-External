@@ -223,5 +223,22 @@
     "ELECTRICITY_DEVICE": "Electricity Device",
     "WATER_DEVICE": "Water Device",
     "GAS_DEVICE": "Gas Device"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Setting Device",
+    "DEVICE_NAME": "Device Name",
+    "DEVUI": "Device EUI",
+    "FIELD": "Field",
+    "DEVICE_TYPE": "Device Type",
+    "METER_TYPE": "Meter Type",
+    "VOLTAGE": "Voltage",
+    "VOLTAGE_UNIT": "Voltage Unit",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "TECHNICAL_SPECIFICATIONS": "Technical Specifications",
+    "SELECT_FIELD": "Select Field",
+    "SELECT_DEVICE_TYPE": "Select Device Type",
+    "SELECT_METER_TYPE": "Select Meter Type",
+    "SELECT_VOLTAGE_UNIT": "Select Voltage Unit"
   }
 }

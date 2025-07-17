@@ -225,5 +225,22 @@
     "ELECTRICITY_DEVICE": "Thiết bị điện",
     "WATER_DEVICE": "Thiết bị nước",
     "GAS_DEVICE": "Thiết bị gas"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Cấu hình thiết bị",
+    "DEVICE_NAME": "Tên thiết bị",
+    "DEVUI": "Device EUI",
+    "FIELD": "Trường tính toán",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "METER_TYPE": "Loại công tơ",
+    "VOLTAGE": "Điện áp",
+    "VOLTAGE_UNIT": "Đơn vị điện áp",
+    "SAVE": "Lưu",
+    "CANCEL": "Hủy",
+    "TECHNICAL_SPECIFICATIONS": "Thông số kỹ thuật",
+    "SELECT_FIELD": "Chọn trường",
+    "SELECT_DEVICE_TYPE": "Chọn loại thiết bị",
+    "SELECT_METER_TYPE": "Chọn loại công tơ",
+    "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp"
   }
 }

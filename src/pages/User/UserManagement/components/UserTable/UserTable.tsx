@@ -110,15 +110,13 @@ const UserTable: FC<UserTableProps> = ({
               ? 'bg-[#28a745]'
               : status === UserStatus.PENDING
               ? 'bg-[#262e89]'
-              : status === UserStatus.INACTIVE
-              ? 'bg-[#8b969f]'
-              : ''
+              : 'bg-[#8b969f]'
           }`}
         >
           {setStatus(status as UserStatus)}
         </span>
       ),
-      className: '!text-center',
+      align: 'center',
     },
     {
       title: t<string>('USER_MANAGEMENT.ACTION'),
@@ -134,7 +132,7 @@ const UserTable: FC<UserTableProps> = ({
           <EditOutlined className='text-lg' />
         </Button>
       ),
-      className: '!text-center',
+      align: 'center',
     },
   ];
 

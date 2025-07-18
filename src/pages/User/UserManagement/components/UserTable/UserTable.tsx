@@ -116,7 +116,7 @@ const UserTable: FC<UserTableProps> = ({
           {setStatus(status as UserStatus)}
         </span>
       ),
-      className: '!text-center',
+      align: 'center',
     },
     {
       title: t<string>('USER_MANAGEMENT.ACTION'),
@@ -132,7 +132,7 @@ const UserTable: FC<UserTableProps> = ({
           <EditOutlined className='text-lg' />
         </Button>
       ),
-      className: '!text-center',
+      align: 'center',
     },
   ];
 

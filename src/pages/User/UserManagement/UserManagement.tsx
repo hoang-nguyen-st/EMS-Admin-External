@@ -14,7 +14,6 @@ const UserManagement = () => {
   const [selectedUser, setSelectedUser] = useState<UserColumns | null>(null);
   const [filters, setFilters] = useState<GetUsersParams>({
     search: '',
-    status: UserStatus.DEFAULT,
     page: 1,
     take: 10,
   });
@@ -57,7 +56,7 @@ const UserManagement = () => {
   const handleStatusChange = (value: UserStatus) => {
     setFilters((prev) => ({
       ...prev,
-      status: value ? value : UserStatus.DEFAULT,
+      status: value ? value : undefined,
       page: 1,
     }));
   };

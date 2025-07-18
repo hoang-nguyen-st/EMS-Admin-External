@@ -26,6 +26,7 @@
     "i18next": "^22.0.2",
     "i18next-http-backend": "^1.4.4",
     "lodash": "^4.17.21",
+    "lucide-react": "^0.525.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

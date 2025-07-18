@@ -197,9 +197,9 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
-    "PROJECT": "Quản lý dự án",
     "USER": "Quản lý người dùng",
-    "DEVICE": "Quản lý thiết bị"
+    "DEVICE": "Quản lý thiết bị",
+    "LOCATION": "Quản lý địa điểm"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Quản lý dự án",
@@ -255,10 +255,10 @@
     "NAME": "Tên thiết bị",
     "DEVICE_ID": "ID thiết bị",
     "SENSOR_ID": "ID cảm biến",
-    "ZONE": "Khu vực",
+    "LOCATION": "Khu vực",
     "FIELD": "Trường",
     "NO_FIELD": "Trường chưa được định danh",
-    "NO_ZONE": "Khu vực chưa được định danh",
+    "NO_LOCATION": "Khu vực chưa được định danh",
     "DEVICE_TYPE": "Loại thiết bị",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",

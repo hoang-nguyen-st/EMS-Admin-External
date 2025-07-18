@@ -20,7 +20,7 @@ export const API_URL = {
   CABINS: '/cabins',
   DEVICES: '/devices',
   DEVICES_SUMMARIZE: '/devices/summarize',
-  ZONES: '/zones',
+  LOCATIONS: '/locations',
   ALL_DEVICES_ACTIVE: '/devices/all-active',
   HISTORY_REGISTRIES: '/history-registries',
   MAINTENANCES: '/maintenances',

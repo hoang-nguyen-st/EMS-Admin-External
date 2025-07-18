@@ -206,7 +206,9 @@
     "TITLE": "Quản lý dự án",
     "ALL": "Quản lý tất cả dự án của bạn",
     "SEARCH": "Tìm kiếm dự án",
-    "USER": "Quản lý người dùng"
+    "USER": "Quản lý người dùng",
+    "DEVICE": "Quản lý thiết bị",
+    "LOCATION": "Quản lý địa điểm"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
@@ -257,10 +259,10 @@
     "NAME": "Tên thiết bị",
     "DEVICE_ID": "ID thiết bị",
     "SENSOR_ID": "ID cảm biến",
-    "ZONE": "Khu vực",
+    "LOCATION": "Khu vực",
     "FIELD": "Trường",
     "NO_FIELD": "Trường chưa được định danh",
-    "NO_ZONE": "Khu vực chưa được định danh",
+    "NO_LOCATION": "Khu vực chưa được định danh",
     "DEVICE_TYPE": "Loại thiết bị",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",

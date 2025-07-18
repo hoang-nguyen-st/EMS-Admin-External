@@ -195,16 +195,18 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
-    "PROJECT": "Project Management",
     "USER": "User Management",
+    "DEVICE": "Device Management",
     "LOCATION": "Location Management",
-    "DEVICE": "Device Management"
+    "PROJECT": "Project Management"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Project Management",
     "ALL": "Manage all project of your",
     "SEARCH": "Search",
-    "USER": "User Management"
+    "USER": "User Management",
+    "DEVICE": "Device Management",
+    "LOCATION": "Location Management"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"
@@ -254,10 +256,10 @@
     "NAME": "Name",
     "DEVICE_ID": "DevUI",
     "SENSOR_ID": "Sensor ID",
-    "ZONE": "Location",
+    "LOCATION": "Location",
     "FIELD": "Field",
     "NO_FIELD": "Field not indentified",
-    "NO_ZONE": "Zone not indentified",
+    "NO_LOCATION": "Location not indentified",
     "DEVICE_TYPE": "Device type",
     "STATUS": "Status",
     "ACTION": "Actions",

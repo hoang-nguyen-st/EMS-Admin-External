@@ -1,4 +1,4 @@
-import { ZoneDto } from './zone.interface';
+import { LocationDto } from './location.interface';
 import { DeviceType } from '@app/constants';
 
 export interface DeviceProps {
@@ -7,7 +7,7 @@ export interface DeviceProps {
   deviceType?: DeviceType;
   page: number;
   take: number;
-  zone?: string;
+  location?: string;
 }
 
 export interface DeviceTotalTypeProps {
@@ -25,5 +25,5 @@ export interface DeviceResponseProps {
   description: string;
   fieldCalculate: string;
   status: boolean;
-  zone: ZoneDto;
+  location: LocationDto;
 }

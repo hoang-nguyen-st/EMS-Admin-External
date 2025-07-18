@@ -26,7 +26,7 @@ const SelectDevice: FC<SelectDeviceProps> = ({
   return (
     <Select
       allowClear
-      className={`w-full sm:w-48 h-10 ${className}`}
+      className={`w-full h-10 ${className}`}
       placeholder={placeholder}
       options={options}
       onChange={(value) => handleDeviceChange(value, setFilters)}

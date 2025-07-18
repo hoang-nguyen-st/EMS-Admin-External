@@ -10,15 +10,15 @@ import { DeviceModal } from './components';
 import SelectDevice from './components/SelectDevice';
 import { DeviceType, getNameDeviceType, NAVIGATE_URL } from '@app/constants';
 import { useGetDevices, useGetDeviceSummarize } from '@app/hooks/useDevice';
-import { useGetZones } from '@app/hooks/useZone';
+import { useGetLocations } from '@app/hooks/useLocation';
 import { DeviceResponseProps, DeviceProps } from '@app/interface/device.interface';
-import { ZoneDto } from '@app/interface/zone.interface';
+import { LocationDto } from '@app/interface/location.interface';
 
 import './DeviceManagement.scss';
 
 const DeviceManagement = () => {
   const { t } = useTranslation();
-  const { data: zonesData } = useGetZones();
+  const { data: locationsData } = useGetLocations();
   const { data: deviceSummarize } = useGetDeviceSummarize();
   const [filters, setFilters] = useState<DeviceProps>({
     search: '',
@@ -74,11 +74,11 @@ const DeviceManagement = () => {
       render: (value: string) => value,
     },
     {
-      title: t('DEVICE_MANAGEMENT.ZONE'),
-      dataIndex: 'zone',
-      key: 'zone',
+      title: t('DEVICE_MANAGEMENT.LOCATION'),
+      dataIndex: 'location',
+      key: 'location',
       render: (_, record) => {
-        return record.zone && record.zone.name;
+        return record.location && record.location.name;
       },
     },
     {
@@ -179,7 +179,7 @@ const DeviceManagement = () => {
           <div>
             <div className='user-filter mb-4'>
               <div className='flex flex-col md:grid md:grid-cols-2 gap-4'>
-                <div className='w-full md:w-1/2'>
+                <div className='w-full md:w-2/3'>
                   <Input
                     onChange={(e) => handleSearchDevice(e.currentTarget.value, setFilters)}
                     placeholder={t<string>('DEVICE_MANAGEMENT.SEARCH')}
@@ -187,15 +187,17 @@ const DeviceManagement = () => {
                     prefix={<Search className='text-gray-500 text-2xl mr-2' />}
                   />
                 </div>
-                <div className='flex flex-col sm:flex-row items-center gap-4 justify-end'>
+                <div className='flex flex-col sm:flex-row items-center gap-4 justify-end w-full md:w-3/3'>
                   <SelectDevice
-                    handleDeviceChange={(value) => handleFilterChange('zone', value, setFilters)}
+                    handleDeviceChange={(value) =>
+                      handleFilterChange('location', value, setFilters)
+                    }
                     setFilters={setFilters}
-                    placeholder={t<string>('DEVICE_MANAGEMENT.ZONE')}
+                    placeholder={t<string>('DEVICE_MANAGEMENT.LOCATION')}
                     options={
-                      zonesData?.map((zone: ZoneDto) => ({
-                        value: zone.id,
-                        label: zone.name,
+                      locationsData?.map((location: LocationDto) => ({
+                        value: location.id,
+                        label: location.name,
                       })) ?? []
                     }
                   />

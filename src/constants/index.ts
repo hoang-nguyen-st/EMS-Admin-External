@@ -6,3 +6,5 @@ export * from './datetime';
 export * from './notification';
 export * from './navigate';
 export * from './device';
+export * from './meterType';
+export * from './voltage';

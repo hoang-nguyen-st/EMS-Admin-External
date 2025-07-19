@@ -205,6 +205,7 @@
     "INDEX": "No.",
     "NAME": "Name",
     "DEVICE_ID": "DevUI",
+    "NO_DEVICE_ID": "No Device ID",
     "SENSOR_ID": "Sensor ID",
     "LOCATION": "Location",
     "FIELD": "Field",
@@ -222,7 +223,14 @@
     "TOTAL_DEVICE": "Total Device",
     "ELECTRICITY_DEVICE": "Electricity Device",
     "WATER_DEVICE": "Water Device",
-    "GAS_DEVICE": "Gas Device"
+    "GAS_DEVICE": "Gas Device",
+    "METER_TYPE_1": "Meter Type 1",
+    "METER_TYPE_3": "Meter Type 3",
+    "VOLT": "V",
+    "KILOVOLT": "kV",
+    "MEGAVOLT": "MV",
+    "UPDATE_DEVICE_SUCCESS": "Update device successfully",
+    "UPDATE_DEVICE_ERROR": "Update device failed"
   },
   "DEVICE_MODAL": {
     "SETTING_DEVICE": "Setting Device",

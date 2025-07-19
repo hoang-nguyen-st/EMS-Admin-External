@@ -1,6 +1,6 @@
 import { Button, Input, Table, Pagination } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
-import { Edit, Search, Barcode, Flame, Droplet, Cable, SlidersHorizontal } from 'lucide-react';
+import { Search, Barcode, Flame, Droplet, Cable, SlidersHorizontal } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -27,6 +27,7 @@ const DeviceManagement = () => {
     take: 10,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDevice, setSelectedDevice] = useState<DeviceResponseProps | null>(null);
   const {
     data: devicesResponse,
     refetch: refetchDevices,
@@ -110,10 +111,13 @@ const DeviceManagement = () => {
     {
       title: t('DEVICE_MANAGEMENT.ACTION'),
       key: 'actions',
-      render: () => (
+      render: (_, record) => (
         <Button
           className='text-center !bg-transparent shadow-none border-none'
-          onClick={() => setIsModalOpen(true)}
+          onClick={() => {
+            setSelectedDevice(record);
+            setIsModalOpen(true);
+          }}
         >
           <SlidersHorizontal className='text-lg' />
         </Button>
@@ -235,7 +239,7 @@ const DeviceManagement = () => {
                 current={meta.page}
                 pageSize={meta.take}
                 total={meta.itemCount}
-                onChange={(page) => handleFilterChange('', page, setFilters)}
+                onChange={(page) => handleFilterChange('page', page, setFilters)}
               />
             )}
           </div>
@@ -243,8 +247,28 @@ const DeviceManagement = () => {
       </div>
       <DeviceModal
         open={isModalOpen}
-        onCancel={() => setIsModalOpen(false)}
-        onSave={() => setIsModalOpen(false)}
+        deviceData={
+          selectedDevice
+            ? {
+                id: selectedDevice.id,
+                name: selectedDevice.name,
+                devEUI: selectedDevice.devEUI,
+                deviceType: selectedDevice.deviceType,
+                fieldCalculate: selectedDevice.fieldCalculate,
+                voltageUnit: selectedDevice.voltageUnit,
+                voltageValue: selectedDevice.voltageValue,
+                meterType: selectedDevice.meterType,
+              }
+            : undefined
+        }
+        onCancel={() => {
+          setIsModalOpen(false);
+          setSelectedDevice(null);
+        }}
+        onSave={() => {
+          setIsModalOpen(false);
+          setSelectedDevice(null);
+        }}
       />
     </div>
   );

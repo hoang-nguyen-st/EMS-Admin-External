@@ -1,42 +1,119 @@
 import { CloseOutlined } from '@ant-design/icons';
 import { Modal, Input, Select, Button, Form, Typography } from 'antd';
 import { Rule } from 'antd/lib/form';
-import React, { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { useDeviceModalSchema } from './DeviceModalSchema';
-import { DeviceType } from '@app/constants';
+import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules';
+import { DeviceType, MeterTypeEnum, VoltageUnitEnum } from '@app/constants';
 import { yupSync } from '@app/helpers/yupSync';
+import { useGetDeviceTelemetryKeys, useUpdateDeviceSettings } from '@app/hooks/useDevice';
 
 const { Title } = Typography;
 
-const fieldOptions = [{ value: 'energy_export', label: 'Energy export' }];
 const deviceTypeOptions = [
-  { value: DeviceType.ELECTRIC, label: 'Electricity' },
-  { value: DeviceType.WATER, label: 'Water' },
-  { value: DeviceType.GAS, label: 'Gas' },
+  { value: DeviceType.ELECTRIC, label: 'DEVICE_MANAGEMENT.ELECTRIC' },
+  { value: DeviceType.WATER, label: 'DEVICE_MANAGEMENT.WATER' },
+  { value: DeviceType.GAS, label: 'DEVICE_MANAGEMENT.GAS' },
 ];
-const meterTypeOptions = [{ value: 'energy_export', label: 'Energy export' }];
+
+const meterTypeOptions = [
+  { value: MeterTypeEnum.METER_TYPE_1, label: 'DEVICE_MANAGEMENT.METER_TYPE_1' },
+  { value: MeterTypeEnum.METER_TYPE_3, label: 'DEVICE_MANAGEMENT.METER_TYPE_3' },
+];
+
 const voltageUnitOptions = [
-  { value: 'V', label: 'V' },
-  { value: 'kV', label: 'kV' },
+  { value: VoltageUnitEnum.VOLT, label: 'DEVICE_MANAGEMENT.VOLT' },
+  { value: VoltageUnitEnum.KILOVOLT, label: 'DEVICE_MANAGEMENT.KILOVOLT' },
+  { value: VoltageUnitEnum.MEGAVOLT, label: 'DEVICE_MANAGEMENT.MEGAVOLT' },
 ];
 
 interface SettingDeviceModalProps {
   open: boolean;
+  deviceData?: {
+    id: string;
+    name: string;
+    devEUI: string;
+    deviceType?: string;
+    fieldCalculate?: string;
+    voltageUnit?: string;
+    voltageValue?: string;
+    meterType?: {
+      meterTypeEnum: string;
+    };
+  };
   onCancel: () => void;
   onSave: (values: any) => void;
 }
 
-const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSave }) => {
+interface DeviceModalData {
+  fieldCalculate: string;
+  deviceType: string;
+  meterType: string;
+  voltageValue: string;
+  voltageUnit: string;
+}
+
+const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
+  open,
+  deviceData,
+  onCancel,
+  onSave,
+}) => {
   const [form] = Form.useForm();
   const schema = useDeviceModalSchema();
   const validator = [yupSync(schema)] as unknown as Rule[];
   const { t } = useTranslation();
-  const handleFinish = (values: any) => {
-    onSave(values);
-    form.resetFields();
+
+  const { data: telemetryKeys = [], isLoading: telemetryLoading } = useGetDeviceTelemetryKeys(
+    deviceData?.id,
+    open,
+  );
+
+  const { mutate: updateDeviceSettings, isLoading: loading } = useUpdateDeviceSettings();
+
+  useEffect(() => {
+    if (open && deviceData) {
+      form.setFieldsValue({
+        deviceName: deviceData.name,
+        devEUI: deviceData.devEUI,
+        fieldCalculate: deviceData.fieldCalculate || '',
+        deviceType: deviceData.deviceType || '',
+        meterType: deviceData.meterType?.meterTypeEnum || '',
+        voltageValue: deviceData.voltageValue || '',
+        voltageUnit: deviceData.voltageUnit || '',
+      });
+    } else if (!open) {
+      form.resetFields();
+    }
+  }, [open, deviceData, form]);
+
+  const handleFinish = (values: DeviceModalData) => {
+    if (!deviceData?.id) {
+      openNotificationWithIcon(NotificationTypeEnum.ERROR, t('DEVICE_MANAGEMENT.NO_DEVICE_ID'));
+      return;
+    }
+
+    updateDeviceSettings(
+      { deviceId: deviceData?.id || '', settings: values },
+      {
+        onSuccess: () => {
+          onSave(values);
+          form.resetFields();
+        },
+      },
+    );
   };
+
+  const fieldOptions =
+    telemetryKeys.length > 0
+      ? telemetryKeys.map((key: string) => ({
+          value: key,
+          label: key,
+        }))
+      : [{ value: '', label: t('DEVICE_MANAGEMENT.NO_FIELD') }];
+
   return (
     <Modal
       open={open}
@@ -56,6 +133,8 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
             onClick={() => form.submit()}
             type='primary'
             htmlType='submit'
+            loading={loading}
+            disabled={loading}
             className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-md hover:!bg-primary-second hover:text-black transition duration-300'
           >
             {t('DEVICE_MODAL.SAVE')}
@@ -87,10 +166,12 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
               disabled
             />
           </Form.Item>
-          <Form.Item label={t('DEVICE_MODAL.DEVUI')} name='devUI'>
+          <Form.Item label={t('DEVICE_MODAL.DEVUI')} name='devEUI'>
             <Input
               className='w-full p-3 pl-4 rounded-md'
-              placeholder={t<string>('DEVICE_MODAL.DEVUI')}
+              placeholder={
+                deviceData?.devEUI ? deviceData.devEUI : t<string>('DEVICE_MANAGEMENT.NO_DEVICE_ID')
+              }
               disabled
             />
           </Form.Item>
@@ -100,11 +181,12 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
                 {t('DEVICE_MODAL.FIELD')} <span className='text-red-500'>*</span>
               </span>
             }
-            name='field'
+            name='fieldCalculate'
             rules={validator}
           >
             <Select
               allowClear
+              loading={telemetryLoading}
               options={fieldOptions}
               className='w-full rounded-md h-10'
               placeholder={t<string>('DEVICE_MODAL.SELECT_FIELD')}
@@ -121,7 +203,10 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
           >
             <Select
               allowClear
-              options={deviceTypeOptions}
+              options={deviceTypeOptions.map((option) => ({
+                ...option,
+                label: t(option.label),
+              }))}
               className='w-full rounded-md h-10'
               placeholder={t<string>('DEVICE_MODAL.SELECT_DEVICE_TYPE')}
             />
@@ -143,7 +228,10 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
           >
             <Select
               allowClear
-              options={meterTypeOptions}
+              options={meterTypeOptions.map((option) => ({
+                ...option,
+                label: t(option.label),
+              }))}
               className='w-full rounded-md h-10'
               placeholder={t<string>('DEVICE_MODAL.SELECT_METER_TYPE')}
             />
@@ -154,16 +242,22 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
                 {t('DEVICE_MODAL.VOLTAGE')} <span className='text-red-500'>*</span>
               </span>
             }
-            name='voltage'
             className='flex-1'
-            rules={validator}
           >
             <div className='flex gap-2'>
-              <Input className='rounded-md h-10' placeholder={t<string>('DEVICE_MODAL.VOLTAGE')} />
+              <Form.Item name='voltageValue' noStyle rules={validator}>
+                <Input
+                  className='rounded-md h-10'
+                  placeholder={t<string>('DEVICE_MODAL.VOLTAGE')}
+                />
+              </Form.Item>
               <Form.Item name='voltageUnit' noStyle rules={validator}>
                 <Select
                   allowClear
-                  options={voltageUnitOptions}
+                  options={voltageUnitOptions.map((option) => ({
+                    ...option,
+                    label: t(option.label),
+                  }))}
                   className='w-20 rounded-md h-10'
                   placeholder={t<string>('DEVICE_MODAL.SELECT_VOLTAGE_UNIT')}
                 />

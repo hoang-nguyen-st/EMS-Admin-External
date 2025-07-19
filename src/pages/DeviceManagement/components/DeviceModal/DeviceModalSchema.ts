@@ -5,7 +5,7 @@ export const useDeviceModalSchema = () => {
   const { t } = useTranslation();
 
   return yup.object().shape({
-    field: yup
+    fieldCalculate: yup
       .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('DEVICE_MODAL.FIELD') }))
       .matches(
@@ -26,11 +26,13 @@ export const useDeviceModalSchema = () => {
         /^[a-zA-Z0-9_]+$/,
         t<string>('VALIDATE.INVALID', { field: t<string>('DEVICE_MODAL.METER_TYPE') }),
       ),
-    voltage: yup
-      .number()
-      .typeError(t<string>('VALIDATE.REQUIRED', { field: t<string>('DEVICE_MODAL.VOLTAGE') }))
+    voltageValue: yup
+      .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('DEVICE_MODAL.VOLTAGE') }))
-      .min(1, t<string>('VALIDATE.MIN', { field: t<string>('DEVICE_MODAL.VOLTAGE'), min: 1 })),
+      .matches(
+        /^[0-9]+$/,
+        t<string>('VALIDATE.NUMBER', { field: t<string>('DEVICE_MODAL.VOLTAGE') }),
+      ),
     voltageUnit: yup
       .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('DEVICE_MODAL.VOLTAGE_UNIT') }))

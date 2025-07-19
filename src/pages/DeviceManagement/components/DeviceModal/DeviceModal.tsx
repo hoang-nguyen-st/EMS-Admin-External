@@ -40,6 +40,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
   return (
     <Modal
       open={open}
+      onCancel={onCancel}
       footer={
         <div className='flex items-center justify-end gap-x-4 mt-8'>
           <Button
@@ -47,7 +48,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
               form.resetFields();
               onCancel();
             }}
-            className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-2xl hover:text-black transition duration-300'
+            className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-md hover:text-black transition duration-300'
           >
             {t('DEVICE_MODAL.CANCEL')}
           </Button>
@@ -55,7 +56,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
             onClick={() => form.submit()}
             type='primary'
             htmlType='submit'
-            className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-2xl hover:!bg-primary-second hover:text-black transition duration-300'
+            className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-md hover:!bg-primary-second hover:text-black transition duration-300'
           >
             {t('DEVICE_MODAL.SAVE')}
           </Button>
@@ -64,6 +65,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
       closable={false}
       width={700}
       className='rounded-3xl'
+      maskClosable={true}
     >
       <div className='flex justify-between items-center mb-6'>
         <Title level={2} className='!mb-0 !text-center w-full font-bold'>
@@ -80,14 +82,14 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-x-4'>
           <Form.Item label={t('DEVICE_MODAL.DEVICE_NAME')} name='deviceName'>
             <Input
-              className='w-full p-3 pl-4 rounded-2xl'
+              className='w-full p-3 pl-4 rounded-md'
               placeholder={t<string>('DEVICE_MODAL.DEVICE_NAME')}
               disabled
             />
           </Form.Item>
           <Form.Item label={t('DEVICE_MODAL.DEVUI')} name='devUI'>
             <Input
-              className='w-full p-3 pl-4 rounded-2xl'
+              className='w-full p-3 pl-4 rounded-md'
               placeholder={t<string>('DEVICE_MODAL.DEVUI')}
               disabled
             />
@@ -104,7 +106,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
             <Select
               allowClear
               options={fieldOptions}
-              className='w-full rounded-2xl h-10'
+              className='w-full rounded-md h-10'
               placeholder={t<string>('DEVICE_MODAL.SELECT_FIELD')}
             />
           </Form.Item>
@@ -120,7 +122,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
             <Select
               allowClear
               options={deviceTypeOptions}
-              className='w-full rounded-2xl h-10'
+              className='w-full rounded-md h-10'
               placeholder={t<string>('DEVICE_MODAL.SELECT_DEVICE_TYPE')}
             />
           </Form.Item>
@@ -142,7 +144,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
             <Select
               allowClear
               options={meterTypeOptions}
-              className='w-full rounded-2xl h-10'
+              className='w-full rounded-md h-10'
               placeholder={t<string>('DEVICE_MODAL.SELECT_METER_TYPE')}
             />
           </Form.Item>
@@ -157,12 +159,12 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({ open, onCancel, onSav
             rules={validator}
           >
             <div className='flex gap-2'>
-              <Input className='rounded-2xl h-10' placeholder={t<string>('DEVICE_MODAL.VOLTAGE')} />
+              <Input className='rounded-md h-10' placeholder={t<string>('DEVICE_MODAL.VOLTAGE')} />
               <Form.Item name='voltageUnit' noStyle rules={validator}>
                 <Select
                   allowClear
                   options={voltageUnitOptions}
-                  className='w-20 rounded-2xl h-10'
+                  className='w-20 rounded-md h-10'
                   placeholder={t<string>('DEVICE_MODAL.SELECT_VOLTAGE_UNIT')}
                 />
               </Form.Item>

@@ -1,9 +1,17 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
+import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules/index';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { GetUsersParams, UserDetail } from '@app/interface/user.interface';
-import { createUser, deleteUserAPI, getUserByIdAPI, getUsersAPI, updateUser } from '@app/services';
+import { CreateUserDto, GetUsersParams, UserDetail } from '@app/interface/user.interface';
+import {
+  createUser,
+  deleteUserAPI,
+  getUserByIdAPI,
+  getUsersAPI,
+  updateUser,
+  createUserByAdmin,
+} from '@app/services';
 
 export const useCreateUser = () => {
   const navigate = useNavigate();
@@ -20,21 +28,31 @@ export const useCreateUser = () => {
   );
 };
 
-export const useGetUsers = (params: GetUsersParams) =>
-  useQuery(
-    [QUERY_KEY.USERS, params.search, params.status, params.page, params.take],
-    async () => {
-      const { data } = await getUsersAPI(params);
-      return data;
+export const useCreateUserByAdmin = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (data: CreateUserDto) => {
+      return await createUserByAdmin(data);
     },
     {
-      enabled: false,
-      keepPreviousData: true,
-      cacheTime: 0,
+      onSuccess: ({ data }) => {
+        queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USERS] });
+        openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
+      },
+      onError: ({ response }) => {
+        openNotificationWithIcon(NotificationTypeEnum.ERROR, response.data.message);
+      },
     },
   );
+};
 
-export const useGetUserById = (id: number) =>
+export const useGetUsers = (params: GetUsersParams) =>
+  useQuery([QUERY_KEY.USERS, params.search, params.status, params.page, params.take], async () => {
+    const { data } = await getUsersAPI(params);
+    return data;
+  });
+
+export const useGetUserById = (id: string) =>
   useQuery([QUERY_KEY.USERS, id], async () => {
     const { data } = await getUserByIdAPI(id);
     return data.data;

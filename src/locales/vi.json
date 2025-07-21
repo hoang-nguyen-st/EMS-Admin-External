@@ -98,7 +98,8 @@
     "STATUS": "Trạng thái",
     "PASSWORD": "Mật khẩu",
     "CHOOSE_ROLE": "Vai trò",
-    "LOGOUT": "Đăng xuất"
+    "LOGOUT": "Đăng xuất",
+    "RETURN": "Trở về"
   },
   "TABLE": {
     "MANIPULATION": "Thao tác",
@@ -196,18 +197,109 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
+    "PROJECT": "Quản lý dự án",
+    "USER": "Quản lý người dùng",
     "LOCATION": "Quản lý địa điểm",
-    "USER": "Quản lý người dùng"
-  },
-  "SIDEBAR": {
-    "PROJECT": "Quản lý dự án"
+    "DEVICE": "Quản lý thiết bị"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Quản lý dự án",
     "ALL": "Quản lý tất cả dự án của bạn",
-    "SEARCH": "Tìm kiếm dự án"
+    "SEARCH": "Tìm kiếm dự án",
+    "USER": "Quản lý người dùng",
+    "DEVICE": "Quản lý thiết bị",
+    "LOCATION": "Quản lý địa điểm"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
+  },
+  "USER_MANAGEMENT": {
+    "TITLE": "Quản lý người dùng",
+    "DESCRIPTION": "Quản lý tất cả người dùng ở một nơi. Kiểm soát quyền truy cập, chỉ định vai trò và theo dõi hoạt động trên nền tảng của bạn.",
+    "SEARCH": "Tìm kiếm người dùng",
+    "ADD": "Thêm người dùng",
+    "EDIT": "Chỉnh sửa người dùng",
+    "ACTIVE": "Kích hoạt",
+    "INACTIVE": "Không hoạt động",
+    "PENDING": "Chờ xác thực",
+    "ACTION": "Hành động",
+    "BLOCKED": "Bị khóa",
+    "FULLNAME": "Họ và tên",
+    "PHONE": "Số điện thoại",
+    "JOIN_DATE": "Ngày tham gia",
+    "STATUS": "Trạng thái",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
+  },
+  "USER_DETAIL": {
+    "CONTACT": "Thông tin liên lạc",
+    "NO_INFORMATION": "Không có không tin được cung cấp",
+    "PROJECTS": "Danh sách dự án",
+    "PROJECT_NAME": "Tên dự án",
+    "PROJECT_ALL": "Tổng số dự án",
+    "NO_PROJECT": "Không có dự án!",
+    "ROLE": "Vai trò",
+    "ACTIVE": "Kích hoạt",
+    "INACTIVE": "Không hoạt động",
+    "EDIT": "Chỉnh sửa người dùng",
+    "FULLNAME": "Họ và tên",
+    "PHONE": "Số điện thoại",
+    "JOIN_DATE": "Ngày tham gia",
+    "STATUS": "Trạng thái",
+    "BLOCKED": "Bị khóa",
+    "ACTION": "Hành động",
+    "START_DATE": "Ngày bắt đầu",
+    "END_DATE": "Ngày két thúc"
+  },
+  "DEVICE_MANAGEMENT": {
+    "TITLE": "Quản lý thiết bị",
+    "ALL": "Quản lý tất cả thiết bị",
+    "SEARCH": "Tìm kiếm thiết bị...",
+    "INDEX": "STT",
+    "NAME": "Tên thiết bị",
+    "DEVICE_ID": "ID thiết bị",
+    "NO_DEVICE_ID": "Chưa có ID thiết bị",
+    "SENSOR_ID": "ID cảm biến",
+    "LOCATION": "Khu vực",
+    "FIELD": "Trường",
+    "NO_FIELD": "Trường chưa được định danh",
+    "NO_LOCATION": "Khu vực chưa được định danh",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "STATUS": "Trạng thái",
+    "ACTION": "Hành động",
+    "ELECTRIC": "Điện",
+    "GAS": "Gas",
+    "WATER": "Nước",
+    "DEFAULT": "Thiết bị chưa định danh",
+    "ACTIVE": "Đang hoạt động",
+    "INACTIVE": "Không hoạt động",
+    "TOTAL_DEVICE": "Tổng số thiết bị",
+    "ELECTRICITY_DEVICE": "Thiết bị điện",
+    "WATER_DEVICE": "Thiết bị nước",
+    "GAS_DEVICE": "Thiết bị gas",
+    "METER_TYPE_1": "Công tơ loại 1",
+    "METER_TYPE_3": "Công tơ loại 3",
+    "VOLT": "V",
+    "KILOVOLT": "kV",
+    "MEGAVOLT": "MV",
+    "UPDATE_DEVICE_SUCCESS": "Cập nhật thiết bị thành công",
+    "UPDATE_DEVICE_ERROR": "Cập nhật thiết bị thất bại"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Cấu hình thiết bị",
+    "DEVICE_NAME": "Tên thiết bị",
+    "DEVUI": "Device EUI",
+    "FIELD": "Trường tính toán",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "METER_TYPE": "Loại công tơ",
+    "VOLTAGE": "Điện áp",
+    "VOLTAGE_UNIT": "Đơn vị điện áp",
+    "SAVE": "Lưu",
+    "CANCEL": "Hủy",
+    "TECHNICAL_SPECIFICATIONS": "Thông số kỹ thuật",
+    "SELECT_FIELD": "Chọn trường",
+    "SELECT_DEVICE_TYPE": "Chọn loại thiết bị",
+    "SELECT_METER_TYPE": "Chọn loại công tơ",
+    "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp"
   }
 }

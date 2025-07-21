@@ -1,12 +1,11 @@
-import { Layout, Image, Menu, MenuProps } from 'antd';
-import { CircleUserRound, FolderRoot, LayoutGrid } from 'lucide-react';
+import { Layout, Menu, Image, MenuProps } from 'antd';
+import { CircleUserRound, FolderRoot, LayoutGrid, Package } from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from '@app/assets/logo.png';
 import { NAVIGATE_URL } from '@app/constants';
-import './SidebarDashboard.scss';
 
 const { Sider } = Layout;
 
@@ -64,13 +63,28 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
         location.pathname.includes(NAVIGATE_URL.USER_MANAGEMENT) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
+    {
+      key: NAVIGATE_URL.DEVICE_MANAGEMENT,
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.DEVICE')}
+        </p>
+      ),
+      icon: <Package className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate(NAVIGATE_URL.DEVICE_MANAGEMENT, { replace: true });
+      },
+      className: `focus:bg-primary-light ${
+        location.pathname.includes(NAVIGATE_URL.DEVICE_MANAGEMENT) && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
   ];
   return (
     <Sider
       trigger={null}
       collapsible
       collapsed={collapsed}
-      width={220}
+      width={210}
       className='min-h-screen bg-white shadow-md'
     >
       <div

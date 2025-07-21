@@ -2,19 +2,23 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 
 import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules';
-import { QUERY_KEY } from '@app/constants';
+import { QUERY_KEY, TimestampEnum } from '@app/constants';
 import {
+  DetailDeviceProps,
   DeviceProps,
   DeviceResponseProps,
   DeviceSettingProps,
+  DeviceTelemetryEnergyImportInfo,
   DeviceTotalTypeProps,
 } from '@app/interface/device.interface';
 import { MetaProps } from '@app/interface/meta.interface';
 import {
-  getDeviceAPI,
-  getDeviceSummarizeAPI,
   getDeviceTelemetryKeysAPI,
   updateDeviceSettingsAPI,
+  getDetailDeviceAPI,
+  getDeviceAPI,
+  getDeviceSummarizeAPI,
+  getElectricityConsumptionAPI,
 } from '@app/services/deviceAPI';
 
 export const useGetDevices = (params: DeviceProps) =>
@@ -65,3 +69,31 @@ export const useUpdateDeviceSettings = () => {
     },
   });
 };
+export const useGetElectricityConsumption = (
+  deviceThingsboardId: string,
+  interval: TimestampEnum,
+) =>
+  useQuery<{ data: DeviceTelemetryEnergyImportInfo }>(
+    [QUERY_KEY.ELECTRICITY_CONSUMPTION, deviceThingsboardId, interval],
+    async () => {
+      const data = await getElectricityConsumptionAPI(deviceThingsboardId, interval);
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );
+
+export const useGetDetailDevice = (deviceThingsboardId: string) =>
+  useQuery<DetailDeviceProps>(
+    [QUERY_KEY.DETAIL_DEVICE, deviceThingsboardId],
+    async () => {
+      const { data } = await getDetailDeviceAPI(deviceThingsboardId);
+      return data.data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );

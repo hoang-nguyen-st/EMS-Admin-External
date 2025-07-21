@@ -39,3 +39,11 @@ export interface DeviceModalData {
     meterTypeEnum: MeterTypeEnum;
   };
 }
+
+export interface DeviceSettingProps {
+  fieldCalculate: string;
+  deviceType: string;
+  meterType: string;
+  voltageUnit: string;
+  voltageValue: string;
+}

@@ -6,6 +6,7 @@ import { QUERY_KEY } from '@app/constants';
 import {
   DeviceProps,
   DeviceResponseProps,
+  DeviceSettingProps,
   DeviceTotalTypeProps,
 } from '@app/interface/device.interface';
 import { MetaProps } from '@app/interface/meta.interface';
@@ -47,19 +48,8 @@ export const useUpdateDeviceSettings = () => {
   const queryClient = useQueryClient();
   const { t } = useTranslation();
   return useMutation({
-    mutationFn: ({
-      deviceId,
-      settings,
-    }: {
-      deviceId: string;
-      settings: {
-        fieldCalculate: string;
-        deviceType: string;
-        meterType: string;
-        voltageUnit: string;
-        voltageValue: string;
-      };
-    }) => updateDeviceSettingsAPI(deviceId, settings),
+    mutationFn: ({ deviceId, settings }: { deviceId: string; settings: DeviceSettingProps }) =>
+      updateDeviceSettingsAPI(deviceId, settings),
     onSuccess: ({ data }) => {
       openNotificationWithIcon(
         NotificationTypeEnum.SUCCESS,

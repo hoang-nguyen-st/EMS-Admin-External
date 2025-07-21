@@ -25,6 +25,7 @@ export const useLogin = () => {
     },
     {
       onSuccess: ({ data }) => {
+        openNotificationWithIcon(NotificationTypeEnum.SUCCESS, t<string>('LOGIN.SUCCESS'));
         dispatchAuth(login());
 
         setStorageData(ACCESS_TOKEN, data.accessToken);

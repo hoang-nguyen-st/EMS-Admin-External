@@ -22,7 +22,6 @@ const DeviceManagement = () => {
   const { data: deviceSummarize } = useGetDeviceSummarize();
   const [filters, setFilters] = useState<DeviceProps>({
     search: '',
-    deviceType: DeviceType.DEFAULT,
     page: 1,
     take: 10,
   });
@@ -119,7 +118,8 @@ const DeviceManagement = () => {
     },
   ];
 
-  const getCount = (type: string) => deviceSummarize?.find((d) => d.type === type)?.count || 0;
+  const getCount = (type: string) =>
+    deviceSummarize?.find((d) => d.deviceType === type)?.count || 0;
 
   const deviceStats = [
     {

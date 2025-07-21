@@ -10,7 +10,7 @@ export interface DeviceProps extends GetListParams {
 }
 
 export interface DeviceTotalTypeProps {
-  type: string;
+  deviceType: string;
   count: number;
 }
 

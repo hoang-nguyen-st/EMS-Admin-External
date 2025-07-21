@@ -6,45 +6,18 @@ import { useTranslation } from 'react-i18next';
 
 import { useDeviceModalSchema } from './DeviceModalSchema';
 import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules';
-import { DeviceType, MeterTypeEnum, VoltageUnitEnum } from '@app/constants';
+import { deviceTypeOptions, meterTypeOptions, voltageUnitOptions } from '@app/constants';
 import { yupSync } from '@app/helpers/yupSync';
 import { useGetDeviceTelemetryKeys, useUpdateDeviceSettings } from '@app/hooks/useDevice';
+import { DeviceResponseProps } from '@app/interface/device.interface';
 
 const { Title } = Typography;
 
-const deviceTypeOptions = [
-  { value: DeviceType.ELECTRIC, label: 'DEVICE_MANAGEMENT.ELECTRIC' },
-  { value: DeviceType.WATER, label: 'DEVICE_MANAGEMENT.WATER' },
-  { value: DeviceType.GAS, label: 'DEVICE_MANAGEMENT.GAS' },
-];
-
-const meterTypeOptions = [
-  { value: MeterTypeEnum.METER_TYPE_1, label: 'DEVICE_MANAGEMENT.METER_TYPE_1' },
-  { value: MeterTypeEnum.METER_TYPE_3, label: 'DEVICE_MANAGEMENT.METER_TYPE_3' },
-];
-
-const voltageUnitOptions = [
-  { value: VoltageUnitEnum.VOLT, label: 'DEVICE_MANAGEMENT.VOLT' },
-  { value: VoltageUnitEnum.KILOVOLT, label: 'DEVICE_MANAGEMENT.KILOVOLT' },
-  { value: VoltageUnitEnum.MEGAVOLT, label: 'DEVICE_MANAGEMENT.MEGAVOLT' },
-];
-
 interface SettingDeviceModalProps {
   open: boolean;
-  deviceData?: {
-    id: string;
-    name: string;
-    devEUI: string;
-    deviceType?: string;
-    fieldCalculate?: string;
-    voltageUnit?: string;
-    voltageValue?: string;
-    meterType?: {
-      meterTypeEnum: string;
-    };
-  };
+  deviceData: DeviceResponseProps | null;
   onCancel: () => void;
-  onSave: (values: any) => void;
+  onSave: (values: DeviceModalData) => void;
 }
 
 interface DeviceModalData {

@@ -1,13 +1,11 @@
+import { GetListParams } from './common.interface';
 import { DeviceLocationResponseProps } from './location.interface';
 import { DeviceMeterTypeResponseProps } from './meterType.interface';
-import { DeviceType, VoltageUnitEnum } from '@app/constants';
+import { DeviceType, MeterTypeEnum, VoltageUnitEnum } from '@app/constants';
 
-export interface DeviceProps {
-  search?: string;
+export interface DeviceProps extends GetListParams {
   status?: boolean;
   deviceType?: DeviceType;
-  page: number;
-  take: number;
   location?: string;
 }
 
@@ -33,11 +31,11 @@ export interface DeviceModalData {
   id: string;
   name: string;
   devEUI?: string;
-  deviceType?: string;
+  deviceType?: DeviceType;
   fieldCalculate?: string;
-  voltageUnit?: string;
+  voltageUnit?: VoltageUnitEnum;
   voltageValue?: string;
   meterType?: {
-    meterTypeEnum: string;
+    meterTypeEnum: MeterTypeEnum;
   };
 }

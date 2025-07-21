@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { handleFilterChange, handleSearchDevice } from './common/useFilter';
 import { DeviceModal } from './components';
 import SelectDevice from './components/SelectDevice';
-import { DeviceType, getNameDeviceType, NAVIGATE_URL } from '@app/constants';
+import { DeviceType, getNameDeviceType, NAVIGATE_URL, getOptionsDeviceType } from '@app/constants';
 import { useGetDevices, useGetDeviceSummarize } from '@app/hooks/useDevice';
 import { useGetLocations } from '@app/hooks/useLocation';
 import { DeviceResponseProps, DeviceProps } from '@app/interface/device.interface';
@@ -34,12 +34,6 @@ const DeviceManagement = () => {
     isLoading: isLoadingDevices,
   } = useGetDevices(filters);
   const { data: devicesData, meta } = devicesResponse || {};
-
-  const devices =
-    devicesData?.map((device: DeviceResponseProps) => ({
-      ...device,
-      key: device.id,
-    })) ?? [];
 
   useEffect(() => {
     refetchDevices();
@@ -72,7 +66,6 @@ const DeviceManagement = () => {
       title: t('DEVICE_MANAGEMENT.DEVICE_ID'),
       dataIndex: 'devEUI',
       key: 'devEUI',
-      render: (value: string) => value,
     },
     {
       title: t('DEVICE_MANAGEMENT.LOCATION'),
@@ -86,13 +79,12 @@ const DeviceManagement = () => {
       title: t('DEVICE_MANAGEMENT.FIELD'),
       dataIndex: 'fieldCalculate',
       key: 'fieldCalculate',
-      render: (value: string) => value,
     },
     {
       title: t('DEVICE_MANAGEMENT.DEVICE_TYPE'),
       dataIndex: 'deviceType',
       key: 'deviceType',
-      render: (value: string) => <span>{getNameDeviceType(value, t)}</span>,
+      render: (value: DeviceType) => <span>{getNameDeviceType(value, t)}</span>,
     },
     {
       title: t('DEVICE_MANAGEMENT.STATUS'),
@@ -211,21 +203,15 @@ const DeviceManagement = () => {
                     }
                     setFilters={setFilters}
                     placeholder={t<string>('DEVICE_MANAGEMENT.DEVICE_TYPE')}
-                    options={[
-                      {
-                        value: DeviceType.ELECTRIC,
-                        label: t<string>('DEVICE_MANAGEMENT.ELECTRIC'),
-                      },
-                      { value: DeviceType.GAS, label: t<string>('DEVICE_MANAGEMENT.GAS') },
-                      { value: DeviceType.WATER, label: t<string>('DEVICE_MANAGEMENT.WATER') },
-                    ]}
+                    options={getOptionsDeviceType(t)}
                   />
                 </div>
               </div>
             </div>
             <Table
+              rowKey='id'
               id='device-management-table'
-              dataSource={devices}
+              dataSource={devicesData}
               loading={isLoadingDevices}
               columns={columns}
               pagination={false}
@@ -247,20 +233,7 @@ const DeviceManagement = () => {
       </div>
       <DeviceModal
         open={isModalOpen}
-        deviceData={
-          selectedDevice
-            ? {
-                id: selectedDevice.id,
-                name: selectedDevice.name,
-                devEUI: selectedDevice.devEUI,
-                deviceType: selectedDevice.deviceType,
-                fieldCalculate: selectedDevice.fieldCalculate,
-                voltageUnit: selectedDevice.voltageUnit,
-                voltageValue: selectedDevice.voltageValue,
-                meterType: selectedDevice.meterType,
-              }
-            : undefined
-        }
+        deviceData={selectedDevice}
         onCancel={() => {
           setIsModalOpen(false);
           setSelectedDevice(null);

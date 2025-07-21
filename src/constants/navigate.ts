@@ -3,6 +3,8 @@ export const NAVIGATE_URL = {
   USERS: '/users',
   USER_UPDATE: '/users/update',
   USER_CREATE: '/users/create',
+  USER_MANAGEMENT: '/user-management',
+  PROJECT_MANAGEMENT: '/project-management',
   PROFILE_UPDATE: '/profile/update',
   CHANGE_PASSWORD: '/profile/change-password',
   SIGN_IN: '/sign-in',

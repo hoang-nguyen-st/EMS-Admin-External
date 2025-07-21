@@ -1,75 +1,93 @@
-import { FolderOutlined } from '@ant-design/icons';
 import { Layout, Image, Menu, MenuProps } from 'antd';
-import { useState } from 'react';
+import { CircleUserRound, FolderRoot, LayoutGrid } from 'lucide-react';
+import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import logo from '@app/assets/logo.png';
+import Logo from '@app/assets/logo.png';
+import { NAVIGATE_URL } from '@app/constants';
 import './SidebarDashboard.scss';
 
 const { Sider } = Layout;
 
-const SidebarMenu = () => {
+export interface SidebarProps {
+  collapsed: boolean;
+}
+
+export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const menuItems: MenuProps['items'] = [
     {
-      key: '1',
-      label: <p className='text-primary-second'>{t<string>('SIDEBAR.PROJECT')}</p>,
-      icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
+      key: '/',
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.DASHBOARD')}
+        </p>
+      ),
+      icon: <LayoutGrid className='!text-2xl !text-primary-second' />,
       onClick: () => {
-        navigate('project-management', { replace: true });
+        navigate('/', { replace: true });
       },
-      className: 'focus:bg-primary-light',
+      className: `focus:bg-primary-light ${
+        location.pathname === '/' && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
-    // Example
-    // {
-    //   key: '1',
-    //   label: <p className='text-primary-second'>{t<string>('SIDEBAR.PROJECT')}</p>,
-    //   icon: <FolderOutlined className='!text-2xl !text-primary-second' />,
-    //   onClick: () => {
-    //     navigate('sign-in', { replace: true })
-    //   },
-    //   className: "focus:bg-primary-light"
-    // },
+    {
+      key: NAVIGATE_URL.PROJECT_MANAGEMENT,
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.LOCATION')}
+        </p>
+      ),
+      icon: <FolderRoot className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate(NAVIGATE_URL.PROJECT_MANAGEMENT, { replace: true });
+      },
+      className: `focus:bg-primary-light ${
+        location.pathname.includes(NAVIGATE_URL.PROJECT_MANAGEMENT) && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
+    {
+      key: NAVIGATE_URL.USER_MANAGEMENT,
+      label: (
+        <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.USER')}
+        </p>
+      ),
+      icon: <CircleUserRound className='!text-2xl !text-primary-second' />,
+      onClick: () => {
+        navigate(NAVIGATE_URL.USER_MANAGEMENT, { replace: true });
+      },
+      className: `focus:bg-primary-light ${
+        location.pathname.includes(NAVIGATE_URL.USER_MANAGEMENT) && '!bg-primary-light'
+      } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
+    },
   ];
-
-  return <Menu theme='light' mode='inline' items={menuItems} className='rounded-xl' />;
-};
-
-const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(false);
-  const { t } = useTranslation();
-
-  const handleCollapse = (collapsed: boolean) => {
-    setIsCollapsed(collapsed);
-  };
-
   return (
     <Sider
+      trigger={null}
       collapsible
-      collapsed={isCollapsed}
-      onCollapse={handleCollapse}
-      width={292}
-      className='h-screen bg-white border-[1px] shadow-md overflow-hidden'
+      collapsed={collapsed}
+      width={220}
+      className='min-h-screen bg-white shadow-md'
     >
-      <div className='px-6 pt-10 mb-2'>
-        <div className='flex items-center gap-x-2'>
-          <Image preview={false} src={logo} alt='logo' />
-          {!isCollapsed && <h1 className='text-2xl'>EMS</h1>}
-        </div>
-        <div className='mt-8'>
-          <p className={`text-gray-400 ${isCollapsed ? 'text-sm' : ''}`}>
-            {t<string>('DASHBOARD.MENU')}
-          </p>
-        </div>
+      <div
+        className={`${
+          collapsed ? 'p-4 justify-center' : 'p-6 justify-start'
+        } bg-white flex items-center gap-x-2`}
+      >
+        <Image src={Logo} preview={false} />
+        {!collapsed && <p className='text-2xl font-bold'>EMS</p>}
       </div>
-      <div className='px-6'>
-        <SidebarMenu />
-      </div>
+      <Menu
+        theme='dark'
+        mode='inline'
+        className='!bg-white'
+        defaultSelectedKeys={['1']}
+        items={menuItems}
+      />
     </Sider>
   );
 };
-
-export { Sidebar, SidebarMenu };

@@ -189,7 +189,13 @@
   },
   "DASHBOARD": {
     "MENU": "MENU",
-    "SEARCH": "Search or type command..."
+    "SEARCH": "Search or type command...",
+    "TITLE": "Dashboard"
+  },
+  "SIDEBAR": {
+    "DASHBOARD": "Dashboard",
+    "LOCATION": "Location Management",
+    "USER": "User Management"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"

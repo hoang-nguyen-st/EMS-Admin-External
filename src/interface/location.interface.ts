@@ -4,3 +4,7 @@ export interface LocationDto {
   status: string;
   locationType: string;
 }
+
+export interface DeviceLocationResponseProps {
+  name: string;
+}

@@ -181,13 +181,15 @@
   },
   "LOGIN": {
     "TEXT": "Đăng nhập",
+    "TEXT_LOADING": "Đang đăng nhập...",
     "PASSWORD": "Mật khẩu",
     "PASSWORD_INPUT": "Nhập mật khẩu",
     "EMAIL_INPUT": "Nhập email",
     "EMAIL": "Email",
     "FORGOT_PASSWORD": "Quên mật khẩu?",
     "POLICY": "Nhập email và mật khẩu của bạn để đăng nhập!",
-    "FAIL": "Đăng nhập không thành công"
+    "FAIL": "Đăng nhập không thành công",
+    "SUCCESS": "Đăng nhập thành công"
   },
   "DASHBOARD": {
     "MENU": "DANH SÁCH",

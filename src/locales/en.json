@@ -179,13 +179,15 @@
   },
   "LOGIN": {
     "TEXT": "Login",
+    "TEXT_LOADING": "Logging in...",
     "PASSWORD": "Password",
     "PASSWORD_INPUT": "Enter Password",
     "EMAIL_INPUT": "Enter Email",
     "EMAIL": "Email",
     "FORGOT_PASSWORD": "Forgot password?",
     "POLICY": "Enter your email and password to sign in!",
-    "FAIL": "Login failed"
+    "FAIL": "Login failed",
+    "SUCCESS": "Login successfully"
   },
   "DASHBOARD": {
     "MENU": "MENU",

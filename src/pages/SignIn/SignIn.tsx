@@ -14,7 +14,7 @@ import { RootState } from '@app/redux/store';
 import './SignIn.scss';
 
 const SignIn = () => {
-  const { mutate: handleLogin } = useLogin();
+  const { mutate: handleLogin, isLoading: isLoadingLogin } = useLogin();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [form] = Form.useForm();
@@ -72,8 +72,9 @@ const SignIn = () => {
               type='primary'
               htmlType='submit'
               className='w-full h-[3.75rem] bg-primary-bold text-[1rem] text-white font-bold border-none outline-none rounded-md hover:!bg-primary-second hover:text-black transition duration-300'
+              loading={isLoadingLogin}
             >
-              {t('LOGIN.TEXT')}
+              {isLoadingLogin ? t('LOGIN.TEXT_LOADING') : t('LOGIN.TEXT')}
             </Button>
           </Form.Item>
         </Form>

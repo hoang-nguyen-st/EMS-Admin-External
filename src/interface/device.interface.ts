@@ -47,3 +47,28 @@ export interface DeviceSettingProps {
   voltageUnit: string;
   voltageValue: string;
 }
+
+export interface DeviceTelemetryEnergyImportInfo {
+  data_active_energy_import: TelemetryTimeSeriesDto[];
+}
+
+export interface TelemetryTimeSeriesDto {
+  ts: number;
+  value: string;
+}
+
+export interface ExternalDeviceAttribute {
+  key: string;
+  value: string;
+  lastUpdateTs: number;
+}
+
+export type TelemetryTimeSeriesResponse = {
+  [key: string]: TelemetryTimeSeriesDto[];
+};
+
+export interface DetailDeviceProps {
+  device: DeviceResponseProps;
+  attributes: ExternalDeviceAttribute[];
+  lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
+}

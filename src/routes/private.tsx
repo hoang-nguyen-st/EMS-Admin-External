@@ -4,6 +4,7 @@ import { RouteObject } from 'react-router-dom';
 import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
 import { NAVIGATE_URL } from '@app/constants';
 import { DeviceManagement } from '@app/pages';
+import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
 const NotFound = lazy(() => import('@app/pages/NotFound/NotFound'));
@@ -30,7 +31,16 @@ const routes: RouteObject[] = [
           },
           {
             path: NAVIGATE_URL.DEVICE_MANAGEMENT,
-            element: <DeviceManagement />,
+            children: [
+              {
+                index: true,
+                element: <DeviceManagement />,
+              },
+              {
+                path: ':id',
+                element: <DetailDevice />,
+              },
+            ],
           },
         ],
       },

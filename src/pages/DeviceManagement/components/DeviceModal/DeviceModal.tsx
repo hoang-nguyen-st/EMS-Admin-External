@@ -51,11 +51,11 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
       form.setFieldsValue({
         deviceName: deviceData.name,
         devEUI: deviceData.devEUI,
-        fieldCalculate: deviceData.fieldCalculate || '',
-        deviceType: deviceData.deviceType || '',
-        meterType: deviceData.meterType?.meterTypeEnum || '',
-        voltageValue: deviceData.voltageValue || '',
-        voltageUnit: deviceData.voltageUnit || '',
+        fieldCalculate: deviceData?.fieldCalculate ?? undefined,
+        deviceType: deviceData?.deviceType ?? undefined,
+        meterType: deviceData?.meterType?.meterTypeEnum ?? undefined,
+        voltageValue: deviceData?.voltageValue ?? undefined,
+        voltageUnit: deviceData?.voltageUnit ?? undefined,
       });
     } else if (!open) {
       form.resetFields();

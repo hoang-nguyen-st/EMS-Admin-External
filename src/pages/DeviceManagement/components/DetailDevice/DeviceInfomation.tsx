@@ -11,6 +11,7 @@ const DeviceInfomation = () => {
   const { t } = useTranslation();
 
   const { data: detailDeviceRes } = useGetDetailDevice(id || '');
+  const fieldCalculate = detailDeviceRes?.device.fieldCalculate;
 
   return (
     <Card>
@@ -18,10 +19,12 @@ const DeviceInfomation = () => {
         <div className='gap-2 flex flex-col'>
           <p className='font-bold text-2xl'>{detailDeviceRes?.device.name}</p>
           <p className='text-lg text-[#667085]'>
-            {t('DEVICE_MANAGEMENT.DEVICE_PROFILE_TYPE', {
-              deviceType:
-                detailDeviceRes && getNameDeviceType(detailDeviceRes.device.deviceType, t),
-            })}
+            {detailDeviceRes?.device.deviceType
+              ? t('DEVICE_MANAGEMENT.DEVICE_PROFILE_TYPE', {
+                  deviceType:
+                    detailDeviceRes && getNameDeviceType(detailDeviceRes.device.deviceType, t),
+                })
+              : 'N/A'}
           </p>
         </div>
         <div className='bg-[#28A745] text-white font-medium px-4 py-2 rounded-xl border-[#12B76A] border-[1px]'>
@@ -41,16 +44,19 @@ const DeviceInfomation = () => {
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.LAST_ELECTRICITY_CONSUMPTION')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes?.lastestTimeSeriesValue.data_active_energy_import[0].value ||
-                  'N/A'}
+                {detailDeviceRes?.lastestTimeSeriesValue
+                  ? detailDeviceRes?.lastestTimeSeriesValue?.[fieldCalculate as string]?.[0]?.value
+                  : 'N/A'}
               </span>
             </p>
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.TIME_ELECTRICITY_CONSUMPTION')}:{' '}
               <span className='font-semibold text-lg'>
-                {dayjs(
-                  detailDeviceRes?.lastestTimeSeriesValue.data_active_energy_import[0].ts,
-                ).format('DD/MM/YYYY HH:mm')}
+                {detailDeviceRes?.lastestTimeSeriesValue
+                  ? dayjs(
+                      detailDeviceRes?.lastestTimeSeriesValue?.[fieldCalculate as string]?.[0]?.ts,
+                    ).format('DD/MM/YYYY HH:mm')
+                  : 'N/A'}
               </span>
             </p>
             <p className='text-base'>

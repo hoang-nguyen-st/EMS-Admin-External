@@ -73,10 +73,10 @@ export const useGetElectricityConsumption = (
   deviceThingsboardId: string,
   interval: TimestampEnum,
 ) =>
-  useQuery<{ data: DeviceTelemetryEnergyImportInfo }>(
+  useQuery<DeviceTelemetryEnergyImportInfo>(
     [QUERY_KEY.ELECTRICITY_CONSUMPTION, deviceThingsboardId, interval],
     async () => {
-      const data = await getElectricityConsumptionAPI(deviceThingsboardId, interval);
+      const { data } = await getElectricityConsumptionAPI(deviceThingsboardId, interval);
       return data;
     },
     {

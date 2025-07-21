@@ -54,7 +54,7 @@ const ElectricityComsumption = () => {
   ];
 
   const data = {
-    labels: electricityConsumptionRes?.data.data_active_energy_import?.map((item) => {
+    labels: electricityConsumptionRes?.data?.map((item) => {
       if (interval === TimestampEnum.BY_DAY) {
         const date = dayjs(item.ts).format('DD/MM');
         const time = dayjs(item.ts).format('HH:mm');
@@ -67,9 +67,7 @@ const ElectricityComsumption = () => {
     datasets: [
       {
         label: t('DEVICE_MANAGEMENT.ELECTRIC_INDEX'),
-        data: electricityConsumptionRes?.data.data_active_energy_import?.map(
-          (item) => Number(item.value) / 100,
-        ),
+        data: electricityConsumptionRes?.data?.map((item) => Number(item.value) / 100),
         borderColor: 'rgba(70, 95, 255, 1)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
         tension: 0.4,
@@ -173,10 +171,9 @@ const ElectricityComsumption = () => {
           />
         </div>
         <Table
+          rowKey={(record) => record.ts}
           className='mt-8 custom-table-electricity-consumption'
-          dataSource={
-            electricityConsumptionRes?.data.data_active_energy_import?.slice().reverse() || []
-          }
+          dataSource={electricityConsumptionRes?.data?.slice().reverse() || []}
           columns={columns}
         />
       </div>

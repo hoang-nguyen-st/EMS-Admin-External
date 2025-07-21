@@ -49,7 +49,7 @@ export interface DeviceSettingProps {
 }
 
 export interface DeviceTelemetryEnergyImportInfo {
-  data_active_energy_import: TelemetryTimeSeriesDto[];
+  data: TelemetryTimeSeriesDto[];
 }
 
 export interface TelemetryTimeSeriesDto {
@@ -69,6 +69,5 @@ export type TelemetryTimeSeriesResponse = {
 
 export interface DetailDeviceProps {
   device: DeviceResponseProps;
-  attributes: ExternalDeviceAttribute[];
   lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
 }

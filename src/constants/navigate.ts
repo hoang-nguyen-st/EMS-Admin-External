@@ -10,4 +10,6 @@ export const NAVIGATE_URL = {
   SIGN_IN: '/sign-in',
   SIGN_OUT: '/sign-out',
   PROFILE: '/profile',
+  ELECTRICITY_SETTING_PRICE: '/price-settings/electricity-price',
+  WATER_SETTING_PRICE: '/price-settings/water-price',
 };

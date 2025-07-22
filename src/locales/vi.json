@@ -194,7 +194,31 @@
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
     "LOCATION": "Quản lý địa điểm",
-    "USER": "Quản lý người dùng"
+    "USER": "Quản lý người dùng",
+    "PRICE_SETTINGS": "Cài đặt giá",
+    "ELECTRICITY_PRICE": "Quản lý giá điện",
+    "WATER_PRICE": "Quản lý giá nước"
+  },
+  "TIME_USAGE": {
+    "MID_PEAK": "Giờ bình thường",
+    "PEAK": "Giờ cao điểm",
+    "OFF_PEAK": "Giờ thấp điểm"
+  },
+  "METER_TYPE": {
+    "METER_TYPE_1": "1 Biểu Giá",
+    "METER_TYPE_3": "3 Biểu Giá"
+  },
+  "ELECTRICITY_PRICE": {
+    "TITLE": "Giá điện",
+    "DESCRIPTION": "Thiết lập giá cho từng loại khách thuê",
+    "TAB_TITLE": "Bảng giá",
+    "TIER_LEVEL": "Bậc",
+    "TIER_KWH": "Sản lượng điện (kWh)",
+    "TIER_PRICE": "Giá bán (VNĐ/kWh)",
+    "VOLTAGE_LEVEL": "Cấp điện áp",
+    "TIME": "Thời gian",
+    "PRICE": "Giá bán (VNĐ/kWh)",
+    "BUTTON_EDIT_PRICE": "Chỉnh sửa"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"

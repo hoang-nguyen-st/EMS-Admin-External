@@ -270,6 +270,9 @@
     "TOTAL_DEVICE": "Total Device",
     "ELECTRICITY_DEVICE": "Electricity Device",
     "WATER_DEVICE": "Water Device",
-    "GAS_DEVICE": "Gas Device"
+    "GAS_DEVICE": "Gas Device",
+    "END_DATE": "End date",
+    "FROM_DATE": "From date",
+    "TO_DATE": "To date"
   }
 }

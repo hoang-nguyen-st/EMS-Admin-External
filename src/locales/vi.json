@@ -273,6 +273,9 @@
     "TOTAL_DEVICE": "Tổng số thiết bị",
     "ELECTRICITY_DEVICE": "Thiết bị điện",
     "WATER_DEVICE": "Thiết bị nước",
-    "GAS_DEVICE": "Thiết bị gas"
+    "GAS_DEVICE": "Thiết bị gas",
+    "END_DATE": "Ngày két thúc",
+    "FROM_DATE": "Từ ngày",
+    "TO_DATE": "Đến ngày"
   }
 }

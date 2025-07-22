@@ -165,6 +165,10 @@ const UserTable: FC<UserTableProps> = ({
               onChange={onDateChange}
               className='px-6 py-2 rounded-lg w-full sm:w-auto'
               format='DD/MM/YYYY'
+              placeholder={[
+                t<string>('USER_MANAGEMENT.FROM_DATE'),
+                t<string>('USER_MANAGEMENT.TO_DATE'),
+              ]}
             />
             <Button onClick={onAddUser} className='px-6 py-5 bg-[#465FFF] text-white'>
               {t('USER_MANAGEMENT.ADD')}

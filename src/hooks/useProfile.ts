@@ -26,6 +26,7 @@ export const useGetProfile = () => {
       onSuccess(data) {
         dispatch(setAuth(data));
       },
+      refetchOnWindowFocus: false,
     },
   );
 };
@@ -39,11 +40,8 @@ export const useChangePassword = () => {
       return response.data;
     },
     {
-      onSuccess({ message }) {
+      onSuccess() {
         navigate(NAVIGATE_URL.PROFILE);
-      },
-      onError({ response }) {
-        console.log(response);
       },
     },
   );
@@ -59,7 +57,7 @@ export const useUpdateProfile = () => {
       return response.data;
     },
     {
-      onSuccess({ message }) {
+      onSuccess() {
         queryClient.refetchQueries([QUERY_KEY.PROFILE]);
         navigate(NAVIGATE_URL.PROFILE);
       },
@@ -75,7 +73,7 @@ export const useUploadAvatar = () => {
       return response.data;
     },
     {
-      onSuccess({ message }) {
+      onSuccess() {
         queryClient.refetchQueries([QUERY_KEY.PROFILE]);
       },
     },
@@ -90,7 +88,7 @@ export const useRemoveAvatar = () => {
       return response.data;
     },
     {
-      onSuccess({ message }) {
+      onSuccess() {
         queryClient.refetchQueries([QUERY_KEY.PROFILE]);
       },
     },

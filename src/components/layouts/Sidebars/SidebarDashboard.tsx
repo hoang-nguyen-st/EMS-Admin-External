@@ -6,7 +6,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logo from '@app/assets/logo.png';
 import { NAVIGATE_URL } from '@app/constants';
-import './SidebarDashboard.scss';
 
 const { Sider } = Layout;
 
@@ -85,7 +84,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       trigger={null}
       collapsible
       collapsed={collapsed}
-      width={220}
+      width={210}
       className='min-h-screen bg-white shadow-md'
     >
       <div

@@ -182,13 +182,15 @@
   },
   "LOGIN": {
     "TEXT": "Đăng nhập",
+    "TEXT_LOADING": "Đang đăng nhập...",
     "PASSWORD": "Mật khẩu",
     "PASSWORD_INPUT": "Nhập mật khẩu",
     "EMAIL_INPUT": "Nhập email",
     "EMAIL": "Email",
     "FORGOT_PASSWORD": "Quên mật khẩu?",
     "POLICY": "Nhập email và mật khẩu của bạn để đăng nhập!",
-    "FAIL": "Đăng nhập không thành công"
+    "FAIL": "Đăng nhập không thành công",
+    "SUCCESS": "Đăng nhập thành công"
   },
   "DASHBOARD": {
     "MENU": "DANH SÁCH",
@@ -206,7 +208,9 @@
     "TITLE": "Quản lý dự án",
     "ALL": "Quản lý tất cả dự án của bạn",
     "SEARCH": "Tìm kiếm dự án",
-    "USER": "Quản lý người dùng"
+    "USER": "Quản lý người dùng",
+    "DEVICE": "Quản lý thiết bị",
+    "LOCATION": "Quản lý địa điểm"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
@@ -258,11 +262,12 @@
     "INDEX": "STT",
     "NAME": "Tên thiết bị",
     "DEVICE_ID": "ID thiết bị",
+    "NO_DEVICE_ID": "Chưa có ID thiết bị",
     "SENSOR_ID": "ID cảm biến",
-    "ZONE": "Khu vực",
+    "LOCATION": "Khu vực",
     "FIELD": "Trường",
     "NO_FIELD": "Trường chưa được định danh",
-    "NO_ZONE": "Khu vực chưa được định danh",
+    "NO_LOCATION": "Khu vực chưa được định danh",
     "DEVICE_TYPE": "Loại thiết bị",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",
@@ -276,6 +281,49 @@
     "ELECTRICITY_DEVICE": "Thiết bị điện",
     "WATER_DEVICE": "Thiết bị nước",
     "GAS_DEVICE": "Thiết bị gas",
-    "END_DATE": "Ngày két thúc"
+    "END_DATE": "Ngày két thúc",
+    "METER_TYPE_1": "Công tơ loại 1",
+    "METER_TYPE_3": "Công tơ loại 3",
+    "VOLT": "V",
+    "KILOVOLT": "kV",
+    "MEGAVOLT": "MV",
+    "UPDATE_DEVICE_SUCCESS": "Cập nhật thiết bị thành công",
+    "UPDATE_DEVICE_ERROR": "Cập nhật thiết bị thất bại",
+    "DEVICE_PROFILE": "Thông tin",
+    "DEVICE_PROFILE_TYPE": "Thiết bị {{deviceType}}",
+    "ENERGY_CONSUMPTION_TITLE": "Thông tin đo năng lượng",
+    "FIRST_ELECTRICITY_CONSUMPTION": "Chỉ số điện tiêu đầu kỳ",
+    "LAST_ELECTRICITY_CONSUMPTION": "Chỉ số điện tiêu thụ đọc gần nhất",
+    "TIME_ELECTRICITY_CONSUMPTION": "Thời điểm đọc gần nhất",
+    "TOTAL_ENERGY_CONSUMPTION": "Sản lượng điện tiêu thụ đọc gần nhất",
+    "DEVICE_INFO": "Thông tin thiết bị",
+    "DEVICE_LOCATION": "Địa điểm",
+    "ELECTRICITY_USAGE": "Điện áp sử dụng",
+    "DEV_EUI": "DevEUI",
+    "MEASUREMENT_DEVICE": "Trường đo chỉ số",
+    "TIME_STAMP": "Ngày giờ đọc",
+    "ELECTRIC_INDEX": "Chỉ số điện tiêu thụ (KWH)",
+    "ELECTRICITY_CONSUMPTION": "Biểu đồ điện tiêu thụ",
+    "ELECTRICITY_CONSUMPTION_BY_DAY": "Theo ngày",
+    "ELECTRICITY_CONSUMPTION_BY_WEEK": "Theo tuần",
+    "ELECTRICITY_CONSUMPTION_BY_MONTH": "Theo tháng",
+    "ELECTRICITY_CONSUMPTION_BY_QUARTER": "Theo quý"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Cấu hình thiết bị",
+    "DEVICE_NAME": "Tên thiết bị",
+    "DEVUI": "Device EUI",
+    "FIELD": "Trường tính toán",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "METER_TYPE": "Loại công tơ",
+    "VOLTAGE": "Điện áp",
+    "VOLTAGE_UNIT": "Đơn vị điện áp",
+    "SAVE": "Lưu",
+    "CANCEL": "Hủy",
+    "TECHNICAL_SPECIFICATIONS": "Thông số kỹ thuật",
+    "SELECT_FIELD": "Chọn trường",
+    "SELECT_DEVICE_TYPE": "Chọn loại thiết bị",
+    "SELECT_METER_TYPE": "Chọn loại công tơ",
+    "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp"
   }
 }

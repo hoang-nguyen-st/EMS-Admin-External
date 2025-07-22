@@ -1,17 +1,16 @@
-import { ZoneDto } from './zone.interface';
-import { DeviceType } from '@app/constants';
+import { GetListParams } from './common.interface';
+import { DeviceLocationResponseProps } from './location.interface';
+import { DeviceMeterTypeResponseProps } from './meterType.interface';
+import { DeviceType, MeterTypeEnum, VoltageUnitEnum } from '@app/constants';
 
-export interface DeviceProps {
-  search?: string;
+export interface DeviceProps extends GetListParams {
   status?: boolean;
   deviceType?: DeviceType;
-  page: number;
-  take: number;
-  zone?: string;
+  location?: string;
 }
 
 export interface DeviceTotalTypeProps {
-  type: string;
+  deviceType: string;
   count: number;
 }
 
@@ -19,11 +18,56 @@ export interface DeviceResponseProps {
   id: string;
   devEUI: string;
   name: string;
-  type: string;
-  createdTime: string;
-  deviceType: string;
-  description: string;
+  deviceType: DeviceType;
   fieldCalculate: string;
-  status: boolean;
-  zone: ZoneDto;
+  status: boolean | string;
+  meterType: DeviceMeterTypeResponseProps;
+  voltageUnit: VoltageUnitEnum;
+  voltageValue: string;
+  location: DeviceLocationResponseProps;
+}
+
+export interface DeviceModalData {
+  id: string;
+  name: string;
+  devEUI?: string;
+  deviceType?: DeviceType;
+  fieldCalculate?: string;
+  voltageUnit?: VoltageUnitEnum;
+  voltageValue?: string;
+  meterType?: {
+    meterTypeEnum: MeterTypeEnum;
+  };
+}
+
+export interface DeviceSettingProps {
+  fieldCalculate: string;
+  deviceType: string;
+  meterType: string;
+  voltageUnit: string;
+  voltageValue: string;
+}
+
+export interface DeviceTelemetryEnergyImportInfo {
+  data: TelemetryTimeSeriesDto[];
+}
+
+export interface TelemetryTimeSeriesDto {
+  ts: number;
+  value: string;
+}
+
+export interface ExternalDeviceAttribute {
+  key: string;
+  value: string;
+  lastUpdateTs: number;
+}
+
+export type TelemetryTimeSeriesResponse = {
+  [key: string]: TelemetryTimeSeriesDto[];
+};
+
+export interface DetailDeviceProps {
+  device: DeviceResponseProps;
+  lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
 }

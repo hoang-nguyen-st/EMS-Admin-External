@@ -180,13 +180,15 @@
   },
   "LOGIN": {
     "TEXT": "Login",
+    "TEXT_LOADING": "Logging in...",
     "PASSWORD": "Password",
     "PASSWORD_INPUT": "Enter Password",
     "EMAIL_INPUT": "Enter Email",
     "EMAIL": "Email",
     "FORGOT_PASSWORD": "Forgot password?",
     "POLICY": "Enter your email and password to sign in!",
-    "FAIL": "Login failed"
+    "FAIL": "Login failed",
+    "SUCCESS": "Login successfully"
   },
   "DASHBOARD": {
     "MENU": "MENU",
@@ -195,16 +197,18 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
-    "PROJECT": "Project Management",
     "USER": "User Management",
+    "DEVICE": "Device Management",
     "LOCATION": "Location Management",
-    "DEVICE": "Device Management"
+    "PROJECT": "Project Management"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Project Management",
     "ALL": "Manage all project of your",
     "SEARCH": "Search",
-    "USER": "User Management"
+    "USER": "User Management",
+    "DEVICE": "Device Management",
+    "LOCATION": "Location Management"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"
@@ -255,11 +259,12 @@
     "INDEX": "No.",
     "NAME": "Name",
     "DEVICE_ID": "DevUI",
+    "NO_DEVICE_ID": "No Device ID",
     "SENSOR_ID": "Sensor ID",
-    "ZONE": "Location",
+    "LOCATION": "Location",
     "FIELD": "Field",
     "NO_FIELD": "Field not indentified",
-    "NO_ZONE": "Zone not indentified",
+    "NO_LOCATION": "Location not indentified",
     "DEVICE_TYPE": "Device type",
     "STATUS": "Status",
     "ACTION": "Actions",
@@ -273,6 +278,30 @@
     "ELECTRICITY_DEVICE": "Electricity Device",
     "WATER_DEVICE": "Water Device",
     "GAS_DEVICE": "Gas Device",
-    "END_DATE": "End date"
+    "END_DATE": "End date",
+    "METER_TYPE_1": "Meter Type 1",
+    "METER_TYPE_3": "Meter Type 3",
+    "VOLT": "V",
+    "KILOVOLT": "kV",
+    "MEGAVOLT": "MV",
+    "UPDATE_DEVICE_SUCCESS": "Update device successfully",
+    "UPDATE_DEVICE_ERROR": "Update device failed"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Setting Device",
+    "DEVICE_NAME": "Device Name",
+    "DEVUI": "Device EUI",
+    "FIELD": "Field",
+    "DEVICE_TYPE": "Device Type",
+    "METER_TYPE": "Meter Type",
+    "VOLTAGE": "Voltage",
+    "VOLTAGE_UNIT": "Voltage Unit",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "TECHNICAL_SPECIFICATIONS": "Technical Specifications",
+    "SELECT_FIELD": "Select Field",
+    "SELECT_DEVICE_TYPE": "Select Device Type",
+    "SELECT_METER_TYPE": "Select Meter Type",
+    "SELECT_VOLTAGE_UNIT": "Select Voltage Unit"
   }
 }

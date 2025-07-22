@@ -11,7 +11,7 @@ export enum DeviceType {
   TOTAL = 'total',
 }
 
-export const getNameDeviceType = (deviceType: string, t: TFunction) => {
+export const getNameDeviceType = (deviceType: DeviceType, t: TFunction) => {
   switch (deviceType) {
     case DeviceType.WATER:
       return t('DEVICE_MANAGEMENT.WATER');
@@ -51,3 +51,9 @@ export const voltageUnitOptions = [
   { value: VoltageUnitEnum.KILOVOLT, label: 'DEVICE_MANAGEMENT.KILOVOLT' },
   { value: VoltageUnitEnum.MEGAVOLT, label: 'DEVICE_MANAGEMENT.MEGAVOLT' },
 ];
+export const enum TimestampEnum {
+  BY_DAY = 'BY_DAY',
+  BY_WEEK = 'BY_WEEK',
+  BY_MONTH = 'BY_MONTH',
+  BY_QUARTER = 'BY_QUARTER',
+}

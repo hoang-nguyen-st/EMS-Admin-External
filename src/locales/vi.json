@@ -231,7 +231,9 @@
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
     "START_DATE": "Ngày bắt đầu",
-    "END_DATE": "Ngày két thúc"
+    "END_DATE": "Ngày kết thúc",
+    "FROM_DATE": "Từ ngày",
+    "TO_DATE": "Đến ngày"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",
@@ -279,6 +281,7 @@
     "ELECTRICITY_DEVICE": "Thiết bị điện",
     "WATER_DEVICE": "Thiết bị nước",
     "GAS_DEVICE": "Thiết bị gas",
+    "END_DATE": "Ngày két thúc",
     "METER_TYPE_1": "Công tơ loại 1",
     "METER_TYPE_3": "Công tơ loại 3",
     "VOLT": "V",

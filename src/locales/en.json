@@ -229,7 +229,9 @@
     "STATUS": "Status",
     "ACTION": "Action",
     "START_DATE": "Start date",
-    "END_DATE": "End date"
+    "END_DATE": "End date",
+    "FROM_DATE": "From date",
+    "TO_DATE": "To date"
   },
   "USER_DETAIL": {
     "CONTACT": "Contact Information",
@@ -276,6 +278,7 @@
     "ELECTRICITY_DEVICE": "Electricity Device",
     "WATER_DEVICE": "Water Device",
     "GAS_DEVICE": "Gas Device",
+    "END_DATE": "End date",
     "METER_TYPE_1": "Meter Type 1",
     "METER_TYPE_3": "Meter Type 3",
     "VOLT": "V",

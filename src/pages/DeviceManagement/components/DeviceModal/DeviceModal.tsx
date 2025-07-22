@@ -57,8 +57,6 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
         voltageValue: deviceData?.voltageValue ?? undefined,
         voltageUnit: deviceData?.voltageUnit ?? undefined,
       });
-    } else if (!open) {
-      form.resetFields();
     }
   }, [open, deviceData, form]);
 
@@ -90,7 +88,10 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
   return (
     <Modal
       open={open}
-      onCancel={onCancel}
+      onCancel={() => {
+        form.resetFields();
+        onCancel();
+      }}
       footer={
         <div className='flex items-center justify-end gap-x-4 mt-8'>
           <Button

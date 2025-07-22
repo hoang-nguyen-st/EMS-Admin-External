@@ -33,7 +33,7 @@ const ElectricityComsumption = () => {
   const { t } = useTranslation();
 
   const [interval, setInterval] = useState<TimestampEnum>(TimestampEnum.BY_DAY);
-  const { data: electricityConsumptionRes } = useGetElectricityConsumption(id || '', interval);
+  const { data: electricityConsumptionRes } = useGetElectricityConsumption(id!, interval);
 
   const columns: ColumnsType<TelemetryTimeSeriesDto> = [
     {

@@ -322,5 +322,15 @@
     "SELECT_DEVICE_TYPE": "Chọn loại thiết bị",
     "SELECT_METER_TYPE": "Chọn loại công tơ",
     "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp"
+  },
+  "LOCATION": {
+    "TITLE": "Quản lý địa điểm",
+    "SUB_TITLE": "Quản lý toàn bộ Địa điểm trong không gian làm việc này. Kiểm soát quyền truy cập, phân công vai trò và giám sát hoạt động trên toàn bộ nền tảng của bạn.",
+    "LOCATION_NAME": "Tên địa điểm",
+    "TENANT_TYPE": "Loại địa điểm",
+    "USER": "Người dùng",
+    "DEVICES": "Thiết bị",
+    "ACTION": "Hành động",
+    "ADD_LOCATION": "Thêm địa điểm"
   }
 }

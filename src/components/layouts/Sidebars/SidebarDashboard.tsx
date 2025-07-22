@@ -34,7 +34,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
     {
-      key: NAVIGATE_URL.PROJECT_MANAGEMENT,
+      key: NAVIGATE_URL.LOCATION_MANAGEMENT,
       label: (
         <p className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
           {t<string>('SIDEBAR.LOCATION')}
@@ -42,10 +42,10 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
       ),
       icon: <FolderRoot className='!text-2xl !text-primary-second' />,
       onClick: () => {
-        navigate(NAVIGATE_URL.PROJECT_MANAGEMENT, { replace: true });
+        navigate(NAVIGATE_URL.LOCATION);
       },
       className: `focus:bg-primary-light ${
-        location.pathname.includes(NAVIGATE_URL.PROJECT_MANAGEMENT) && '!bg-primary-light'
+        location.pathname.includes(NAVIGATE_URL.LOCATION) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
     {

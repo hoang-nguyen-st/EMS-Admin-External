@@ -1,10 +1,11 @@
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
-import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
+import DashboardLayout from '@app/components/templates/DashboardLayout';
 import { NAVIGATE_URL } from '@app/constants';
-import { ProjectManagement, UserManagement, UserDetail, DeviceManagement } from '@app/pages';
+import { DeviceManagement, ProjectManagement, UserDetail, UserManagement } from '@app/pages';
 import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
+import LocationManagement from '@app/pages/Locations/LocationManagement';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
 const NotFound = lazy(() => import('@app/pages/NotFound/NotFound'));
@@ -51,6 +52,15 @@ const routes: RouteObject[] = [
               {
                 path: ':id',
                 element: <DetailDevice />,
+              },
+            ],
+          },
+          {
+            path: NAVIGATE_URL.LOCATION,
+            children: [
+              {
+                index: true,
+                element: <LocationManagement />,
               },
             ],
           },

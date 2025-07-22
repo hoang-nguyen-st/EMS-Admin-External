@@ -11,4 +11,6 @@ export const NAVIGATE_URL = {
   SIGN_IN: '/sign-in',
   SIGN_OUT: '/sign-out',
   PROFILE: '/profile',
+  LOCATION_MANAGEMENT: '/location-management',
+  LOCATION: '/location',
 };

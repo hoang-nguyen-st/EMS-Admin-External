@@ -1,0 +1,124 @@
+import { Table, Popover, Card, Input, Button } from 'antd';
+import { ColumnsType } from 'antd/es/table';
+import { Edit, Search, Trash } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+
+import LocationTypeSelect from '@app/components/commons/LocationTypeSelect/LocationTypeSelect';
+import { useGetAllLocations } from '@app/hooks/useLocation';
+import { LocationResponseDto } from '@app/interface/location.interface';
+import './index.css';
+
+const LocationManagement = () => {
+  const { t } = useTranslation();
+  const { data: locations, isLoading } = useGetAllLocations();
+
+  const columns: ColumnsType<LocationResponseDto> = [
+    {
+      title: t<string>('LOCATION.LOCATION_NAME'),
+      dataIndex: 'name',
+      key: 'name',
+      width: 200,
+    },
+    {
+      title: t<string>('LOCATION.TENANT_TYPE'),
+      dataIndex: ['locationType', 'name'],
+      key: 'locationType',
+      width: 150,
+    },
+    {
+      title: t<string>('LOCATION.USER'),
+      dataIndex: ['user', 'name'],
+      key: 'user',
+      width: 150,
+    },
+    {
+      title: t<string>('LOCATION.DEVICES'),
+      dataIndex: 'devices',
+      key: 'devices',
+      width: 300,
+      render: (_, record) => {
+        const firstTwoDevices = record.devices.slice(0, 2);
+        const remainingDevices = record.devices.slice(2);
+        return (
+          <div className='flex items-center gap-2'>
+            {firstTwoDevices.map((device) => (
+              <div key={device.id} className='text-sm text-black bg-[#D9D9D9] px-3 py-1 rounded-xl'>
+                <div>{device.name}</div>
+              </div>
+            ))}
+            {remainingDevices.length > 0 && (
+              <Popover
+                trigger='hover'
+                content={
+                  <div>
+                    {remainingDevices.map((d) => (
+                      <div key={d.id}>{d.name}</div>
+                    ))}
+                  </div>
+                }
+                placement='rightTop'
+              >
+                <div className='text-sm text-black bg-[#D9D9D9] px-3 py-1 rounded-xl cursor-pointer'>
+                  +{remainingDevices.length}
+                </div>
+              </Popover>
+            )}
+          </div>
+        );
+      },
+    },
+    {
+      title: t<string>('LOCATION.ACTION'),
+      dataIndex: 'action',
+      key: 'action',
+      width: 80,
+      fixed: 'right',
+      render: (_, record) => {
+        return (
+          <div>
+            <div className='flex items-center gap-4'>
+              <Edit className='text-[#2E4258] cursor-pointer' />
+              <Trash className='text-[#D50707] cursor-pointer' />
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
+
+  return (
+    <div>
+      <div className='flex flex-col gap-4'>
+        <p className='text-3xl font-medium'>{t('LOCATION.TITLE')}</p>
+        <p className='text-base text-[#2E4258]'>{t('LOCATION.SUB_TITLE')}</p>
+      </div>
+      <Card className='mt-4'>
+        <div className='flex flex-col gap-8'>
+          <div className='flex flex-row gap-4 items-center justify-between'>
+            <Input
+              placeholder='Tìm kiếm theo tên địa điểm'
+              className='w-full px-3 py-2 max-w-[300px]'
+              prefix={<Search className='text-[#2E4258]' width={16} height={16} />}
+            />
+            <div className='flex flex-row gap-4'>
+              <LocationTypeSelect />
+              <Button className='h-[40px]' type='primary'>
+                {t('LOCATION.ADD_LOCATION')}
+              </Button>
+            </div>
+          </div>
+          <Table
+            rowKey='id'
+            loading={isLoading}
+            className='custom-table-location'
+            columns={columns}
+            dataSource={locations?.data}
+            scroll={{ x: 'max-content' }}
+          />
+        </div>
+      </Card>
+    </div>
+  );
+};
+
+export default LocationManagement;

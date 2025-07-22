@@ -121,7 +121,7 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
         defaultSelectedKeys={['1']}
         items={menuItems}
         expandIcon={({ isOpen }) => (
-          <span className='flex items-center ml-14'>
+          <span className='flex items-center ml-10'>
             {isOpen ? (
               <ChevronUp className='text-primary-second transition-transform duration-200' />
             ) : (

@@ -4,11 +4,10 @@ import { Rule } from 'antd/lib/form';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useSignInSchema } from './UserModalSchema';
+import { useUserModalSchema } from './UserModalSchema';
 import { yupSync } from '@app/helpers/yupSync';
 import { useCreateUserByAdmin } from '@app/hooks';
 import { CreateUserDto, UserColumns } from '@app/interface/user.interface';
-
 export interface UserModalProps {
   visible: boolean;
   user: UserColumns | null;
@@ -21,7 +20,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
   const [isMounted, setIsMounted] = useState(false);
 
   const [form] = Form.useForm();
-  const signInSchema = useSignInSchema();
+  const signInSchema = useUserModalSchema();
 
   const validator = [yupSync(signInSchema)] as unknown as Rule[];
   const { mutate: handleCreateUser, isLoading } = useCreateUserByAdmin();

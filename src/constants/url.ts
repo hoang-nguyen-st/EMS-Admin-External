@@ -41,6 +41,8 @@ export const API_URL = {
   DATA_CARD: '/report-1/dashboard-data-card',
   DATA_CHART: '/report-1/dashboard-data-chart',
   PROJECTS: '/projects',
+  LOCATION_TYPE: '/location-types',
+  ELECTRIC_PRICE: '/pricing-electric-rules/by-location-type',
   DETAIL_DEVICE: '/devices/detail',
 };
 

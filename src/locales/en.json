@@ -210,6 +210,27 @@
     "DEVICE": "Device Management",
     "LOCATION": "Location Management"
   },
+  "TIME_USAGE": {
+    "MID_PEAK": "Normal hours",
+    "PEAK": "Peak hours",
+    "OFF_PEAK": "Off-peak hours"
+  },
+  "METER_TYPE": {
+    "METER_TYPE_1": "Meter Type 1",
+    "METER_TYPE_3": "Meter Type 3"
+  },
+  "ELECTRICITY_PRICE": {
+    "TITLE": "Electricity Price",
+    "DESCRIPTION": "Set up pricing for each tenant type",
+    "TAB_TITLE": "Price Table",
+    "TIER_LEVEL": "Level",
+    "TIER_KWH": "Electricity consumption (kWh)",
+    "TIER_PRICE": "Selling price (VND/kWh)",
+    "VOLTAGE_LEVEL": "Voltage level",
+    "TIME": "Time",
+    "PRICE": "Selling price (VND/kWh)",
+    "BUTTON_EDIT_PRICE": "Edit"
+  },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"
   },

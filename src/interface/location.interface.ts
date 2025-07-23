@@ -1,3 +1,5 @@
+import { LocationTypeEnum } from '@app/constants/enum';
+
 export interface LocationDto {
   id: string;
   name: string;
@@ -7,4 +9,12 @@ export interface LocationDto {
 
 export interface DeviceLocationResponseProps {
   name: string;
+}
+
+export interface LocationType {
+  id: string;
+  name: string;
+  description: string;
+  isTariffTier: boolean;
+  locationTypeEnum: LocationTypeEnum;
 }

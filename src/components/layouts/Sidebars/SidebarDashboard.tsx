@@ -1,5 +1,13 @@
 import { Layout, Menu, Image, MenuProps } from 'antd';
-import { CircleUserRound, FolderRoot, LayoutGrid, Package } from 'lucide-react';
+import {
+  ChevronUp,
+  ChevronDown,
+  CircleUserRound,
+  FolderRoot,
+  LayoutGrid,
+  Package,
+  Settings,
+} from 'lucide-react';
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -78,6 +86,32 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
         location.pathname.includes(NAVIGATE_URL.DEVICE_MANAGEMENT) && '!bg-primary-light'
       } !pl-6 ${collapsed ? '!pt-1' : '!pt-0'}`,
     },
+    {
+      key: 'price-settings',
+      label: (
+        <span className={collapsed ? 'text-gray-200' : 'text-primary-second'}>
+          {t<string>('SIDEBAR.PRICE_SETTINGS')}
+        </span>
+      ),
+      icon: <Settings className='!text-2xl !text-primary-second' />,
+      className: `focus:bg-primary-light ${collapsed ? '!pt-1' : '!pt-0'}`,
+      children: [
+        {
+          key: NAVIGATE_URL.ELECTRICITY_SETTING_PRICE,
+          label: t<string>('SIDEBAR.ELECTRICITY_PRICE'),
+          onClick: () => navigate(NAVIGATE_URL.ELECTRICITY_SETTING_PRICE, { replace: true }),
+          className:
+            location.pathname === NAVIGATE_URL.ELECTRICITY_SETTING_PRICE ? '!bg-primary-light' : '',
+        },
+        {
+          key: NAVIGATE_URL.WATER_SETTING_PRICE,
+          label: t<string>('SIDEBAR.WATER_PRICE'),
+          onClick: () => navigate(NAVIGATE_URL.WATER_SETTING_PRICE, { replace: true }),
+          className:
+            location.pathname === NAVIGATE_URL.WATER_SETTING_PRICE ? '!bg-primary-light' : '',
+        },
+      ],
+    },
   ];
   return (
     <Sider
@@ -96,11 +130,20 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
         {!collapsed && <p className='text-2xl font-bold'>EMS</p>}
       </div>
       <Menu
-        theme='dark'
+        theme='light'
         mode='inline'
         className='!bg-white'
         defaultSelectedKeys={['1']}
         items={menuItems}
+        expandIcon={({ isOpen }) => (
+          <span className='flex items-center ml-10'>
+            {isOpen ? (
+              <ChevronUp className='text-primary-second transition-transform duration-200' />
+            ) : (
+              <ChevronDown className='text-primary-second transition-transform duration-200' />
+            )}
+          </span>
+        )}
       />
     </Sider>
   );

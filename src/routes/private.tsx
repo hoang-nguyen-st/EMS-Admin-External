@@ -4,6 +4,7 @@ import { RouteObject } from 'react-router-dom';
 import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
 import { NAVIGATE_URL } from '@app/constants';
 import { ProjectManagement, UserManagement, UserDetail, DeviceManagement } from '@app/pages';
+import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
 import ElectricityPricePage from '@app/pages/SettingPrice/ElectricityPricePage';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
@@ -43,7 +44,16 @@ const routes: RouteObject[] = [
           },
           {
             path: NAVIGATE_URL.DEVICE_MANAGEMENT,
-            element: <DeviceManagement />,
+            children: [
+              {
+                index: true,
+                element: <DeviceManagement />,
+              },
+              {
+                path: ':id',
+                element: <DetailDevice />,
+              },
+            ],
           },
           {
             path: NAVIGATE_URL.ELECTRICITY_SETTING_PRICE,

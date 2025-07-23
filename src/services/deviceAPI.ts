@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { API_URL } from '@app/constants';
+import { API_URL, TimestampEnum } from '@app/constants';
 import { DeviceProps, DeviceSettingProps } from '@app/interface/device.interface';
 
 export const getDeviceAPI = async (params: DeviceProps) =>
@@ -13,3 +13,16 @@ export const getDeviceTelemetryKeysAPI = async (deviceId: string) =>
 
 export const updateDeviceSettingsAPI = async (deviceId: string, settings: DeviceSettingProps) =>
   await axios.post(`${API_URL.DEVICES}/${deviceId}/setting-device`, settings);
+
+export const getElectricityConsumptionAPI = async (
+  deviceThingsboardId: string,
+  interval: TimestampEnum,
+) =>
+  await axios.get(`${API_URL.ELECTRICITY_CONSUMPTION}/${deviceThingsboardId}`, {
+    params: {
+      interval,
+    },
+  });
+
+export const getDetailDeviceAPI = async (deviceThingsboardId: string) =>
+  await axios.get(`${API_URL.DETAIL_DEVICE}/${deviceThingsboardId}`);

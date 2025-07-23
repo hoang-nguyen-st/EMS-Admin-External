@@ -21,6 +21,8 @@ export const API_URL = {
   DEVICES: '/devices',
   DEVICES_SUMMARIZE: '/devices/summarize',
   LOCATIONS: '/locations',
+  ELECTRICITY_CONSUMPTION: '/devices/electricity-consumption',
+  ZONES: '/zones',
   ALL_DEVICES_ACTIVE: '/devices/all-active',
   HISTORY_REGISTRIES: '/history-registries',
   MAINTENANCES: '/maintenances',
@@ -41,6 +43,7 @@ export const API_URL = {
   PROJECTS: '/projects',
   LOCATION_TYPE: '/location-types',
   ELECTRIC_PRICE: '/pricing-electric-rules/by-location-type',
+  DETAIL_DEVICE: '/devices/detail',
 };
 
 export const VEHICLES_URL = '/vehicles';

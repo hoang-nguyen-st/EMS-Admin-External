@@ -10,6 +10,7 @@ import {
   DeviceSettingProps,
   DeviceTelemetryEnergyImportInfo,
   DeviceTotalTypeProps,
+  DeviceWithTimeSeries,
 } from '@app/interface/device.interface';
 import { MetaProps } from '@app/interface/meta.interface';
 import {
@@ -19,6 +20,8 @@ import {
   getDeviceAPI,
   getDeviceSummarizeAPI,
   getElectricityConsumptionAPI,
+  getDeviceByIdsAPI,
+  getUnassignedDevices,
 } from '@app/services/deviceAPI';
 
 export const useGetDevices = (params: DeviceProps) =>
@@ -27,6 +30,10 @@ export const useGetDevices = (params: DeviceProps) =>
     async () => {
       const { data } = await getDeviceAPI(params);
       return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
     },
   );
 
@@ -93,6 +100,32 @@ export const useGetDetailDevice = (deviceThingsboardId: string) =>
       return data.data;
     },
     {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );
+
+export const useGetUnassignedDevices = (params: DeviceProps) =>
+  useQuery<{ data: DeviceResponseProps[]; meta: MetaProps }>(
+    [QUERY_KEY.UNASSIGNED_DEVICES],
+    async () => {
+      const { data } = await getUnassignedDevices(params);
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );
+export const useGetDeviceByIds = (deviceIds: string[], enabled = false) =>
+  useQuery<{ data: DeviceWithTimeSeries[]; meta: MetaProps }>(
+    [QUERY_KEY.DEVICE_BY_IDS, deviceIds],
+    async () => {
+      const { data } = await getDeviceByIdsAPI(deviceIds);
+      return data;
+    },
+    {
+      enabled: enabled && deviceIds && deviceIds.length > 0,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
     },

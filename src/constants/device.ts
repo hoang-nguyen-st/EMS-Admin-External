@@ -1,4 +1,4 @@
-import { TFunction } from 'i18next';
+import { t, TFunction } from 'i18next';
 
 import { MeterTypeEnum } from './meterType';
 import { VoltageUnitEnum } from './voltage';
@@ -10,6 +10,27 @@ export enum DeviceType {
   GAS = 'gas',
   TOTAL = 'total',
 }
+
+export const deviceTypeOptionsEnum = [
+  {
+    key: DeviceType.ELECTRIC,
+    value: DeviceType.ELECTRIC,
+    label: 'DEVICE_MANAGEMENT.ELECTRIC',
+    className: 'border-[#12B76A] text-[#12B76A] border-1',
+  },
+  {
+    key: DeviceType.WATER,
+    value: DeviceType.WATER,
+    label: 'DEVICE_MANAGEMENT.WATER',
+    className: 'border-[#10239E] text-[#10239E] border-1',
+  },
+  {
+    key: DeviceType.GAS,
+    value: DeviceType.GAS,
+    label: 'DEVICE_MANAGEMENT.GAS',
+    className: 'border-[#667085] text-[#667085] border-1',
+  },
+];
 
 export const getNameDeviceType = (deviceType: DeviceType, t: TFunction) => {
   switch (deviceType) {

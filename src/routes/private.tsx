@@ -1,10 +1,12 @@
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
-import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
+import DashboardLayout from '@app/components/templates/DashboardLayout';
 import { NAVIGATE_URL } from '@app/constants';
-import { ProjectManagement, UserManagement, UserDetail, DeviceManagement } from '@app/pages';
+import { DeviceManagement, ProjectManagement, UserDetail, UserManagement } from '@app/pages';
 import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
+import CreateLocationPage from '@app/pages/Locations/CreateLocation/CreateLocationPage';
+import LocationManagement from '@app/pages/Locations/LocationManagement';
 import ElectricityPricePage from '@app/pages/SettingPrice/ElectricityPricePage';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
@@ -60,8 +62,17 @@ const routes: RouteObject[] = [
             element: <ElectricityPricePage />,
           },
           {
-            path: NAVIGATE_URL.WATER_SETTING_PRICE,
-            element: <h1>Water Setting Price</h1>,
+            path: NAVIGATE_URL.LOCATION,
+            children: [
+              {
+                index: true,
+                element: <LocationManagement />,
+              },
+              {
+                path: 'create',
+                element: <CreateLocationPage />,
+              },
+            ],
           },
         ],
       },

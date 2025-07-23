@@ -1,21 +1,5 @@
-import { LocationTypeEnum, MeterTypeEnum, TimeUsageEnum } from '@app/constants/enum';
-
-export interface LocationType {
-  id: string;
-  name: string;
-  description: string;
-  isTariffTier: boolean;
-  locationTypeEnum: LocationTypeEnum;
-}
-
-export interface TariffTier {
-  id: string;
-  name: string;
-  kwh: number;
-  unitPrice: number;
-  level: number;
-  locationType?: LocationType;
-}
+import { VoltageLevelRules } from './voltageLevel.interface';
+import { MeterTypeEnum, TimeUsageEnum } from '@app/constants/enum';
 
 export interface MeterTypePricing {
   id: string;
@@ -24,20 +8,15 @@ export interface MeterTypePricing {
   rulesByVoltageLevel: VoltageLevelRules[];
 }
 
-export interface VoltageLevelRules {
-  voltageLevel: VoltageLevel;
-  rules: PricingRule[];
-}
-
-export interface VoltageLevel {
-  id: string;
-  name: string;
-  fromVoltage: number;
-  toVoltage: number;
-}
-
 export interface PricingRule {
   id: string;
   unitPrice: number;
   timeUsage: TimeUsageEnum;
+}
+
+export interface MeterPricingTableData {
+  key: string;
+  voltageLevel: string;
+  time: string;
+  unitPrice: number;
 }

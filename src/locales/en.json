@@ -213,6 +213,8 @@
     "PENDING": "Pending",
     "BLOCKED": "Blocked",
     "START_DATE": "Start date",
-    "END_DATE": "End date"
+    "END_DATE": "End date",
+    "FROM_DATE": "From date",
+    "TO_DATE": "To date"
   }
 }

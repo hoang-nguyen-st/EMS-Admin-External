@@ -13,4 +13,5 @@ export const NAVIGATE_URL = {
   PROFILE: '/profile',
   LOCATION_MANAGEMENT: '/location-management',
   LOCATION: '/location',
+  LOCATION_CREATE: '/location/create',
 };

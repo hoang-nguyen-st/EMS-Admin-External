@@ -5,6 +5,7 @@ import DashboardLayout from '@app/components/templates/DashboardLayout';
 import { NAVIGATE_URL } from '@app/constants';
 import { DeviceManagement, ProjectManagement, UserDetail, UserManagement } from '@app/pages';
 import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
+import CreateLocationPage from '@app/pages/Locations/CreateLocation/CreateLocationPage';
 import LocationManagement from '@app/pages/Locations/LocationManagement';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
@@ -61,6 +62,10 @@ const routes: RouteObject[] = [
               {
                 index: true,
                 element: <LocationManagement />,
+              },
+              {
+                path: 'create',
+                element: <CreateLocationPage />,
               },
             ],
           },

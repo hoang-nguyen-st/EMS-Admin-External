@@ -1,9 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-import { QUERY_KEY } from '@app/constants';
-import { LocationDto, LocationResponseDto } from '@app/interface/location.interface';
+import { NotificationTypeEnum, openNotificationWithIcon } from '@app/components/molecules';
+import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
+import {
+  CreateLocationDto,
+  LocationDto,
+  LocationFilterProps,
+  LocationResponseDto,
+} from '@app/interface/location.interface';
 import { MetaProps } from '@app/interface/meta.interface';
-import { getAllLocationAPI, getLocationAPI } from '@app/services/locationAPI';
+import { createLocationAPI, getAllLocationAPI, getLocationAPI } from '@app/services/locationAPI';
 
 export const useGetLocations = () =>
   useQuery<LocationDto[]>([QUERY_KEY.LOCATIONS], async () => {
@@ -11,14 +18,32 @@ export const useGetLocations = () =>
     return data;
   });
 
-export const useGetAllLocations = () =>
+export const useGetAllLocations = (params: LocationFilterProps) =>
   useQuery<{ data: LocationResponseDto[]; meta: MetaProps }>(
     [QUERY_KEY.LOCATIONS],
     async () => {
-      const { data } = await getAllLocationAPI();
+      const { data } = await getAllLocationAPI(params);
       return data;
     },
     {
       refetchOnWindowFocus: false,
     },
   );
+export const useCreateLocation = () => {
+  const navigate = useNavigate();
+  return useMutation(
+    async (locationData: CreateLocationDto) => {
+      const { data } = await createLocationAPI(locationData);
+      return data;
+    },
+    {
+      onSuccess: ({ message }) => {
+        openNotificationWithIcon(NotificationTypeEnum.SUCCESS, message);
+        navigate(NAVIGATE_URL.LOCATION);
+      },
+      onError({ response }) {
+        openNotificationWithIcon(NotificationTypeEnum.ERROR, response.data.message);
+      },
+    },
+  );
+};

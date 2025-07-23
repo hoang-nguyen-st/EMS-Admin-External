@@ -44,6 +44,9 @@ export const API_URL = {
   DETAIL_DEVICE: '/devices/detail',
   ALL_LOCATIONS: '/locations/all',
   LOCATION_TYPES_NAMES: '/location-types/list-name',
+  METER_TYPES: '/meter-types',
+  DEVICE_BY_IDS: '/devices/detail-by-ids',
+  UNASSIGNED_DEVICES: '/devices/unassigned',
 };
 
 export const VEHICLES_URL = '/vehicles';

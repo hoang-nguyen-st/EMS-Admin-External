@@ -17,3 +17,8 @@ export interface LocationTypeNames {
   name: string;
   locationTypeEnum: LocationTypeEnum;
 }
+
+export interface LocationFilterProps {
+  search?: string;
+  locationTypeId?: string;
+}

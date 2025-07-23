@@ -11,6 +11,7 @@ import {
   getUsersAPI,
   updateUser,
   createUserByAdmin,
+  getUsersLocationAPI,
 } from '@app/services';
 
 export const useCreateUser = () => {
@@ -47,10 +48,17 @@ export const useCreateUserByAdmin = () => {
 };
 
 export const useGetUsers = (params: GetUsersParams) =>
-  useQuery([QUERY_KEY.USERS, params.search, params.status, params.page, params.take], async () => {
-    const { data } = await getUsersAPI(params);
-    return data;
-  });
+  useQuery(
+    [QUERY_KEY.USERS, params.search, params.status, params.page, params.take],
+    async () => {
+      const { data } = await getUsersAPI(params);
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );
 
 export const useGetUserById = (id: string) =>
   useQuery([QUERY_KEY.USERS, id], async () => {
@@ -83,3 +91,16 @@ export const useDeleteUser = () => {
     return response.data;
   });
 };
+
+export const useGetUsersLocation = () =>
+  useQuery<{ data: UserDetail[] }>(
+    [QUERY_KEY.USERS],
+    async () => {
+      const { data } = await getUsersLocationAPI();
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );

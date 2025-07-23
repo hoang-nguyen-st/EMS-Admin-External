@@ -2,7 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 
 import { QUERY_KEY } from '@app/constants';
 import { ApiResponse } from '@app/interface/common.interface';
-import { LocationType, MeterTypePricing, TariffTier } from '@app/interface/settingPrice.interface';
+import { LocationType } from '@app/interface/location.interface';
+import { MeterTypePricing } from '@app/interface/settingPrice.interface';
+import { TariffTier } from '@app/interface/tariffTier.interface';
 import { getLocationTypeApi, getPricingElectricRuleApi } from '@app/services/settingPriceAPI';
 
 export const useLocationTypes = () => {

@@ -4,11 +4,6 @@ export enum LocationTypeEnum {
   PRODUCTION = 'PRODUCTION',
 }
 
-export enum MeterTypeEnum {
-  METER_TYPE_1 = 'METER_TYPE_1',
-  METER_TYPE_3 = 'METER_TYPE_3',
-}
-
 export enum TimeUsageEnum {
   MID_PEAK = 'mid_peak',
   PEAK = 'peak',

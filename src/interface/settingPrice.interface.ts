@@ -1,5 +1,6 @@
 import { VoltageLevelRules } from './voltageLevel.interface';
-import { MeterTypeEnum, TimeUsageEnum } from '@app/constants/enum';
+import { MeterTypeEnum } from '@app/constants';
+import { TimeUsageEnum } from '@app/constants/enum';
 
 export interface MeterTypePricing {
   id: string;

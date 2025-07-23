@@ -1,7 +1,6 @@
 import { t } from 'i18next';
 
-import { MeterTypeEnum } from './enum';
-
+import { MeterTypeEnum } from './meterType';
 export const timeUsageMap: { [key: string]: string } = {
   mid_peak: t('TIME_USAGE.MID_PEAK'),
   peak: t('TIME_USAGE.PEAK'),

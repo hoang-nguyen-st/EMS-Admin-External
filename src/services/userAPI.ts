@@ -23,3 +23,5 @@ export const createUser = async (formData: FormData) =>
 
 export const createUserByAdmin = async (data: CreateUserDto) =>
   await axios.post(API_URL.USERS, data);
+
+export const getUsersLocationAPI = async () => await axios.get(API_URL.USERS);

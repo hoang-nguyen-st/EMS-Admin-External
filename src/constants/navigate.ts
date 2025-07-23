@@ -13,4 +13,7 @@ export const NAVIGATE_URL = {
   PROFILE: '/profile',
   ELECTRICITY_SETTING_PRICE: '/price-settings/electricity-price',
   WATER_SETTING_PRICE: '/price-settings/water-price',
+  LOCATION_MANAGEMENT: '/location-management',
+  LOCATION: '/location',
+  LOCATION_CREATE: '/location/create',
 };

@@ -19,11 +19,11 @@ export const API_URL = {
   LOGOUT: '/auth/logout',
   CABINS: '/cabins',
   DEVICES: '/devices',
+  ALL_DEVICES_ACTIVE: '/devices/all-active',
   DEVICES_SUMMARIZE: '/devices/summarize',
   LOCATIONS: '/locations',
   ELECTRICITY_CONSUMPTION: '/devices/electricity-consumption',
   ZONES: '/zones',
-  ALL_DEVICES_ACTIVE: '/devices/all-active',
   HISTORY_REGISTRIES: '/history-registries',
   MAINTENANCES: '/maintenances',
   SESSIONS: '/session-headers',
@@ -44,6 +44,11 @@ export const API_URL = {
   LOCATION_TYPE: '/location-types',
   ELECTRIC_PRICE: '/pricing-electric-rules/by-location-type',
   DETAIL_DEVICE: '/devices/detail',
+  ALL_LOCATIONS: '/locations/all',
+  LOCATION_TYPES_NAMES: '/location-types/list-name',
+  METER_TYPES: '/meter-types',
+  DEVICE_BY_IDS: '/devices/detail-by-ids',
+  UNASSIGNED_DEVICES: '/devices/unassigned',
 };
 
 export const VEHICLES_URL = '/vehicles';

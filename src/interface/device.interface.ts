@@ -27,6 +27,11 @@ export interface DeviceResponseProps {
   location: DeviceLocationResponseProps;
 }
 
+export interface DeviceWithTimeSeries {
+  device: DeviceResponseProps;
+  lastestTimeSeriesValue: string;
+}
+
 export interface DeviceModalData {
   id: string;
   name: string;
@@ -70,4 +75,13 @@ export type TelemetryTimeSeriesResponse = {
 export interface DetailDeviceProps {
   device: DeviceResponseProps;
   lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
+}
+
+export interface DeviceColumns {
+  id: string;
+  name: string;
+  devEUI?: string;
+  deviceType?: DeviceType;
+  fieldCalculate?: string;
+  status?: boolean;
 }

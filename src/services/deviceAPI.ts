@@ -26,3 +26,12 @@ export const getElectricityConsumptionAPI = async (
 
 export const getDetailDeviceAPI = async (deviceThingsboardId: string) =>
   await axios.get(`${API_URL.DETAIL_DEVICE}/${deviceThingsboardId}`);
+
+export const getDeviceByIdsAPI = async (deviceIds: string[]) => {
+  const query = deviceIds.join(',');
+  return await axios.get(`${API_URL.DEVICE_BY_IDS}?ids=${query}`);
+};
+
+export const getUnassignedDevices = async (params: DeviceProps) => {
+  return await axios.get(`${API_URL.UNASSIGNED_DEVICES}`, { params });
+};

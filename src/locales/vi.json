@@ -392,6 +392,7 @@
     "ADD_DEVICE_REQUIRED": "Vui lòng chọn thiết bị để thêm vào địa điểm",
     "ACTIVE_ENERGY_IMPORT": "Chỉ số hiện tại",
     "INITIAL_ENERGY_IMPORT": "Chỉ số ban đầu",
-    "SELECT_VOLTAGE_UNIT": "Đơn vị"
+    "SELECT_VOLTAGE_UNIT": "Đơn vị",
+    "EDIT_LOCATION": "Chỉnh sửa địa điểm"
   }
 }

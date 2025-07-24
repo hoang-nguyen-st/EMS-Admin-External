@@ -58,8 +58,8 @@ const LocationManagement = () => {
     },
     {
       title: t<string>('LOCATION.DEVICES'),
-      dataIndex: 'devices',
-      key: 'devices',
+      dataIndex: 'device',
+      key: 'device',
       width: 300,
       render: (_, record) => {
         const firstTwoDevices = record.devices.slice(0, 2);
@@ -102,7 +102,10 @@ const LocationManagement = () => {
         return (
           <div>
             <div className='flex items-center gap-4'>
-              <Edit className='text-[#2E4258] cursor-pointer' />
+              <Edit
+                className='text-[#2E4258] cursor-pointer'
+                onClick={() => navigate(`${NAVIGATE_URL.LOCATION}/edit/${record.id}`)}
+              />
               <Trash
                 className='text-[#D50707] cursor-pointer'
                 onClick={() =>
@@ -119,7 +122,7 @@ const LocationManagement = () => {
   return (
     <div>
       <div className='flex flex-col gap-4'>
-        <p className='text-3xl font-medium'>{t('LOCATION.TITLE')}</p>
+        <p className='text-3xl font-bold'>{t('LOCATION.TITLE')}</p>
         <p className='text-base text-[#2E4258]'>{t('LOCATION.SUB_TITLE')}</p>
       </div>
       <Card className='mt-4'>

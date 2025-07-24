@@ -23,11 +23,8 @@ export interface DeviceResponseProps {
   voltageUnit: VoltageUnitEnum;
   voltageValue: string;
   location: DeviceLocationResponseProps;
-}
-
-export interface DeviceWithTimeSeries {
-  device: DeviceResponseProps;
-  lastestTimeSeriesValue: string;
+  initialDate?: string;
+  locationDevice?: LocationDeviceResponseProps;
 }
 
 export interface DeviceModalData {
@@ -68,14 +65,15 @@ export type TelemetryTimeSeriesResponse = {
 
 export interface DetailDeviceProps {
   device: DeviceResponseProps;
-  lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
+  lastestTimeSeriesValue: string;
 }
 
-export interface DeviceColumns {
+export interface DeviceWithInitDto {
+  deviceId: string;
+  initialIndex: number;
+}
+
+export interface LocationDeviceResponseProps {
   id: string;
-  name: string;
-  devEUI?: string;
-  deviceType?: DeviceType;
-  fieldCalculate?: string;
-  status?: boolean;
+  initialIndex: number;
 }

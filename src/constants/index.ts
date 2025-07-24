@@ -8,3 +8,4 @@ export * from './navigate';
 export * from './user';
 export * from './device';
 export * from './voltage';
+export * from './meterType';

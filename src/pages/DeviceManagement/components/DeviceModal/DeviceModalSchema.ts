@@ -19,13 +19,6 @@ export const useDeviceModalSchema = () => {
         /^[a-zA-Z0-9_]+$/,
         t<string>('VALIDATE.INVALID', { field: t<string>('DEVICE_MODAL.DEVICE_TYPE') }),
       ),
-    meterType: yup
-      .string()
-      .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('DEVICE_MODAL.METER_TYPE') }))
-      .matches(
-        /^[a-zA-Z0-9_]+$/,
-        t<string>('VALIDATE.INVALID', { field: t<string>('DEVICE_MODAL.METER_TYPE') }),
-      ),
     voltageValue: yup
       .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('DEVICE_MODAL.VOLTAGE') }))

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { useDeviceModalSchema } from './DeviceModalSchema';
 import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules';
-import { deviceTypeOptions, meterTypeOptions, voltageUnitOptions } from '@app/constants';
+import { deviceTypeOptions, voltageUnitOptions } from '@app/constants';
 import { yupSync } from '@app/helpers/yupSync';
 import { useGetDeviceTelemetryKeys, useUpdateDeviceSettings } from '@app/hooks/useDevice';
 import { DeviceResponseProps } from '@app/interface/device.interface';
@@ -23,7 +23,6 @@ interface SettingDeviceModalProps {
 interface DeviceModalData {
   fieldCalculate: string;
   deviceType: string;
-  meterType: string;
   voltageValue: string;
   voltageUnit: string;
 }
@@ -53,7 +52,6 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
         devEUI: deviceData.devEUI,
         fieldCalculate: deviceData?.fieldCalculate ?? undefined,
         deviceType: deviceData?.deviceType ?? undefined,
-        meterType: deviceData?.meterType?.meterTypeEnum ?? undefined,
         voltageValue: deviceData?.voltageValue ?? undefined,
         voltageUnit: deviceData?.voltageUnit ?? undefined,
       });
@@ -83,7 +81,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
           value: key,
           label: key,
         }))
-      : [{ value: '', label: t('DEVICE_MANAGEMENT.NO_FIELD') }];
+      : [{ value: '', label: t('DEVICE  _MANAGEMENT.NO_FIELD') }];
 
   return (
     <Modal
@@ -193,32 +191,12 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
           <Form.Item
             label={
               <span>
-                {t('DEVICE_MODAL.METER_TYPE')} <span className='text-red-500'>*</span>
-              </span>
-            }
-            name='meterType'
-            className='flex-1'
-            rules={validator}
-          >
-            <Select
-              allowClear
-              options={meterTypeOptions.map((option) => ({
-                ...option,
-                label: t(option.label),
-              }))}
-              className='w-full rounded-md h-10'
-              placeholder={t<string>('DEVICE_MODAL.SELECT_METER_TYPE')}
-            />
-          </Form.Item>
-          <Form.Item
-            label={
-              <span>
                 {t('DEVICE_MODAL.VOLTAGE')} <span className='text-red-500'>*</span>
               </span>
             }
-            className='flex-1'
+            className='w-full'
           >
-            <div className='flex gap-2'>
+            <div className='grid grid-cols-[70%_30%] gap-2'>
               <Form.Item name='voltageValue' noStyle rules={validator}>
                 <Input
                   className='rounded-md h-10'

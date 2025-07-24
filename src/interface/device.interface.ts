@@ -1,7 +1,6 @@
 import { GetListParams } from './common.interface';
 import { DeviceLocationResponseProps } from './location.interface';
-import { DeviceMeterTypeResponseProps } from './meterType.interface';
-import { DeviceType, MeterTypeEnum, VoltageUnitEnum } from '@app/constants';
+import { DeviceType, VoltageUnitEnum } from '@app/constants';
 
 export interface DeviceProps extends GetListParams {
   status?: boolean;
@@ -21,7 +20,6 @@ export interface DeviceResponseProps {
   deviceType: DeviceType;
   fieldCalculate: string;
   status: boolean | string;
-  meterType: DeviceMeterTypeResponseProps;
   voltageUnit: VoltageUnitEnum;
   voltageValue: string;
   location: DeviceLocationResponseProps;
@@ -35,15 +33,11 @@ export interface DeviceModalData {
   fieldCalculate?: string;
   voltageUnit?: VoltageUnitEnum;
   voltageValue?: string;
-  meterType?: {
-    meterTypeEnum: MeterTypeEnum;
-  };
 }
 
 export interface DeviceSettingProps {
   fieldCalculate: string;
   deviceType: string;
-  meterType: string;
   voltageUnit: string;
   voltageValue: string;
 }

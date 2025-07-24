@@ -1,9 +1,13 @@
 import { lazy } from 'react';
 import { RouteObject } from 'react-router-dom';
 
-import DashboardLayout from '@app/components/templates/DashboardLayout/DashboardLayout';
+import DashboardLayout from '@app/components/templates/DashboardLayout';
 import { NAVIGATE_URL } from '@app/constants';
-import { ProjectManagement, UserManagement, UserDetail } from '@app/pages';
+import { DeviceManagement, ProjectManagement, UserDetail, UserManagement } from '@app/pages';
+import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
+import CreateLocationPage from '@app/pages/Locations/CreateLocation/CreateLocationPage';
+import LocationManagement from '@app/pages/Locations/LocationManagement';
+import ElectricityPricePage from '@app/pages/SettingPrice/ElectricityPricePage';
 
 const PrivateLayout = lazy(() => import('@app/components/templates/PrivateLayout'));
 const NotFound = lazy(() => import('@app/pages/NotFound/NotFound'));
@@ -39,6 +43,36 @@ const routes: RouteObject[] = [
           {
             path: `${NAVIGATE_URL.USER_MANAGEMENT}/:id`,
             element: <UserDetail />,
+          },
+          {
+            path: NAVIGATE_URL.DEVICE_MANAGEMENT,
+            children: [
+              {
+                index: true,
+                element: <DeviceManagement />,
+              },
+              {
+                path: ':id',
+                element: <DetailDevice />,
+              },
+            ],
+          },
+          {
+            path: NAVIGATE_URL.ELECTRICITY_SETTING_PRICE,
+            element: <ElectricityPricePage />,
+          },
+          {
+            path: NAVIGATE_URL.LOCATION,
+            children: [
+              {
+                index: true,
+                element: <LocationManagement />,
+              },
+              {
+                path: 'create',
+                element: <CreateLocationPage />,
+              },
+            ],
           },
         ],
       },

@@ -20,6 +20,10 @@ export const API_URL = {
   CABINS: '/cabins',
   DEVICES: '/devices',
   ALL_DEVICES_ACTIVE: '/devices/all-active',
+  DEVICES_SUMMARIZE: '/devices/summarize',
+  LOCATIONS: '/locations',
+  ELECTRICITY_CONSUMPTION: '/devices/electricity-consumption',
+  ZONES: '/zones',
   HISTORY_REGISTRIES: '/history-registries',
   MAINTENANCES: '/maintenances',
   SESSIONS: '/session-headers',
@@ -37,6 +41,14 @@ export const API_URL = {
   DATA_CARD: '/report-1/dashboard-data-card',
   DATA_CHART: '/report-1/dashboard-data-chart',
   PROJECTS: '/projects',
+  LOCATION_TYPE: '/location-types',
+  ELECTRIC_PRICE: '/pricing-electric-rules/by-location-type',
+  DETAIL_DEVICE: '/devices/detail',
+  ALL_LOCATIONS: '/locations/all',
+  LOCATION_TYPES_NAMES: '/location-types/list-name',
+  METER_TYPES: '/meter-types',
+  DEVICE_BY_IDS: '/devices/detail-by-ids',
+  UNASSIGNED_DEVICES: '/devices/unassigned',
 };
 
 export const VEHICLES_URL = '/vehicles';

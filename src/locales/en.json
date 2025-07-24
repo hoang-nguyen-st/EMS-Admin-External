@@ -164,7 +164,8 @@
     "IMAGE_MIN_SIZE": "Image size must be at least 10KB",
     "IMAGE_VALIDATE_SIZE": "Image dimensions must be less than or equal to 400x600",
     "INVALID_EMAIL": "{{field}} is not in the correct format",
-    "DUPLICATE_POSITION": "Start position and end position must not be the same"
+    "DUPLICATE_POSITION": "Start position and end position must not be the same",
+    "DATE_PAST": "{{field}} must be a date in the past"
   },
   "PROFILE": {
     "CHANGE_PASSWORD": "Change Password",
@@ -180,13 +181,15 @@
   },
   "LOGIN": {
     "TEXT": "Login",
+    "TEXT_LOADING": "Logging in...",
     "PASSWORD": "Password",
     "PASSWORD_INPUT": "Enter Password",
     "EMAIL_INPUT": "Enter Email",
     "EMAIL": "Email",
     "FORGOT_PASSWORD": "Forgot password?",
     "POLICY": "Enter your email and password to sign in!",
-    "FAIL": "Login failed"
+    "FAIL": "Login failed",
+    "SUCCESS": "Login successfully"
   },
   "DASHBOARD": {
     "MENU": "MENU",
@@ -195,13 +198,39 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
+    "USER": "User Management",
+    "DEVICE": "Device Management",
     "LOCATION": "Location Management",
-    "USER": "User Management"
+    "PROJECT": "Project Management"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Project Management",
     "ALL": "Manage all project of your",
-    "SEARCH": "Search"
+    "SEARCH": "Search",
+    "USER": "User Management",
+    "DEVICE": "Device Management",
+    "LOCATION": "Location Management"
+  },
+  "TIME_USAGE": {
+    "MID_PEAK": "Normal hours",
+    "PEAK": "Peak hours",
+    "OFF_PEAK": "Off-peak hours"
+  },
+  "METER_TYPE": {
+    "METER_TYPE_1": "Meter Type 1",
+    "METER_TYPE_3": "Meter Type 3"
+  },
+  "ELECTRICITY_PRICE": {
+    "TITLE": "Electricity Price",
+    "DESCRIPTION": "Set up pricing for each tenant type",
+    "TAB_TITLE": "Price Table",
+    "TIER_LEVEL": "Level",
+    "TIER_KWH": "Electricity consumption (kWh)",
+    "TIER_PRICE": "Selling price (VND/kWh)",
+    "VOLTAGE_LEVEL": "Voltage level",
+    "TIME": "Time",
+    "PRICE": "Selling price (VND/kWh)",
+    "BUTTON_EDIT_PRICE": "Edit"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "System provides effective energy management solutions"
@@ -222,7 +251,9 @@
     "STATUS": "Status",
     "ACTION": "Action",
     "START_DATE": "Start date",
-    "END_DATE": "End date"
+    "END_DATE": "End date",
+    "FROM_DATE": "From date",
+    "TO_DATE": "To date"
   },
   "USER_DETAIL": {
     "CONTACT": "Contact Information",
@@ -241,8 +272,58 @@
     "STATUS": "Status",
     "ACTION": "Action",
     "START_DATE": "Start date",
+    "END_DATE": "End date"
+  },
+  "DEVICE_MANAGEMENT": {
+    "TITLE": "Devices Management",
+    "ALL": "Manage all Device",
+    "SEARCH": "Search device...",
+    "INDEX": "No.",
+    "NAME": "Name",
+    "DEVICE_ID": "DevUI",
+    "NO_DEVICE_ID": "No Device ID",
+    "SENSOR_ID": "Sensor ID",
+    "LOCATION": "Location",
+    "FIELD": "Field",
+    "NO_FIELD": "Field not indentified",
+    "NO_LOCATION": "Location not indentified",
+    "DEVICE_TYPE": "Device type",
+    "STATUS": "Status",
+    "ACTION": "Actions",
+    "ELECTRIC": "Electric",
+    "GAS": "Gas",
+    "WATER": "Water",
+    "DEFAULT": "Device not identified",
+    "ACTIVE": "Active",
+    "INACTIVE": "Inactive",
+    "TOTAL_DEVICE": "Total Device",
+    "ELECTRICITY_DEVICE": "Electricity Device",
+    "WATER_DEVICE": "Water Device",
+    "GAS_DEVICE": "Gas Device",
     "END_DATE": "End date",
-    "FROM_DATE": "From date",
-    "TO_DATE": "To date"
+    "METER_TYPE_1": "Meter Type 1",
+    "METER_TYPE_3": "Meter Type 3",
+    "VOLT": "V",
+    "KILOVOLT": "kV",
+    "MEGAVOLT": "MV",
+    "UPDATE_DEVICE_SUCCESS": "Update device successfully",
+    "UPDATE_DEVICE_ERROR": "Update device failed"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Setting Device",
+    "DEVICE_NAME": "Device Name",
+    "DEVUI": "Device EUI",
+    "FIELD": "Field",
+    "DEVICE_TYPE": "Device Type",
+    "METER_TYPE": "Meter Type",
+    "VOLTAGE": "Voltage",
+    "VOLTAGE_UNIT": "Voltage Unit",
+    "SAVE": "Save",
+    "CANCEL": "Cancel",
+    "TECHNICAL_SPECIFICATIONS": "Technical Specifications",
+    "SELECT_FIELD": "Select Field",
+    "SELECT_DEVICE_TYPE": "Select Device Type",
+    "SELECT_METER_TYPE": "Select Meter Type",
+    "SELECT_VOLTAGE_UNIT": "Select Voltage Unit"
   }
 }

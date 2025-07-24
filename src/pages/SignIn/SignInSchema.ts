@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 
-import { EMAIL_REGEX_PATTERN, PASSWORD_REGEX_PATTERN } from '@app/constants/regex';
+import { EMAIL_REGEX_PATTERN } from '@app/constants/regex';
 
 export const useSignInSchema = () => {
   const { t } = useTranslation();
@@ -17,10 +17,6 @@ export const useSignInSchema = () => {
 
     password: yup
       .string()
-      .matches(
-        PASSWORD_REGEX_PATTERN,
-        t<string>('VALIDATE.RULE_PASSWORD', { field: t<string>('LOGIN.PASSWORD') }),
-      )
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('LOGIN.PASSWORD') })),
   });
 };

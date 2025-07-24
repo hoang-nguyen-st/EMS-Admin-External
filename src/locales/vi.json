@@ -197,7 +197,7 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Bảng điều khiển",
-    "PROJECT": "Quản lý dự án",
+    "LOCATION": "Quản lý địa điểm",
     "USER": "Quản lý người dùng"
   },
   "PROJECT_MANAGEMENT": {
@@ -244,6 +244,8 @@
     "BLOCKED": "Bị khóa",
     "ACTION": "Hành động",
     "START_DATE": "Ngày bắt đầu",
-    "END_DATE": "Ngày két thúc"
+    "END_DATE": "Ngày két thúc",
+    "FROM_DATE": "Từ ngày",
+    "TO_DATE": "Đến ngày"
   }
 }

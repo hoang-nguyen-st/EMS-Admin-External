@@ -195,7 +195,7 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
-    "PROJECT": "Project Management",
+    "LOCATION": "Location Management",
     "USER": "User Management"
   },
   "PROJECT_MANAGEMENT": {
@@ -241,6 +241,8 @@
     "STATUS": "Status",
     "ACTION": "Action",
     "START_DATE": "Start date",
-    "END_DATE": "End date"
+    "END_DATE": "End date",
+    "FROM_DATE": "From date",
+    "TO_DATE": "To date"
   }
 }

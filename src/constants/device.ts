@@ -1,6 +1,5 @@
 import { t, TFunction } from 'i18next';
 
-import { MeterTypeEnum } from './meterType';
 import { VoltageUnitEnum } from './voltage';
 
 export enum DeviceType {
@@ -60,11 +59,6 @@ export const deviceTypeOptions = [
   { value: DeviceType.ELECTRIC, label: 'DEVICE_MANAGEMENT.ELECTRIC' },
   { value: DeviceType.WATER, label: 'DEVICE_MANAGEMENT.WATER' },
   { value: DeviceType.GAS, label: 'DEVICE_MANAGEMENT.GAS' },
-];
-
-export const meterTypeOptions = [
-  { value: MeterTypeEnum.METER_TYPE_1, label: 'DEVICE_MANAGEMENT.METER_TYPE_1' },
-  { value: MeterTypeEnum.METER_TYPE_3, label: 'DEVICE_MANAGEMENT.METER_TYPE_3' },
 ];
 
 export const voltageUnitOptions = [

@@ -21,7 +21,7 @@ export const useCreateUser = () => {
       return response.data;
     },
     {
-      onSuccess({ message }) {
+      onSuccess() {
         navigate(NAVIGATE_URL.USERS);
       },
     },
@@ -68,7 +68,7 @@ export const useUpdateUser = () => {
       return response.data;
     },
     {
-      onSuccess({ message }) {
+      onSuccess() {
         queryClient.refetchQueries([QUERY_KEY.USERS]);
         queryClient.refetchQueries([QUERY_KEY.PROFILE]);
         navigate(NAVIGATE_URL.USERS);

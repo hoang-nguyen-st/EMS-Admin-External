@@ -53,7 +53,7 @@ export const useLogout = () => {
       return data;
     },
     {
-      onSuccess: ({ message }) => {
+      onSuccess: () => {
         removeStorageData(ACCESS_TOKEN);
         removeStorageData(REFRESH_TOKEN);
         removeStorageData(USER_PROFILE);

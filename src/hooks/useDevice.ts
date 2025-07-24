@@ -65,7 +65,7 @@ export const useUpdateDeviceSettings = () => {
         NotificationTypeEnum.SUCCESS,
         t(data.message || 'DEVICE_MANAGEMENT.UPDATE_DEVICE_SUCCESS'),
       );
-      queryClient.invalidateQueries([QUERY_KEY.DEVICES]);
+      queryClient.invalidateQueries([]);
     },
     onError: () => {
       openNotificationWithIcon(

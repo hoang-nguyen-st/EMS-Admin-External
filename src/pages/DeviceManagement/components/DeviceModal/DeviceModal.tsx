@@ -81,7 +81,7 @@ const SettingDeviceModal: FC<SettingDeviceModalProps> = ({
           value: key,
           label: key,
         }))
-      : [{ value: '', label: t('DEVICE  _MANAGEMENT.NO_FIELD') }];
+      : [{ value: '', label: t('DEVICE_MANAGEMENT.NO_FIELD') }];
 
   return (
     <Modal

@@ -103,13 +103,6 @@ export const Sidebar: FC<SidebarProps> = ({ collapsed }) => {
           className:
             location.pathname === NAVIGATE_URL.ELECTRICITY_SETTING_PRICE ? '!bg-primary-light' : '',
         },
-        {
-          key: NAVIGATE_URL.WATER_SETTING_PRICE,
-          label: t<string>('SIDEBAR.WATER_PRICE'),
-          onClick: () => navigate(NAVIGATE_URL.WATER_SETTING_PRICE, { replace: true }),
-          className:
-            location.pathname === NAVIGATE_URL.WATER_SETTING_PRICE ? '!bg-primary-light' : '',
-        },
       ],
     },
   ];

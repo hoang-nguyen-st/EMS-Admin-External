@@ -7,7 +7,7 @@ import {
   PHONE_REGEX_PATTERN,
 } from '@app/constants/regex';
 
-export const useSignInSchema = () => {
+export const useUserModalSchema = () => {
   const { t } = useTranslation();
 
   return yup.object().shape({

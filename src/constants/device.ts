@@ -1,4 +1,7 @@
-import { TFunction } from 'i18next';
+import { t, TFunction } from 'i18next';
+
+import { MeterTypeEnum } from './meterType';
+import { VoltageUnitEnum } from './voltage';
 
 export enum DeviceType {
   DEFAULT = 'default',
@@ -8,7 +11,28 @@ export enum DeviceType {
   TOTAL = 'total',
 }
 
-export const getNameDeviceType = (deviceType: string, t: TFunction) => {
+export const deviceTypeOptionsEnum = [
+  {
+    key: DeviceType.ELECTRIC,
+    value: DeviceType.ELECTRIC,
+    label: 'DEVICE_MANAGEMENT.ELECTRIC',
+    className: 'border-[#12B76A] text-[#12B76A] border-1',
+  },
+  {
+    key: DeviceType.WATER,
+    value: DeviceType.WATER,
+    label: 'DEVICE_MANAGEMENT.WATER',
+    className: 'border-[#10239E] text-[#10239E] border-1',
+  },
+  {
+    key: DeviceType.GAS,
+    value: DeviceType.GAS,
+    label: 'DEVICE_MANAGEMENT.GAS',
+    className: 'border-[#667085] text-[#667085] border-1',
+  },
+];
+
+export const getNameDeviceType = (deviceType: DeviceType, t: TFunction) => {
   switch (deviceType) {
     case DeviceType.WATER:
       return t('DEVICE_MANAGEMENT.WATER');
@@ -20,3 +44,37 @@ export const getNameDeviceType = (deviceType: string, t: TFunction) => {
       return;
   }
 };
+
+export const getOptionsDeviceType = (t: TFunction) => {
+  return [
+    {
+      value: DeviceType.ELECTRIC,
+      label: t<string>('DEVICE_MANAGEMENT.ELECTRIC'),
+    },
+    { value: DeviceType.GAS, label: t<string>('DEVICE_MANAGEMENT.GAS') },
+    { value: DeviceType.WATER, label: t<string>('DEVICE_MANAGEMENT.WATER') },
+  ];
+};
+
+export const deviceTypeOptions = [
+  { value: DeviceType.ELECTRIC, label: 'DEVICE_MANAGEMENT.ELECTRIC' },
+  { value: DeviceType.WATER, label: 'DEVICE_MANAGEMENT.WATER' },
+  { value: DeviceType.GAS, label: 'DEVICE_MANAGEMENT.GAS' },
+];
+
+export const meterTypeOptions = [
+  { value: MeterTypeEnum.METER_TYPE_1, label: 'DEVICE_MANAGEMENT.METER_TYPE_1' },
+  { value: MeterTypeEnum.METER_TYPE_3, label: 'DEVICE_MANAGEMENT.METER_TYPE_3' },
+];
+
+export const voltageUnitOptions = [
+  { value: VoltageUnitEnum.VOLT, label: 'DEVICE_MANAGEMENT.VOLT' },
+  { value: VoltageUnitEnum.KILOVOLT, label: 'DEVICE_MANAGEMENT.KILOVOLT' },
+  { value: VoltageUnitEnum.MEGAVOLT, label: 'DEVICE_MANAGEMENT.MEGAVOLT' },
+];
+export const enum TimestampEnum {
+  BY_DAY = 'BY_DAY',
+  BY_WEEK = 'BY_WEEK',
+  BY_MONTH = 'BY_MONTH',
+  BY_QUARTER = 'BY_QUARTER',
+}

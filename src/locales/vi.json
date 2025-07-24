@@ -166,7 +166,8 @@
     "IMAGE_MIN_SIZE": "Dung lượng hình ảnh tối thiểu là 10Kb",
     "IMAGE_VALIDATE_SIZE": "Kích thước ảnh phải nhỏ hơn hoặc bằng 400x600",
     "INVALID_EMAIL": "{{field}} không đúng định dạng",
-    "DUPLICATE_POSITION": "Vị trí bắt đầu và vị trí kết thúc không được trùng nhau"
+    "DUPLICATE_POSITION": "Vị trí bắt đầu và vị trí kết thúc không được trùng nhau",
+    "DATE_PAST": "{{field}} phải là ngày trong quá khứ"
   },
   "PROFILE": {
     "CHANGE_PASSWORD": "Đổi mật khẩu",
@@ -182,13 +183,15 @@
   },
   "LOGIN": {
     "TEXT": "Đăng nhập",
+    "TEXT_LOADING": "Đang đăng nhập...",
     "PASSWORD": "Mật khẩu",
     "PASSWORD_INPUT": "Nhập mật khẩu",
     "EMAIL_INPUT": "Nhập email",
     "EMAIL": "Email",
     "FORGOT_PASSWORD": "Quên mật khẩu?",
     "POLICY": "Nhập email và mật khẩu của bạn để đăng nhập!",
-    "FAIL": "Đăng nhập không thành công"
+    "FAIL": "Đăng nhập không thành công",
+    "SUCCESS": "Đăng nhập thành công"
   },
   "DASHBOARD": {
     "MENU": "DANH SÁCH",
@@ -200,7 +203,10 @@
     "PROJECT": "Quản lý dự án",
     "USER": "Quản lý người dùng",
     "LOCATION": "Quản lý địa điểm",
-    "DEVICE": "Quản lý thiết bị"
+    "DEVICE": "Quản lý thiết bị",
+    "PRICE_SETTINGS": "Cài đặt giá",
+    "ELECTRICITY_PRICE": "Quản lý giá điện",
+    "WATER_PRICE": "Quản lý giá nước"
   },
   "PROJECT_MANAGEMENT": {
     "TITLE": "Quản lý dự án",
@@ -209,6 +215,27 @@
     "USER": "Quản lý người dùng",
     "DEVICE": "Quản lý thiết bị",
     "LOCATION": "Quản lý địa điểm"
+  },
+  "TIME_USAGE": {
+    "MID_PEAK": "Giờ bình thường",
+    "PEAK": "Giờ cao điểm",
+    "OFF_PEAK": "Giờ thấp điểm"
+  },
+  "METER_TYPE": {
+    "METER_TYPE_1": "1 Biểu Giá",
+    "METER_TYPE_3": "3 Biểu Giá"
+  },
+  "ELECTRICITY_PRICE": {
+    "TITLE": "Giá điện",
+    "DESCRIPTION": "Thiết lập giá cho từng loại khách thuê",
+    "TAB_TITLE": "Bảng giá",
+    "TIER_LEVEL": "Bậc",
+    "TIER_KWH": "Sản lượng điện (kWh)",
+    "TIER_PRICE": "Giá bán (VNĐ/kWh)",
+    "VOLTAGE_LEVEL": "Cấp điện áp",
+    "TIME": "Thời gian",
+    "PRICE": "Giá bán (VNĐ/kWh)",
+    "BUTTON_EDIT_PRICE": "Chỉnh sửa"
   },
   "PUBLIC_LAYOUT": {
     "TITLE": "Hệ thống cung cấp giải pháp quản lý năng lượng hiệu quả"
@@ -229,7 +256,9 @@
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
     "START_DATE": "Ngày bắt đầu",
-    "END_DATE": "Ngày két thúc"
+    "END_DATE": "Ngày kết thúc",
+    "FROM_DATE": "Từ ngày",
+    "TO_DATE": "Đến ngày"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",
@@ -258,6 +287,7 @@
     "INDEX": "STT",
     "NAME": "Tên thiết bị",
     "DEVICE_ID": "ID thiết bị",
+    "NO_DEVICE_ID": "Chưa có ID thiết bị",
     "SENSOR_ID": "ID cảm biến",
     "LOCATION": "Khu vực",
     "FIELD": "Trường",
@@ -275,6 +305,93 @@
     "TOTAL_DEVICE": "Tổng số thiết bị",
     "ELECTRICITY_DEVICE": "Thiết bị điện",
     "WATER_DEVICE": "Thiết bị nước",
-    "GAS_DEVICE": "Thiết bị gas"
+    "GAS_DEVICE": "Thiết bị gas",
+    "END_DATE": "Ngày két thúc",
+    "METER_TYPE_1": "Công tơ loại 1",
+    "METER_TYPE_3": "Công tơ loại 3",
+    "VOLT": "V",
+    "KILOVOLT": "kV",
+    "MEGAVOLT": "MV",
+    "UPDATE_DEVICE_SUCCESS": "Cập nhật thiết bị thành công",
+    "UPDATE_DEVICE_ERROR": "Cập nhật thiết bị thất bại",
+    "DEVICE_PROFILE": "Thông tin",
+    "DEVICE_PROFILE_TYPE": "Thiết bị {{deviceType}}",
+    "ENERGY_CONSUMPTION_TITLE": "Thông tin đo năng lượng",
+    "FIRST_ELECTRICITY_CONSUMPTION": "Chỉ số điện tiêu đầu kỳ",
+    "LAST_ELECTRICITY_CONSUMPTION": "Chỉ số điện tiêu thụ đọc gần nhất",
+    "TIME_ELECTRICITY_CONSUMPTION": "Thời điểm đọc gần nhất",
+    "TOTAL_ENERGY_CONSUMPTION": "Sản lượng điện tiêu thụ đọc gần nhất",
+    "DEVICE_INFO": "Thông tin thiết bị",
+    "DEVICE_LOCATION": "Địa điểm",
+    "ELECTRICITY_USAGE": "Điện áp sử dụng",
+    "DEV_EUI": "DevEUI",
+    "MEASUREMENT_DEVICE": "Trường đo chỉ số",
+    "TIME_STAMP": "Ngày giờ đọc",
+    "ELECTRIC_INDEX": "Chỉ số điện tiêu thụ (KWH)",
+    "ELECTRICITY_CONSUMPTION": "Biểu đồ điện tiêu thụ",
+    "ELECTRICITY_CONSUMPTION_BY_DAY": "Theo ngày",
+    "ELECTRICITY_CONSUMPTION_BY_WEEK": "Theo tuần",
+    "ELECTRICITY_CONSUMPTION_BY_MONTH": "Theo tháng",
+    "ELECTRICITY_CONSUMPTION_BY_QUARTER": "Theo quý"
+  },
+  "DEVICE_MODAL": {
+    "SETTING_DEVICE": "Cấu hình thiết bị",
+    "DEVICE_NAME": "Tên thiết bị",
+    "DEVUI": "Device EUI",
+    "FIELD": "Trường tính toán",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "METER_TYPE": "Loại công tơ",
+    "VOLTAGE": "Điện áp",
+    "VOLTAGE_UNIT": "Đơn vị điện áp",
+    "SAVE": "Lưu",
+    "CANCEL": "Hủy",
+    "TECHNICAL_SPECIFICATIONS": "Thông số kỹ thuật",
+    "SELECT_FIELD": "Chọn trường",
+    "SELECT_DEVICE_TYPE": "Chọn loại thiết bị",
+    "SELECT_METER_TYPE": "Chọn loại công tơ",
+    "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp"
+  },
+  "LOCATION": {
+    "TITLE": "Quản lý địa điểm",
+    "SUB_TITLE": "Quản lý toàn bộ Địa điểm trong không gian làm việc này. Kiểm soát quyền truy cập, phân công vai trò và giám sát hoạt động trên toàn bộ nền tảng của bạn.",
+    "LOCATION_NAME": "Tên địa điểm",
+    "TENANT_TYPE": "Loại địa điểm",
+    "USER": "Người dùng",
+    "DEVICES": "Thiết bị",
+    "ACTION": "Hành động",
+    "ADD_LOCATION": "Thêm địa điểm",
+    "LOCATION_NAME_PLACEHOLDER": "Nhập tên địa điểm",
+    "LOCATION_TYPE_PLACEHOLDER": "Chọn loại địa điểm",
+    "LOCATION_TYPE": "Loại hình thức",
+    "METER_TYPE": "Loại biểu giá",
+    "METER_TYPE_PLACEHOLDER": "Chọn loại biểu giá",
+    "START_DATE_PLACEHOLDER": "Chọn ngày bắt đầu",
+    "START_DATE": "Ngày bắt đầu",
+    "USER_PLACEHOLDER": "Chọn người dùng",
+    "DESCRIPTION": "Mô tả",
+    "DESCRIPTION_PLACEHOLDER": "Nhập mô tả",
+    "ADD_DEVICE": "Thêm thiết bị",
+    "ADD_DEVICE_DESCRIPTION": "Vui lòng chọn thiết bị để thêm vào vị trí",
+    "SEARCH_DEVICE": "Tìm kiếm",
+    "SEARCH_DEVICE_PLACEHOLDER": "Nhập tên thiết bị cần tìm",
+    "DEVICE_NAME": "Tên thiết bị",
+    "DEVICE_EUI": "DevEUI",
+    "FIELD_CACULATE": "Trường tính toán",
+    "DEVICE_TYPE": "Loại thiết bị",
+    "STATUS": "Trạng thái",
+    "ACTIVE": "Đang hoạt động",
+    "INACTIVE": "Không hoạt động",
+    "LOCATION_NAME_REQUIRED": "Vui lòng nhập tên địa điểm",
+    "LOCATION_TYPE_REQUIRED": "Vui lòng chọn loại hình thức",
+    "METER_TYPE_REQUIRED": "Vui lòng chọn loại biểu giá",
+    "START_DATE_REQUIRED": "Vui lòng chọn ngày bắt đầu",
+    "USER_REQUIRED": "Vui lòng chọn người dùng",
+    "OK": "OK",
+    "CANCEL": "Hủy",
+    "SEARCH_LOCATION": "Tìm kiếm theo tên địa điểm",
+    "SAVE": "Lưu",
+    "ADD_DEVICE_REQUIRED": "Vui lòng chọn thiết bị để thêm vào địa điểm",
+    "ACTIVE_ENERGY_IMPORT": "Chỉ số hiện tại",
+    "INITIAL_ENERGY_IMPORT": "Chỉ số ban đầu"
   }
 }

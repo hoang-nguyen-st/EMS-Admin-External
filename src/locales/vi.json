@@ -340,7 +340,6 @@
     "DEVUI": "Device EUI",
     "FIELD": "Trường tính toán",
     "DEVICE_TYPE": "Loại thiết bị",
-    "METER_TYPE": "Loại công tơ",
     "VOLTAGE": "Điện áp",
     "VOLTAGE_UNIT": "Đơn vị điện áp",
     "SAVE": "Lưu",
@@ -392,6 +391,7 @@
     "SAVE": "Lưu",
     "ADD_DEVICE_REQUIRED": "Vui lòng chọn thiết bị để thêm vào địa điểm",
     "ACTIVE_ENERGY_IMPORT": "Chỉ số hiện tại",
-    "INITIAL_ENERGY_IMPORT": "Chỉ số ban đầu"
+    "INITIAL_ENERGY_IMPORT": "Chỉ số ban đầu",
+    "SELECT_VOLTAGE_UNIT": "Đơn vị"
   }
 }

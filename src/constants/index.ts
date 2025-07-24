@@ -7,5 +7,4 @@ export * from './notification';
 export * from './navigate';
 export * from './user';
 export * from './device';
-export * from './meterType';
 export * from './voltage';

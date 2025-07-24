@@ -287,7 +287,7 @@
     "FIELD": "Field",
     "NO_FIELD": "Field not indentified",
     "NO_LOCATION": "Location not indentified",
-    "DEVICE_TYPE": "Device type",
+    "DEVICE_TYPE": "Device Type",
     "STATUS": "Status",
     "ACTION": "Actions",
     "ELECTRIC": "Electric",
@@ -315,7 +315,6 @@
     "DEVUI": "Device EUI",
     "FIELD": "Field",
     "DEVICE_TYPE": "Device Type",
-    "METER_TYPE": "Meter Type",
     "VOLTAGE": "Voltage",
     "VOLTAGE_UNIT": "Voltage Unit",
     "SAVE": "Save",
@@ -323,7 +322,6 @@
     "TECHNICAL_SPECIFICATIONS": "Technical Specifications",
     "SELECT_FIELD": "Select Field",
     "SELECT_DEVICE_TYPE": "Select Device Type",
-    "SELECT_METER_TYPE": "Select Meter Type",
     "SELECT_VOLTAGE_UNIT": "Select Voltage Unit"
   }
 }

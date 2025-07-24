@@ -10,7 +10,12 @@ import {
   LocationResponseDto,
 } from '@app/interface/location.interface';
 import { MetaProps } from '@app/interface/meta.interface';
-import { createLocationAPI, getAllLocationAPI, getLocationAPI } from '@app/services/locationAPI';
+import {
+  createLocationAPI,
+  getAllLocationAPI,
+  getLocationAPI,
+  getLocationByIdAPI,
+} from '@app/services/locationAPI';
 
 export const useGetLocations = () =>
   useQuery<LocationDto[]>([QUERY_KEY.LOCATIONS_ALL], async () => {
@@ -47,3 +52,9 @@ export const useCreateLocation = () => {
     },
   );
 };
+
+export const useGetLocationById = (id: string) =>
+  useQuery<LocationResponseDto>([QUERY_KEY.LOCATIONS, id], async () => {
+    const { data } = await getLocationByIdAPI(id);
+    return data.data;
+  });

@@ -10,7 +10,6 @@ import {
   DeviceSettingProps,
   DeviceTelemetryEnergyImportInfo,
   DeviceTotalTypeProps,
-  DeviceWithTimeSeries,
 } from '@app/interface/device.interface';
 import { MetaProps } from '@app/interface/meta.interface';
 import {
@@ -118,7 +117,7 @@ export const useGetUnassignedDevices = (params: DeviceProps) =>
     },
   );
 export const useGetDeviceByIds = (deviceIds: string[], enabled = false) =>
-  useQuery<{ data: DeviceWithTimeSeries[]; meta: MetaProps }>(
+  useQuery<{ data: DetailDeviceProps[]; meta: MetaProps }>(
     [QUERY_KEY.DEVICE_BY_IDS, deviceIds],
     async () => {
       const { data } = await getDeviceByIdsAPI(deviceIds);

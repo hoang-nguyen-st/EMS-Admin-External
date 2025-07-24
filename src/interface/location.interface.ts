@@ -1,6 +1,7 @@
 import { GetListParams } from './common.interface';
-import { DeviceResponseProps } from './device.interface';
+import { DeviceResponseProps, DeviceWithInitDto } from './device.interface';
 import { LocationTypeEnum } from './location-type.interface';
+import { MeterType } from './meter-type.interface';
 import { UserDetail } from './user.interface';
 
 export interface LocationDto {
@@ -17,7 +18,7 @@ export interface CreateLocationDto {
   initialDate: string;
   description?: string;
   userId: string;
-  deviceIds: string[];
+  devices: DeviceWithInitDto[];
 }
 
 export interface DeviceLocationResponseProps {
@@ -31,6 +32,7 @@ export interface LocationType {
   isTariffTier: boolean;
   locationTypeEnum: LocationTypeEnum;
 }
+
 export interface LocationResponseDto {
   id: string;
   name: string;
@@ -40,6 +42,8 @@ export interface LocationResponseDto {
   updatedAt: string;
   user: UserDetail;
   devices: DeviceResponseProps[];
+  meterType: MeterType;
+  initialDate: string;
 }
 
 export interface LocationFilterProps extends GetListParams {

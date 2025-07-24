@@ -5,23 +5,21 @@ import dayjs from 'dayjs';
 import { Plus, Trash } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import AddDiviceModal from '../components/Modal/AddDeviceModal';
 import LocationTypeSelect from '@app/components/commons/LocationTypeSelect/LocationTypeSelect';
 import MeterTypeSelect from '@app/components/commons/MeterTypeSelect/MeterTypeSelect';
 import UserSelectCustom from '@app/components/commons/UserSelectCustom/UserSelectCustom';
-import { NotificationTypeEnum, openNotificationWithIcon } from '@app/components/molecules';
 import { deviceTypeOptionsEnum, NAVIGATE_URL } from '@app/constants';
-import { useGetDeviceByIds } from '@app/hooks/useDevice';
-import { useCreateLocation } from '@app/hooks/useLocation';
-import { DetailDeviceProps } from '@app/interface/device.interface';
+import { useCreateLocation, useGetLocationById } from '@app/hooks/useLocation';
+import { DeviceResponseProps } from '@app/interface/device.interface';
 import { LocationTypeEnum, LocationTypeNames } from '@app/interface/location-type.interface';
-import { CreateLocationDto } from '@app/interface/location.interface';
 
-import './CreateLocationPage.css';
+import './EditLocation.css';
 
-const CreateLocationPage = () => {
+const EditLocation = () => {
+  const { id } = useParams();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { mutate: createLocation } = useCreateLocation();
@@ -29,11 +27,14 @@ const CreateLocationPage = () => {
   const [locationTypeEnum, setLocationTypeEnum] = useState<LocationTypeEnum>();
   const [openDeviceModal, setOpenDeviceModal] = useState(false);
   const [selectedDeviceKeys, setSelectedDeviceKeys] = useState<React.Key[]>([]);
+  const { data: locationData } = useGetLocationById(id as string);
 
-  const { data: devicesData } = useGetDeviceByIds(
-    selectedDeviceKeys.map((key) => String(key)),
-    !openDeviceModal && selectedDeviceKeys.length > 0,
-  );
+  // const { data: devicesData } = useGetDeviceByIds(
+  //   selectedDeviceKeys.map((key) => String(key)),
+  //   !openDeviceModal && selectedDeviceKeys.length > 0,
+  // );
+
+  console.log(locationData);
 
   useEffect(() => {
     if (locationTypeEnum === LocationTypeEnum.RESIDENTIAL) {
@@ -43,35 +44,45 @@ const CreateLocationPage = () => {
     }
   }, [locationTypeEnum, form]);
 
+  useEffect(() => {
+    if (locationData) {
+      form.setFieldsValue({
+        name: locationData.name,
+        locationType: locationData.locationType?.id,
+        meterType: locationData.meterType?.id,
+        startDate: locationData.initialDate ? dayjs(locationData.initialDate) : undefined,
+        description: locationData.description,
+        user: locationData.user?.id,
+      });
+
+      if (locationData.locationType?.locationTypeEnum) {
+        setLocationTypeEnum(locationData.locationType.locationTypeEnum);
+      }
+    }
+  }, [locationData, form]);
+
   const handleDeleteDevice = (id: string) => {
     setSelectedDeviceKeys(selectedDeviceKeys.filter((key) => key !== id));
   };
 
-  const handleSubmit = () => {
-    if (selectedDeviceKeys.length === 0) {
-      openNotificationWithIcon(
-        NotificationTypeEnum.ERROR,
-        t<string>('LOCATION.ADD_DEVICE_REQUIRED'),
-      );
-    } else {
-      const locationData: CreateLocationDto = {
-        name: form.getFieldValue('name'),
-        locationTypeId: form.getFieldValue('locationType'),
-        meterTypeId: form.getFieldValue('meterType'),
-        initialDate: dayjs(form.getFieldValue('startDate')).format('YYYY-MM-DD'),
-        description: form.getFieldValue('description'),
-        userId: form.getFieldValue('user'),
-        devices:
-          devicesData?.data.map((device) => ({
-            deviceId: device.device.id,
-            initialIndex: Number(device.lastestTimeSeriesValue),
-          })) || [],
-      };
-      createLocation(locationData);
-    }
-  };
+  // const handleSubmit = () => {
+  //   if (selectedDeviceKeys.length === 0) {
+  //     openNotificationWithIcon(NotificationTypeEnum.ERROR, t<string>('LOCATION.EDIT_LOCATION'));
+  //   } else {
+  //     const locationData: CreateLocationDto = {
+  //       name: form.getFieldValue('name'),
+  //       locationTypeId: form.getFieldValue('locationType'),
+  //       meterTypeId: form.getFieldValue('meterType'),
+  //       initialDate: dayjs(form.getFieldValue('startDate')).format('YYYY-MM-DD'),
+  //       description: form.getFieldValue('description'),
+  //       userId: form.getFieldValue('user'),
+  //       // deviceIds: selectedDeviceKeys.map((key) => String(key)),
+  //     };
+  //     createLocation(locationData);
+  //   }
+  // };
 
-  const columns: ColumnsType<DetailDeviceProps> = [
+  const columns: ColumnsType<DeviceResponseProps> = [
     {
       title: t('LOCATION.DEVICE_NAME'),
       dataIndex: ['device', 'name'],
@@ -96,14 +107,14 @@ const CreateLocationPage = () => {
     },
     {
       title: t('LOCATION.INITIAL_ENERGY_IMPORT'),
-      dataIndex: 'lastestTimeSeriesValue',
-      key: 'initialCalculate',
+      dataIndex: ['device', 'locationDevice', 'initialIndex'],
+      key: 'initialIndex',
       width: 150,
     },
     {
       title: t('LOCATION.ACTIVE_ENERGY_IMPORT'),
       dataIndex: 'lastestTimeSeriesValue',
-      key: 'lastestTimeSeriesValue.data_active_energy_import.value',
+      key: 'lastestTimeSeriesValue',
       width: 150,
     },
     {
@@ -114,7 +125,7 @@ const CreateLocationPage = () => {
       render: (_, record) => (
         <Trash
           className='w-6 h-6 text-red-500 cursor-pointer'
-          onClick={() => handleDeleteDevice(record.device.id)}
+          onClick={() => handleDeleteDevice(record.id)}
         />
       ),
       fixed: 'right',
@@ -126,7 +137,7 @@ const CreateLocationPage = () => {
     <div>
       <Card>
         <Form form={form} layout='vertical'>
-          <p className='text-3xl font-bold'>{t('LOCATION.ADD_LOCATION')}</p>
+          <p className='text-3xl font-bold'>{t('LOCATION.EDIT_LOCATION')}</p>
           <div className='grid grid-cols-2 gap-4 mt-4'>
             <Form.Item
               label={t('LOCATION.LOCATION_NAME')}
@@ -234,7 +245,7 @@ const CreateLocationPage = () => {
               <Table
                 rowKey='id'
                 className='custom-device-table shadow-md !rounded-lg'
-                dataSource={devicesData?.data}
+                dataSource={locationData?.devices}
                 columns={columns}
                 scroll={{ x: 'max-content' }}
               />
@@ -244,9 +255,9 @@ const CreateLocationPage = () => {
             <Button className='px-6' type='default' onClick={() => navigate(NAVIGATE_URL.LOCATION)}>
               {t('LOCATION.CANCEL')}
             </Button>
-            <Button type='primary' className='px-6' htmlType='submit' onClick={handleSubmit}>
+            {/* <Button type='primary' className='px-6' htmlType='submit' onClick={handleSubmit}>
               {t('LOCATION.SAVE')}
-            </Button>
+            </Button> */}
           </div>
         </Form>
       </Card>
@@ -261,4 +272,4 @@ const CreateLocationPage = () => {
   );
 };
 
-export default CreateLocationPage;
+export default EditLocation;

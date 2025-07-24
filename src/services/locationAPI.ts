@@ -10,3 +10,6 @@ export const getAllLocationAPI = async (params: LocationFilterProps) =>
 
 export const createLocationAPI = async (data: CreateLocationDto) =>
   await axios.post(API_URL.LOCATIONS, data);
+
+export const getLocationByIdAPI = async (id: string) =>
+  await axios.get(`${API_URL.LOCATIONS}/${id}`);

@@ -164,7 +164,8 @@
     "IMAGE_MIN_SIZE": "Image size must be at least 10KB",
     "IMAGE_VALIDATE_SIZE": "Image dimensions must be less than or equal to 400x600",
     "INVALID_EMAIL": "{{field}} is not in the correct format",
-    "DUPLICATE_POSITION": "Start position and end position must not be the same"
+    "DUPLICATE_POSITION": "Start position and end position must not be the same",
+    "DATE_PAST": "{{field}} must be a date in the past"
   },
   "PROFILE": {
     "CHANGE_PASSWORD": "Change Password",

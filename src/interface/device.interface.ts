@@ -11,7 +11,7 @@ export interface DeviceProps {
 }
 
 export interface DeviceTotalTypeProps {
-  type: string;
+  deviceType: string;
   count: number;
 }
 

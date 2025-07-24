@@ -192,7 +192,7 @@
   },
   "SIDEBAR": {
     "DASHBOARD": "Dashboard",
-    "PROJECT": "Project Management",
+    "LOCATION": "Location Management",
     "USER": "User Management"
   },
   "PUBLIC_LAYOUT": {
@@ -227,6 +227,8 @@
     "PENDING": "Pending",
     "BLOCKED": "Blocked",
     "START_DATE": "Start date",
-    "END_DATE": "End date"
+    "END_DATE": "End date",
+    "FROM_DATE": "From date",
+    "TO_DATE": "To date"
   }
 }

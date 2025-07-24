@@ -110,15 +110,13 @@ const UserTable: FC<UserTableProps> = ({
               ? 'bg-[#28a745]'
               : status === UserStatus.PENDING
               ? 'bg-[#262e89]'
-              : status === UserStatus.INACTIVE
-              ? 'bg-[#8b969f]'
-              : ''
+              : 'bg-[#8b969f]'
           }`}
         >
           {setStatus(status as UserStatus)}
         </span>
       ),
-      className: '!text-center',
+      align: 'center',
     },
     {
       title: t<string>('USER_MANAGEMENT.ACTION'),
@@ -134,7 +132,7 @@ const UserTable: FC<UserTableProps> = ({
           <EditOutlined className='text-lg' />
         </Button>
       ),
-      className: '!text-center',
+      align: 'center',
     },
   ];
 
@@ -167,6 +165,10 @@ const UserTable: FC<UserTableProps> = ({
               onChange={onDateChange}
               className='px-6 py-2 rounded-lg w-full sm:w-auto'
               format='DD/MM/YYYY'
+              placeholder={[
+                t<string>('USER_MANAGEMENT.FROM_DATE'),
+                t<string>('USER_MANAGEMENT.TO_DATE'),
+              ]}
             />
             <Button onClick={onAddUser} className='px-6 py-5 bg-[#465FFF] text-white'>
               {t('USER_MANAGEMENT.ADD')}

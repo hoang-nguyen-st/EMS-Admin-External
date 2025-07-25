@@ -5,6 +5,7 @@ import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/
 import { QUERY_KEY, TimestampEnum } from '@app/constants';
 import {
   DetailDeviceProps,
+  DetailDeviceSettingProps,
   DeviceProps,
   DeviceResponseProps,
   DeviceSettingProps,
@@ -92,7 +93,7 @@ export const useGetElectricityConsumption = (
   );
 
 export const useGetDetailDevice = (deviceThingsboardId: string) =>
-  useQuery<DetailDeviceProps>(
+  useQuery<DetailDeviceSettingProps>(
     [QUERY_KEY.DETAIL_DEVICE, deviceThingsboardId],
     async () => {
       const { data } = await getDetailDeviceAPI(deviceThingsboardId);

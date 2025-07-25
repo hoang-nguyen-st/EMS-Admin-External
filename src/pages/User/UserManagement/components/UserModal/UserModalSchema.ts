@@ -3,7 +3,7 @@ import * as yup from 'yup';
 
 import {
   EMAIL_REGEX_PATTERN,
-  PASSWORD_REGEX_PATTERN,
+  NO_SPECIAL_CHARACTER_IN_NAME,
   PHONE_REGEX_PATTERN,
 } from '@app/constants/regex';
 
@@ -14,27 +14,27 @@ export const useUserModalSchema = () => {
     email: yup
       .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('LOGIN.EMAIL') }))
+      .trim()
       .matches(
         EMAIL_REGEX_PATTERN,
         t<string>('VALIDATE.INVALID', { field: t<string>('LOGIN.EMAIL') }),
-      ),
-
-    password: yup
-      .string()
-      .matches(
-        PASSWORD_REGEX_PATTERN,
-        t<string>('VALIDATE.RULE_PASSWORD', { field: t<string>('LOGIN.PASSWORD') }),
       )
-      .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('LOGIN.PASSWORD') })),
+      .max(100, t<string>('VALIDATE.MAX_LENGTH', { field: t<string>('LOGIN.EMAIL'), number: 100 })),
 
     name: yup
       .string()
+      .trim()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.NAME') }))
-      .min(2, t<string>('VALIDATE.MIN_LENGTH', { field: t<string>('USER.NAME'), min: 2 }))
-      .max(50, t<string>('VALIDATE.MAX_LENGTH', { field: t<string>('USER.NAME'), max: 50 })),
+      .min(2, t<string>('VALIDATE.MIN_LENGTH', { field: t<string>('USER.NAME'), number: 2 }))
+      .max(150, t<string>('VALIDATE.MAX_LENGTH', { field: t<string>('USER.NAME'), number: 50 }))
+      .matches(
+        NO_SPECIAL_CHARACTER_IN_NAME,
+        t<string>('VALIDATE.SPECIAL_CHARACTER', { field: t<string>('USER.NAME') }),
+      ),
 
     phone: yup
       .string()
+      .trim()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.PHONE') }))
       .matches(
         PHONE_REGEX_PATTERN,
@@ -49,7 +49,8 @@ export const useUserModalSchema = () => {
 
     address: yup
       .string()
+      .trim()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.ADDRESS') }))
-      .max(255, t<string>('VALIDATE.MAX_LENGTH', { field: t<string>('USER.ADDRESS'), max: 255 })),
+      .min(2, t<string>('VALIDATE.MIN_LENGTH', { field: t<string>('USER.ADDRESS'), number: 2 })),
   });
 };

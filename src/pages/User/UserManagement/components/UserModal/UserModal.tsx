@@ -1,5 +1,5 @@
 import { SyncOutlined } from '@ant-design/icons';
-import { Modal, Button, Form, Input, DatePicker, Select } from 'antd';
+import { Modal, Button, Form, Input, DatePicker } from 'antd';
 import { Rule } from 'antd/lib/form';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ export interface UserModalProps {
   onSubmit: () => void;
 }
 
-const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) => {
+const UserModal: FC<UserModalProps> = ({ visible, user, onCancel }) => {
   const { t } = useTranslation();
   const [isMounted, setIsMounted] = useState(false);
 

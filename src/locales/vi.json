@@ -140,7 +140,9 @@
   },
   "VALIDATE": {
     "MIN": " {{field}} phải lớn hơn hoặc bằng {{number}}",
+    "MIN_LENGTH": " {{field}} bắt buộc phải có ít nhất {{number}} ký tự",
     "MAX": " {{field}} phải bé hơn hoặc bằng {{number}}",
+    "MAX_LENGTH": " {{field}} bắt buộc phải có ít hơn {{number}} ký tự",
     "MAX_NUMBER": " {{field}} phải bé hơn {{number}}",
     "POSITIVE_NUMBER": " {{field}} giá trị phải lớn hơn 0",
     "INTEGER": " {{field}} phải là một số nguyên",

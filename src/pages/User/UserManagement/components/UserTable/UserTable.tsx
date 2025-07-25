@@ -62,8 +62,6 @@ const UserTable: FC<UserTableProps> = ({
         return t('USER_MANAGEMENT.ACTIVE');
       case UserStatus.INACTIVE:
         return t('USER_MANAGEMENT.INACTIVE');
-      case UserStatus.PENDING:
-        return t('USER_MANAGEMENT.PENDING');
     }
   };
 
@@ -106,11 +104,7 @@ const UserTable: FC<UserTableProps> = ({
       render: (status: string) => (
         <span
           className={`px-4 py-2 rounded-2xl text-white ${
-            status === UserStatus.ACTIVE
-              ? 'bg-[#28a745]'
-              : status === UserStatus.PENDING
-              ? 'bg-[#262e89]'
-              : 'bg-[#8b969f]'
+            status === UserStatus.ACTIVE ? 'bg-[#28a745]' : 'bg-[#8b969f]'
           }`}
         >
           {setStatus(status as UserStatus)}
@@ -158,7 +152,6 @@ const UserTable: FC<UserTableProps> = ({
               options={[
                 { value: UserStatus.ACTIVE, label: t<string>('USER_MANAGEMENT.ACTIVE') },
                 { value: UserStatus.INACTIVE, label: t<string>('USER_MANAGEMENT.INACTIVE') },
-                { value: UserStatus.PENDING, label: t<string>('USER_MANAGEMENT.PENDING') },
               ]}
             />
             <RangePicker

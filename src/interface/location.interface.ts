@@ -1,5 +1,9 @@
 import { GetListParams } from './common.interface';
-import { DeviceResponseProps, DeviceWithInitDto } from './device.interface';
+import {
+  DeviceResponseProps,
+  DeviceWithInitDto,
+  EditDeviceResponseProps,
+} from './device.interface';
 import { LocationTypeEnum } from './location-type.interface';
 import { MeterType } from './meter-type.interface';
 import { UserDetail } from './user.interface';
@@ -42,6 +46,19 @@ export interface LocationResponseDto {
   updatedAt: string;
   user: UserDetail;
   devices: DeviceResponseProps[];
+  meterType: MeterType;
+  initialDate: string;
+}
+
+export interface EditLocationResponseDto {
+  id: string;
+  name: string;
+  locationType: LocationType;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  user: UserDetail;
+  devices: EditDeviceResponseProps[];
   meterType: MeterType;
   initialDate: string;
 }

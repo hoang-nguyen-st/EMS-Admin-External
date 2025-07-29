@@ -12,6 +12,7 @@ export interface UserColumns {
   dateOfBirth: string;
   identityId: string;
   createdAt: string;
+  isUnsigned: boolean;
 }
 
 export interface Credentials {
@@ -71,4 +72,9 @@ export interface GetUsersParams extends GetListParams {
   status?: UserStatus;
   startDate?: string;
   endDate?: string;
+}
+
+export interface UserTotalStatus {
+  status: string;
+  count: number;
 }

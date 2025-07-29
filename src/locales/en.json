@@ -215,6 +215,10 @@
     "START_DATE": "Start date",
     "END_DATE": "End date",
     "FROM_DATE": "From date",
-    "TO_DATE": "To date"
+    "TO_DATE": "To date",
+    "TOTAL_USER": "Total",
+    "ACTIVE_USER": "Active",
+    "INACTIVE_USER": "Inactive",
+    "UNSIGNED_USER": "Unsigned"
   }
 }

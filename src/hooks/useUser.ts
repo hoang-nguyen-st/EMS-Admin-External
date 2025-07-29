@@ -2,8 +2,15 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { GetUsersParams, UserDetail } from '@app/interface/user.interface';
-import { createUser, deleteUserAPI, getUserByIdAPI, getUsersAPI, updateUser } from '@app/services';
+import { GetUsersParams, UserDetail, UserTotalStatus } from '@app/interface/user.interface';
+import {
+  createUser,
+  deleteUserAPI,
+  getUserByIdAPI,
+  getUserSummarizeAPI,
+  getUsersAPI,
+  updateUser,
+} from '@app/services';
 
 export const useCreateUser = () => {
   const navigate = useNavigate();
@@ -57,3 +64,9 @@ export const useDeleteUser = () => {
     return response.data;
   });
 };
+
+export const useGetUserSummarize = () =>
+  useQuery<UserTotalStatus[]>([QUERY_KEY.USERS_SUMMARIZE], async () => {
+    const { data } = await getUserSummarizeAPI();
+    return data.data;
+  });

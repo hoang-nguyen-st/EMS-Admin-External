@@ -20,3 +20,5 @@ export const createUser = async (formData: FormData) =>
   await axios.post(API_URL.USERS, formData, {
     headers: { 'Content-Type': 'multipart/form-data' },
   });
+
+export const getUserSummarizeAPI = async () => await axios.get(API_URL.USERS_SUMMARIZE);

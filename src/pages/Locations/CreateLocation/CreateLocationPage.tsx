@@ -2,7 +2,7 @@ import { Button, Card, DatePicker, Form, Input, Table } from 'antd';
 import { DefaultOptionType } from 'antd/es/select';
 import { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
-import { Plus, Trash } from 'lucide-react';
+import { Edit, Plus, Trash } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -29,6 +29,8 @@ const CreateLocationPage = () => {
   const [locationTypeEnum, setLocationTypeEnum] = useState<LocationTypeEnum>();
   const [openDeviceModal, setOpenDeviceModal] = useState(false);
   const [selectedDeviceKeys, setSelectedDeviceKeys] = useState<React.Key[]>([]);
+  const [editingDeviceId, setEditingDeviceId] = useState<string | null>(null);
+  const [editingValues, setEditingValues] = useState<Record<string, number>>({});
 
   const { data: devicesData } = useGetDeviceByIds(
     selectedDeviceKeys.map((key) => String(key)),
@@ -43,8 +45,60 @@ const CreateLocationPage = () => {
     }
   }, [locationTypeEnum, form]);
 
-  const handleDeleteDevice = (id: string) => {
-    setSelectedDeviceKeys(selectedDeviceKeys.filter((key) => key !== id));
+  const handleDeleteDevice = (deviceId: string) => {
+    setEditingValues((prev) => ({
+      ...prev,
+      [deviceId]: 0,
+    }));
+    setSelectedDeviceKeys(selectedDeviceKeys.filter((key) => key !== deviceId));
+  };
+
+  const handleEditDevice = (deviceId: string) => {
+    setEditingDeviceId(deviceId);
+    const device = devicesData?.data.find((d) => d.device.id === deviceId);
+
+    if (editingValues[deviceId]) {
+      setEditingValues((prev) => ({
+        ...prev,
+        [deviceId]: Number(editingValues[deviceId]) || 0,
+      }));
+    } else {
+      setEditingValues((prev) => ({
+        ...prev,
+        [deviceId]: Number(device?.lastestTimeSeriesValue) || 0,
+      }));
+    }
+  };
+
+  const handleSaveEdit = (deviceId: string) => {
+    const device = devicesData?.data.find((d) => d.device.id === deviceId);
+    const currentValue = Number(device?.lastestTimeSeriesValue) || 0;
+    const newValue = Number(editingValues[deviceId]) || 0;
+
+    if (newValue > currentValue) {
+      openNotificationWithIcon(
+        NotificationTypeEnum.WARNING,
+        t<string>('LOCATION.INITIAL_VALUE_CANNOT_EXCEED_CURRENT'),
+      );
+      return;
+    }
+
+    setEditingDeviceId(null);
+    setEditingValues((prev) => ({
+      ...prev,
+      [deviceId]: newValue,
+    }));
+  };
+
+  const handleCancelEdit = () => {
+    if (editingDeviceId) {
+      setEditingValues((prev) => {
+        const newValues = { ...prev };
+        delete newValues[editingDeviceId];
+        return newValues;
+      });
+    }
+    setEditingDeviceId(null);
   };
 
   const handleSubmit = () => {
@@ -64,7 +118,7 @@ const CreateLocationPage = () => {
         devices:
           devicesData?.data.map((device) => ({
             deviceId: device.device.id,
-            initialIndex: Number(device.lastestTimeSeriesValue),
+            initialIndex: editingValues[device.device.id] || Number(device.lastestTimeSeriesValue),
           })) || [],
       };
       createLocation(locationData);
@@ -99,6 +153,28 @@ const CreateLocationPage = () => {
       dataIndex: 'lastestTimeSeriesValue',
       key: 'initialCalculate',
       width: 150,
+      render: (value, record) => {
+        const deviceId = record.device.id;
+        const isEditing = editingDeviceId === deviceId;
+
+        if (isEditing) {
+          return (
+            <Input
+              type='number'
+              value={editingValues[deviceId] || value}
+              onChange={(e) => {
+                const newValue = Number(e.target.value) || 0;
+                setEditingValues((prev) => ({
+                  ...prev,
+                  [deviceId]: newValue,
+                }));
+              }}
+            />
+          );
+        }
+
+        return editingValues[deviceId] || value;
+      },
     },
     {
       title: t('LOCATION.ACTIVE_ENERGY_IMPORT'),
@@ -110,14 +186,46 @@ const CreateLocationPage = () => {
       title: t('LOCATION.ACTION'),
       dataIndex: 'action',
       key: 'action',
-      width: 120,
-      render: (_, record) => (
-        <Trash
-          className='w-6 h-6 text-red-500 cursor-pointer'
-          onClick={() => handleDeleteDevice(record.device.id)}
-        />
-      ),
       fixed: 'right',
+      width: 120,
+      render: (_, record) => {
+        const deviceId = record.device.id;
+        const isEditing = editingDeviceId === deviceId;
+
+        return (
+          <div className='flex gap-2 items-center justify-center'>
+            {isEditing ? (
+              <>
+                <Button
+                  type='link'
+                  size='small'
+                  onClick={() => handleSaveEdit(deviceId)}
+                  className='p-0 h-auto text-green-500'
+                >
+                  Save
+                </Button>
+                <Button
+                  type='link'
+                  size='small'
+                  onClick={handleCancelEdit}
+                  className='p-0 h-auto text-gray-500'
+                >
+                  Cancel
+                </Button>
+              </>
+            ) : (
+              <Edit
+                className='w-5 h-5 text-[#2E4258] cursor-pointer'
+                onClick={() => handleEditDevice(deviceId)}
+              />
+            )}
+            <Trash
+              className='w-5 h-5 text-red-500 cursor-pointer'
+              onClick={() => handleDeleteDevice(deviceId)}
+            />
+          </div>
+        );
+      },
       align: 'center',
     },
   ];
@@ -232,7 +340,7 @@ const CreateLocationPage = () => {
 
             <div className='col-span-2'>
               <Table
-                rowKey='id'
+                rowKey={(record) => record.device.id}
                 className='custom-device-table shadow-md !rounded-lg'
                 dataSource={devicesData?.data}
                 columns={columns}

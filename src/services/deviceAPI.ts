@@ -35,3 +35,7 @@ export const getDeviceByIdsAPI = async (deviceIds: string[]) => {
 export const getUnassignedDevices = async (params: DeviceProps) => {
   return await axios.get(`${API_URL.UNASSIGNED_DEVICES}`, { params });
 };
+
+export const unassignDeviceToLocationAPI = async (deviceId: string) => {
+  return await axios.post(`${API_URL.UNASSIGN_DEVICE_TO_LOCATION}/${deviceId}`);
+};

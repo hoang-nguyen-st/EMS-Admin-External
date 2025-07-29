@@ -323,5 +323,11 @@
     "SELECT_FIELD": "Select Field",
     "SELECT_DEVICE_TYPE": "Select Device Type",
     "SELECT_VOLTAGE_UNIT": "Select Voltage Unit"
+  },
+  "LOCATION": {
+    "DELETE_DEVICE_CONFIRM": "Delete Device Confirm",
+    "DELETE_DEVICE_MESSAGE": "Are you sure you want to delete {{deviceName}}?",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel"
   }
 }

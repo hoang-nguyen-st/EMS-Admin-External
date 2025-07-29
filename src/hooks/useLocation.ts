@@ -1,10 +1,11 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
 import { NotificationTypeEnum, openNotificationWithIcon } from '@app/components/molecules';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
 import {
   CreateLocationDto,
+  EditLocationResponseDto,
   LocationDto,
   LocationFilterProps,
   LocationResponseDto,
@@ -15,6 +16,7 @@ import {
   getAllLocationAPI,
   getLocationAPI,
   getLocationByIdAPI,
+  updateLocationAPI,
 } from '@app/services/locationAPI';
 
 export const useGetLocations = () =>
@@ -54,7 +56,25 @@ export const useCreateLocation = () => {
 };
 
 export const useGetLocationById = (id: string) =>
-  useQuery<LocationResponseDto>([QUERY_KEY.LOCATIONS, id], async () => {
+  useQuery<EditLocationResponseDto>([QUERY_KEY.LOCATIONS, id], async () => {
     const { data } = await getLocationByIdAPI(id);
     return data.data;
   });
+
+export const useUpdateLocation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (params: { id: string; data: CreateLocationDto }) => {
+      const { data } = await updateLocationAPI(params.id, params.data);
+      return data;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries([QUERY_KEY.LOCATIONS]);
+      openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
+    },
+    onError({ response }) {
+      openNotificationWithIcon(NotificationTypeEnum.ERROR, response.data.message);
+    },
+  });
+};

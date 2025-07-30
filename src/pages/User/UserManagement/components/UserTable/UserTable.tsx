@@ -67,10 +67,10 @@ const UserTable: FC<UserTableProps> = ({
 
   const columns: ColumnsType<UserColumns> = [
     {
-      dataIndex: 'isUnsigned',
-      key: 'isUnsigned',
-      render: (isUnsigned: boolean) =>
-        isUnsigned && <WarningOutlined className='text-2xl text-[#FFCE39]' />,
+      dataIndex: 'unAssigned',
+      key: 'unAssigned',
+      render: (unAssigned: boolean) =>
+        unAssigned && <WarningOutlined className='text-2xl text-[#FFCE39]' />,
     },
     {
       title: t<string>('USER_MANAGEMENT.FULLNAME'),

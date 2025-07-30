@@ -14,7 +14,7 @@ export interface UserColumns {
   dateOfBirth: string;
   identityId: string;
   createdAt: string;
-  isUnsigned: boolean;
+  unAssigned: boolean;
 }
 
 export interface Credentials {

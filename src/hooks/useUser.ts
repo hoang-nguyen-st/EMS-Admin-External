@@ -3,7 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules/index';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { GetUsersParams, UserDetail, UserSummarizeResponse } from '@app/interface/user.interface';
+import {
+  CreateUserDto,
+  GetUsersParams,
+  UserDetail,
+  UserSummarizeResponse,
+} from '@app/interface/user.interface';
 import {
   createUserByAdmin,
   createUser,

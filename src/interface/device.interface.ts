@@ -27,6 +27,11 @@ export interface DeviceResponseProps {
   locationDevice?: LocationDeviceResponseProps;
 }
 
+export interface EditDeviceResponseProps {
+  device: DeviceResponseProps;
+  lastestTimeSeriesValue?: string;
+}
+
 export interface DeviceModalData {
   id: string;
   name: string;
@@ -66,6 +71,11 @@ export type TelemetryTimeSeriesResponse = {
 export interface DetailDeviceProps {
   device: DeviceResponseProps;
   lastestTimeSeriesValue: string;
+}
+
+export interface DetailDeviceSettingProps {
+  device: DeviceResponseProps;
+  lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
 }
 
 export interface DeviceWithInitDto {

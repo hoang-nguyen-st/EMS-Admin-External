@@ -5,6 +5,7 @@ import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/
 import { QUERY_KEY, TimestampEnum } from '@app/constants';
 import {
   DetailDeviceProps,
+  DetailDeviceSettingProps,
   DeviceProps,
   DeviceResponseProps,
   DeviceSettingProps,
@@ -21,6 +22,7 @@ import {
   getElectricityConsumptionAPI,
   getDeviceByIdsAPI,
   getUnassignedDevices,
+  unassignDeviceToLocationAPI,
 } from '@app/services/deviceAPI';
 
 export const useGetDevices = (params: DeviceProps) =>
@@ -92,7 +94,7 @@ export const useGetElectricityConsumption = (
   );
 
 export const useGetDetailDevice = (deviceThingsboardId: string) =>
-  useQuery<DetailDeviceProps>(
+  useQuery<DetailDeviceSettingProps>(
     [QUERY_KEY.DETAIL_DEVICE, deviceThingsboardId],
     async () => {
       const { data } = await getDetailDeviceAPI(deviceThingsboardId);
@@ -111,10 +113,6 @@ export const useGetUnassignedDevices = (params: DeviceProps) =>
       const { data } = await getUnassignedDevices(params);
       return data;
     },
-    {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-    },
   );
 export const useGetDeviceByIds = (deviceIds: string[], enabled = false) =>
   useQuery<{ data: DetailDeviceProps[]; meta: MetaProps }>(
@@ -129,3 +127,17 @@ export const useGetDeviceByIds = (deviceIds: string[], enabled = false) =>
       refetchOnMount: false,
     },
   );
+
+export const useUnassignDeviceToLocation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (deviceId: string) => unassignDeviceToLocationAPI(deviceId),
+    onSuccess: ({ data }) => {
+      openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
+      queryClient.invalidateQueries([QUERY_KEY.UNASSIGNED_DEVICES]);
+    },
+    onError: () => {
+      openNotificationWithIcon(NotificationTypeEnum.ERROR, 'Lỗi xóa thiết bị khỏi vị trí');
+    },
+  });
+};

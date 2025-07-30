@@ -50,6 +50,7 @@ export const API_URL = {
   METER_TYPES: '/meter-types',
   DEVICE_BY_IDS: '/devices/detail-by-ids',
   UNASSIGNED_DEVICES: '/devices/unassigned',
+  UNASSIGN_DEVICE_TO_LOCATION: '/devices/unassign-devices-to-location',
 };
 
 export const VEHICLES_URL = '/vehicles';

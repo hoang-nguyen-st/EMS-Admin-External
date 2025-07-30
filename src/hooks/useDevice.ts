@@ -5,12 +5,12 @@ import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/
 import { QUERY_KEY, TimestampEnum } from '@app/constants';
 import {
   DetailDeviceProps,
+  DetailDeviceSettingProps,
   DeviceProps,
   DeviceResponseProps,
   DeviceSettingProps,
   DeviceTelemetryEnergyImportInfo,
   DeviceTotalTypeProps,
-  DeviceWithTimeSeries,
 } from '@app/interface/device.interface';
 import { MetaProps } from '@app/interface/meta.interface';
 import {
@@ -22,6 +22,7 @@ import {
   getElectricityConsumptionAPI,
   getDeviceByIdsAPI,
   getUnassignedDevices,
+  unassignDeviceToLocationAPI,
 } from '@app/services/deviceAPI';
 
 export const useGetDevices = (params: DeviceProps) =>
@@ -66,7 +67,7 @@ export const useUpdateDeviceSettings = () => {
         NotificationTypeEnum.SUCCESS,
         t(data.message || 'DEVICE_MANAGEMENT.UPDATE_DEVICE_SUCCESS'),
       );
-      queryClient.invalidateQueries([QUERY_KEY.DEVICES]);
+      queryClient.invalidateQueries([]);
     },
     onError: () => {
       openNotificationWithIcon(
@@ -93,7 +94,7 @@ export const useGetElectricityConsumption = (
   );
 
 export const useGetDetailDevice = (deviceThingsboardId: string) =>
-  useQuery<DetailDeviceProps>(
+  useQuery<DetailDeviceSettingProps>(
     [QUERY_KEY.DETAIL_DEVICE, deviceThingsboardId],
     async () => {
       const { data } = await getDetailDeviceAPI(deviceThingsboardId);
@@ -112,13 +113,9 @@ export const useGetUnassignedDevices = (params: DeviceProps) =>
       const { data } = await getUnassignedDevices(params);
       return data;
     },
-    {
-      refetchOnWindowFocus: false,
-      refetchOnMount: false,
-    },
   );
 export const useGetDeviceByIds = (deviceIds: string[], enabled = false) =>
-  useQuery<{ data: DeviceWithTimeSeries[]; meta: MetaProps }>(
+  useQuery<{ data: DetailDeviceProps[]; meta: MetaProps }>(
     [QUERY_KEY.DEVICE_BY_IDS, deviceIds],
     async () => {
       const { data } = await getDeviceByIdsAPI(deviceIds);
@@ -130,3 +127,17 @@ export const useGetDeviceByIds = (deviceIds: string[], enabled = false) =>
       refetchOnMount: false,
     },
   );
+
+export const useUnassignDeviceToLocation = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (deviceId: string) => unassignDeviceToLocationAPI(deviceId),
+    onSuccess: ({ data }) => {
+      openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
+      queryClient.invalidateQueries([QUERY_KEY.UNASSIGNED_DEVICES]);
+    },
+    onError: () => {
+      openNotificationWithIcon(NotificationTypeEnum.ERROR, 'Lỗi xóa thiết bị khỏi vị trí');
+    },
+  });
+};

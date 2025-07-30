@@ -1,7 +1,6 @@
 import { GetListParams } from './common.interface';
 import { DeviceLocationResponseProps } from './location.interface';
-import { DeviceMeterTypeResponseProps } from './meterType.interface';
-import { DeviceType, MeterTypeEnum, VoltageUnitEnum } from '@app/constants';
+import { DeviceType, VoltageUnitEnum } from '@app/constants';
 
 export interface DeviceProps extends GetListParams {
   status?: boolean;
@@ -21,15 +20,16 @@ export interface DeviceResponseProps {
   deviceType: DeviceType;
   fieldCalculate: string;
   status: boolean | string;
-  meterType: DeviceMeterTypeResponseProps;
   voltageUnit: VoltageUnitEnum;
   voltageValue: string;
   location: DeviceLocationResponseProps;
+  initialDate?: string;
+  locationDevice?: LocationDeviceResponseProps;
 }
 
-export interface DeviceWithTimeSeries {
+export interface EditDeviceResponseProps {
   device: DeviceResponseProps;
-  lastestTimeSeriesValue: string;
+  lastestTimeSeriesValue?: string;
 }
 
 export interface DeviceModalData {
@@ -40,15 +40,11 @@ export interface DeviceModalData {
   fieldCalculate?: string;
   voltageUnit?: VoltageUnitEnum;
   voltageValue?: string;
-  meterType?: {
-    meterTypeEnum: MeterTypeEnum;
-  };
 }
 
 export interface DeviceSettingProps {
   fieldCalculate: string;
   deviceType: string;
-  meterType: string;
   voltageUnit: string;
   voltageValue: string;
 }
@@ -74,14 +70,20 @@ export type TelemetryTimeSeriesResponse = {
 
 export interface DetailDeviceProps {
   device: DeviceResponseProps;
+  lastestTimeSeriesValue: string;
+}
+
+export interface DetailDeviceSettingProps {
+  device: DeviceResponseProps;
   lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
 }
 
-export interface DeviceColumns {
+export interface DeviceWithInitDto {
+  deviceId: string;
+  initialIndex: number;
+}
+
+export interface LocationDeviceResponseProps {
   id: string;
-  name: string;
-  devEUI?: string;
-  deviceType?: DeviceType;
-  fieldCalculate?: string;
-  status?: boolean;
+  initialIndex: number;
 }

@@ -96,52 +96,6 @@ const UserDetail = () => {
           </div>
         </div>
       </div>
-      <div className='grid grid-cols-2 gap-x-4'>
-        <div className='p-8 bg-white shadow mt-6 rounded-xl'>
-          <div className='flex items-center text-primary-bold gap-x-2 text-xl'>
-            <FolderOutlined />
-            <p>{t('USER_DETAIL.PROJECTS')}</p>
-          </div>
-          {user.projectUsers && user.projectUsers.length > 0 ? (
-            <div>
-              <div className='flex items-center justify-between my-4'>
-                <p>{t('USER_DETAIL.PROJECT_NAME')}</p>
-                <p>{t('USER_DETAIL.ROLE')}</p>
-              </div>
-              {user.projectUsers.map((projectUser: ProjectUserDetail) => (
-                <div
-                  key={projectUser.id}
-                  className='py-4 shadow-[0px_-1px_0px_0px_rgba(0,0,0,0.2)]'
-                >
-                  <div className='flex items-center justify-between'>
-                    <div className='flex items-center gap-x-4'>
-                      <div className='w-10 h-10'>
-                        <Image
-                          className='w-full h-full object-cover'
-                          preview={false}
-                          src={projectUser.project.image || companyDefault}
-                        />
-                      </div>
-                      <div>
-                        <p className='text-sm font-bold'>{projectUser.project.name}</p>
-                        <p className='text-gray-500'>{projectUser.project.projectType}</p>
-                      </div>
-                    </div>
-                    <div className='font-bold bg-primary-bold py-2 px-4 rounded-full text-white'>
-                      {projectUser.role}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div>
-              <Empty />
-            </div>
-          )}
-        </div>
-        <div></div>
-      </div>
     </div>
   );
 };

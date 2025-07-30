@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import './AddDeviceModal.css';
 import { deviceTypeOptionsEnum } from '@app/constants';
-import { useGetDevices, useGetUnassignedDevices } from '@app/hooks/useDevice';
+import { useGetUnassignedDevices } from '@app/hooks/useDevice';
 import { DeviceResponseProps } from '@app/interface/device.interface';
 
 interface AddDiviceModalProps {
@@ -24,10 +24,20 @@ const AddDiviceModal = ({ open, onCancel, onSelect, selectedDeviceKeys }: AddDiv
     setSelectedRowKeys(selectedDeviceKeys);
   }, [selectedDeviceKeys]);
 
-  const { data: devices, isLoading } = useGetUnassignedDevices({
+  const {
+    data: devices,
+    isLoading,
+    refetch,
+  } = useGetUnassignedDevices({
     page: 1,
     take: 10,
   });
+
+  useEffect(() => {
+    if (open) {
+      refetch();
+    }
+  }, [open, refetch]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -42,7 +52,7 @@ const AddDiviceModal = ({ open, onCancel, onSelect, selectedDeviceKeys }: AddDiv
     selectedRowKeys,
     onChange: onSelectChange,
     getCheckboxProps: (record) => ({
-      disabled: !record.fieldCalculate, // disable nếu không có fieldCalculate
+      disabled: !record.fieldCalculate,
     }),
   };
 

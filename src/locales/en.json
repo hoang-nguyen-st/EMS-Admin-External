@@ -138,6 +138,8 @@
   },
   "VALIDATE": {
     "MIN": "{{field}} must be greater than or equal to {{number}}",
+    "MIN_LENGTH": "{{field}} must be at least {{number}} characters",
+    "MAX_LENGTH": "{{field}} must be less than {{number}} characters",
     "MAX": "{{field}} must be less than or equal to {{number}}",
     "MAX_NUMBER": "{{field}} must be less than {{number}}",
     "POSITIVE_NUMBER": "{{field}} value must be greater than 0",
@@ -287,7 +289,7 @@
     "FIELD": "Field",
     "NO_FIELD": "Field not indentified",
     "NO_LOCATION": "Location not indentified",
-    "DEVICE_TYPE": "Device type",
+    "DEVICE_TYPE": "Device Type",
     "STATUS": "Status",
     "ACTION": "Actions",
     "ELECTRIC": "Electric",
@@ -315,7 +317,6 @@
     "DEVUI": "Device EUI",
     "FIELD": "Field",
     "DEVICE_TYPE": "Device Type",
-    "METER_TYPE": "Meter Type",
     "VOLTAGE": "Voltage",
     "VOLTAGE_UNIT": "Voltage Unit",
     "SAVE": "Save",
@@ -323,7 +324,12 @@
     "TECHNICAL_SPECIFICATIONS": "Technical Specifications",
     "SELECT_FIELD": "Select Field",
     "SELECT_DEVICE_TYPE": "Select Device Type",
-    "SELECT_METER_TYPE": "Select Meter Type",
     "SELECT_VOLTAGE_UNIT": "Select Voltage Unit"
+  },
+  "LOCATION": {
+    "DELETE_DEVICE_CONFIRM": "Delete Device Confirm",
+    "DELETE_DEVICE_MESSAGE": "Are you sure you want to delete {{deviceName}}?",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel"
   }
 }

@@ -6,6 +6,7 @@ import { NAVIGATE_URL } from '@app/constants';
 import { DeviceManagement, ProjectManagement, UserDetail, UserManagement } from '@app/pages';
 import DetailDevice from '@app/pages/DeviceManagement/DetailDevice';
 import CreateLocationPage from '@app/pages/Locations/CreateLocation/CreateLocationPage';
+import EditLocation from '@app/pages/Locations/EditLocation/EditLocation';
 import LocationManagement from '@app/pages/Locations/LocationManagement';
 import ElectricityPricePage from '@app/pages/SettingPrice/ElectricityPricePage';
 
@@ -71,6 +72,10 @@ const routes: RouteObject[] = [
               {
                 path: 'create',
                 element: <CreateLocationPage />,
+              },
+              {
+                path: 'edit/:id',
+                element: <EditLocation />,
               },
             ],
           },

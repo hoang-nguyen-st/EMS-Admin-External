@@ -7,7 +7,7 @@ import {
   CreateUserDto,
   GetUsersParams,
   UserDetail,
-  UserTotalStatus,
+  UserSummarizeResponse,
 } from '@app/interface/user.interface';
 import {
   createUser,
@@ -111,7 +111,7 @@ export const useGetUsersLocation = () =>
     },
   );
 export const useGetUserSummarize = () =>
-  useQuery<UserTotalStatus[]>([QUERY_KEY.USERS_SUMMARIZE], async () => {
+  useQuery<UserSummarizeResponse>([QUERY_KEY.USERS_SUMMARIZE], async () => {
     const { data } = await getUserSummarizeAPI();
-    return data.data;
+    return data;
   });

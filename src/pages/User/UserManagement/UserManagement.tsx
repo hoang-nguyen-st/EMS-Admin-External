@@ -5,15 +5,25 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { UserTable, UserModal } from './components';
-import { UserStatus } from '@app/constants';
+import { UserStatus, UserSummarizeType } from '@app/constants';
 import { useGetUsers, useGetUserSummarize } from '@app/hooks';
-import { GetUsersParams, UserColumns, UserTotalStatus } from '@app/interface/user.interface';
+import {
+  GetUsersParams,
+  UserColumns,
+  UserSummarizeResponse,
+  UserTotalStatus,
+} from '@app/interface/user.interface';
 
 import './UserManagement.scss';
 
 const UserManagement = () => {
   const { t } = useTranslation();
-  const { data: userSummarize, isLoading: isLoadingUserSummarize } = useGetUserSummarize();
+  const { data: userSummarizeResponse } = useGetUserSummarize();
+  const userSummarize: UserSummarizeResponse = userSummarizeResponse || {
+    message: '',
+    data: [],
+    total: 0,
+  };
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState<UserColumns | null>(null);
   const [filters, setFilters] = useState<GetUsersParams>({
@@ -73,14 +83,18 @@ const UserManagement = () => {
     }));
   };
 
-  const getCount = (type: UserStatus) =>
-    (!!userSummarize && userSummarize.find((d: UserTotalStatus) => d.status === type)?.count) || 0;
+  const getCount = (type: string) => {
+    if (type === UserSummarizeType.TOTAL) {
+      return userSummarize.total;
+    }
+    return userSummarize.data.find((item: UserTotalStatus) => item.status === type)?.count || 0;
+  };
 
   const userStats = [
     {
       icon: <UsersRound className='text-2xl text-[#6C8AE4]' />,
       title: t('USER_MANAGEMENT.TOTAL_USER'),
-      count: getCount(UserStatus.TOTAL),
+      count: getCount(UserSummarizeType.TOTAL),
       bgColor: 'bg-[#EAF2FF]',
     },
     {

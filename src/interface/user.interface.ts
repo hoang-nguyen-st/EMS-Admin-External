@@ -12,7 +12,7 @@ export interface UserColumns {
   dateOfBirth: string;
   identityId: string;
   createdAt: string;
-  unAssigned: boolean;
+  unassigned: boolean;
 }
 
 export interface Credentials {
@@ -77,4 +77,10 @@ export interface GetUsersParams extends GetListParams {
 export interface UserTotalStatus {
   status: string;
   count: number;
+}
+
+export interface UserSummarizeResponse {
+  message: string;
+  data: UserTotalStatus[];
+  total: number;
 }

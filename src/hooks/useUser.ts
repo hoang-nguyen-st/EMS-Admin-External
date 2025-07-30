@@ -113,5 +113,5 @@ export const useGetUsersLocation = () =>
 export const useGetUserSummarize = () =>
   useQuery<UserSummarizeResponse>([QUERY_KEY.USERS_SUMMARIZE], async () => {
     const { data } = await getUserSummarizeAPI();
-    return data;
+    return data.data;
   });

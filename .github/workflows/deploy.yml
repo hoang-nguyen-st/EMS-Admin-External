@@ -50,6 +50,6 @@ jobs:
           script: |
             cd ${{ secrets.PROJECT_DIR }}
             git reset --hard
-            git pull origin dev
+            git pull origin develop
             docker-compose down
             docker-compose up -d --build

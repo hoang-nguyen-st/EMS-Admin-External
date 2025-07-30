@@ -175,6 +175,14 @@ const EditLocation = () => {
   };
 
   const handleSubmit = () => {
+    if (editingDeviceId) {
+      openNotificationWithIcon(
+        NotificationTypeEnum.WARNING,
+        t<string>('LOCATION.SAVE_EDIT_DEVICE_FIRST'),
+      );
+      return;
+    }
+
     const allDevices = [...(devices || []), ...(devicesSelectedData?.data || [])];
 
     const editLocationData: CreateLocationDto = {
@@ -201,6 +209,13 @@ const EditLocation = () => {
 
     updateLocation({ id: locationData?.id as string, data: editLocationData });
     setSelectedDeviceKeys([]);
+  };
+
+  const handleFormKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && editingDeviceId) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
   };
 
   const columns: ColumnsType<EditDeviceResponseProps> = [
@@ -251,6 +266,12 @@ const EditLocation = () => {
                   ...prev,
                   [deviceId]: newValue,
                 }));
+              }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }
               }}
             />
           );
@@ -316,7 +337,7 @@ const EditLocation = () => {
   return (
     <div>
       <Card>
-        <Form form={form} layout='vertical'>
+        <Form form={form} layout='vertical' onKeyDown={handleFormKeyPress}>
           <p className='text-3xl font-bold'>{t('LOCATION.EDIT_LOCATION')}</p>
           <div className='grid grid-cols-2 gap-4 mt-4'>
             <Form.Item

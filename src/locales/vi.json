@@ -360,7 +360,7 @@
     "TITLE": "Quản lý địa điểm",
     "SUB_TITLE": "Quản lý toàn bộ Địa điểm trong không gian làm việc này. Kiểm soát quyền truy cập, phân công vai trò và giám sát hoạt động trên toàn bộ nền tảng của bạn.",
     "LOCATION_NAME": "Tên địa điểm",
-    "TENANT_TYPE": "Loại địa điểm",
+    "TENANT_TYPE": "Loại hình thức",
     "USER": "Người dùng",
     "DEVICES": "Thiết bị",
     "ACTION": "Hành động",
@@ -404,6 +404,7 @@
     "DELETE_DEVICE_MESSAGE": "Bạn có chắc chắn muốn xóa {{deviceName}} không?",
     "DELETE": "Xóa",
     "CANCEL": "Hủy",
-    "TO_DATE": "Đến ngày"
+    "TO_DATE": "Đến ngày",
+    "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu"
   }
 }

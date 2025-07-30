@@ -12,11 +12,13 @@ const ProtectedRoute: React.FC<{ children: JSX.Element }> = ({ children }) => {
   const location = useLocation();
   const dispatch = useDispatch();
 
-  const accessToken = getStorageData(ACCESS_TOKEN);
-  const refreshToken = getStorageData(REFRESH_TOKEN);
-  if (!accessToken && !refreshToken) {
-    dispatch(logout());
-  }
+  useEffect(() => {
+    const accessToken = getStorageData(ACCESS_TOKEN);
+    const refreshToken = getStorageData(REFRESH_TOKEN);
+    if (!accessToken && !refreshToken) {
+      dispatch(logout());
+    }
+  }, [dispatch]);
 
   if (!isAuth) {
     return <Navigate to={NAVIGATE_URL.SIGN_IN} state={{ from: location }} replace />;

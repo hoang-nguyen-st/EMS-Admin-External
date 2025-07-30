@@ -18,16 +18,13 @@ export const useLogin = () => {
       return data;
     },
     {
-      onSuccess: ({ data, message }) => {
+      onSuccess: ({ data }) => {
         dispatchAuth(login());
 
         setStorageData(ACCESS_TOKEN, data.accessToken);
         setStorageData(REFRESH_TOKEN, data.refreshToken);
 
         navigate('/');
-      },
-      onError({ response }) {
-        //
       },
     },
   );
@@ -43,7 +40,7 @@ export const useLogout = () => {
       return data;
     },
     {
-      onSuccess: ({ message }) => {
+      onSuccess: () => {
         removeStorageData(ACCESS_TOKEN);
         removeStorageData(REFRESH_TOKEN);
         removeStorageData(USER_PROFILE);

@@ -3,14 +3,20 @@ import { useNavigate } from 'react-router-dom';
 
 import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules/index';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { CreateUserDto, GetUsersParams, UserDetail } from '@app/interface/user.interface';
 import {
+  CreateUserDto,
+  GetUsersParams,
+  UserDetail,
+  UserTotalStatus,
+} from '@app/interface/user.interface';
+import {
+  createUserByAdmin,
   createUser,
   deleteUserAPI,
   getUserByIdAPI,
   getUsersAPI,
   updateUser,
-  createUserByAdmin,
+  getUserSummarizeAPI,
 } from '@app/services';
 
 export const useCreateUser = () => {
@@ -83,3 +89,9 @@ export const useDeleteUser = () => {
     return response.data;
   });
 };
+
+export const useGetUserSummarize = () =>
+  useQuery<UserTotalStatus[]>([QUERY_KEY.USERS_SUMMARIZE], async () => {
+    const { data } = await getUserSummarizeAPI();
+    return data.data;
+  });

@@ -14,6 +14,7 @@ export interface UserColumns {
   dateOfBirth: string;
   identityId: string;
   createdAt: string;
+  unassigned: boolean;
 }
 
 export interface Credentials {
@@ -81,4 +82,15 @@ export interface CreateUserDto {
   address: string;
   phone: string;
   dateOfBirth: string;
+}
+
+export interface UserTotalStatus {
+  status: string;
+  count: number;
+}
+
+export interface UserSummarizeResponse {
+  message: string;
+  data: UserTotalStatus[];
+  total: number;
 }

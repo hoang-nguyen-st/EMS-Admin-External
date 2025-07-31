@@ -1,4 +1,4 @@
-import { SearchOutlined, EditOutlined } from '@ant-design/icons';
+import { SearchOutlined, EditOutlined, WarningOutlined } from '@ant-design/icons';
 import { Button, Input, Select, DatePicker, Table, Pagination, TableProps } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 import { Dayjs } from 'dayjs';
@@ -66,6 +66,12 @@ const UserTable: FC<UserTableProps> = ({
   };
 
   const columns: ColumnsType<UserColumns> = [
+    {
+      dataIndex: 'unAssigned',
+      key: 'unAssigned',
+      render: (unAssigned: boolean) =>
+        unAssigned && <WarningOutlined className='text-2xl text-[#FFCE39]' />,
+    },
     {
       title: t<string>('USER_MANAGEMENT.FULLNAME'),
       dataIndex: 'fullname',

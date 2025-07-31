@@ -253,14 +253,18 @@
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
     "ACTION": "Hành động",
-    "ACTIVE": "Đang hoạt động",
+    "ACTIVE": "Đã kích hoạt",
     "INACTIVE": "Chưa kích hoạt",
     "PENDING": "Chờ xác thực",
     "BLOCKED": "Bị khóa",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày kết thúc",
     "FROM_DATE": "Từ ngày",
-    "TO_DATE": "Đến ngày"
+    "TO_DATE": "Đến ngày",
+    "TOTAL_USER": "Tổng",
+    "ACTIVE_USER": "Đã kích hoạt",
+    "INACTIVE_USER": "Chưa kích hoạt",
+    "UNSIGNED_USER": "Chưa cấp quyền"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",
@@ -395,6 +399,7 @@
     "INITIAL_ENERGY_IMPORT": "Chỉ số ban đầu",
     "SELECT_VOLTAGE_UNIT": "Đơn vị",
     "EDIT_LOCATION": "Chỉnh sửa địa điểm",
+    "TO_DATE": "Đến ngày",
     "INITIAL_VALUE_CANNOT_EXCEED_CURRENT": "Chỉ số ban đầu không được lớn hơn chỉ số hiện tại",
     "DELETE_DEVICE_CONFIRM": "Xóa thiết bị",
     "DELETE_DEVICE_MESSAGE": "Bạn có chắc chắn muốn xóa {{deviceName}} không?",

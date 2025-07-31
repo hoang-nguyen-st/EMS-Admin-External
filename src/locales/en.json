@@ -336,6 +336,10 @@
     "DELETE_DEVICE_MESSAGE": "Are you sure you want to delete {{deviceName}}?",
     "DELETE": "Delete",
     "CANCEL": "Cancel",
-    "TO_DATE": "To date"
+    "DESCRIPTION_CANNOT_BE_EMPTY": "Description cannot be empty",
+    "TO_DATE": "To date",
+    "UPDATE_LOCATION_SUCCESS": "Update location successfully",
+    "UPDATE_LOCATION_ERROR": "Update location failed",
+    "CREATE_LOCATION_ERROR": "Create location failed"
   }
 }

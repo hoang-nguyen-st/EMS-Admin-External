@@ -406,7 +406,10 @@
     "DELETE_DEVICE_MESSAGE": "Bạn có chắc chắn muốn xóa {{deviceName}} không?",
     "DELETE": "Xóa",
     "CANCEL": "Hủy",
-    "TO_DATE": "Đến ngày",
-    "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu"
+    "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu",
+    "UPDATE_LOCATION_SUCCESS": "Cập nhật địa điểm thành công",
+    "UPDATE_LOCATION_ERROR": "Cập nhật địa điểm thất bại",
+    "CREATE_LOCATION_ERROR": "Thêm địa điểm thất bại",
+    "TO_DATE": "Đến ngày"
   }
 }

@@ -332,7 +332,8 @@
     "ELECTRICITY_CONSUMPTION_BY_DAY": "Theo ngày",
     "ELECTRICITY_CONSUMPTION_BY_WEEK": "Theo tuần",
     "ELECTRICITY_CONSUMPTION_BY_MONTH": "Theo tháng",
-    "ELECTRICITY_CONSUMPTION_BY_QUARTER": "Theo quý"
+    "ELECTRICITY_CONSUMPTION_BY_QUARTER": "Theo quý",
+    "STATUS_PLACEHOLDER": "Chọn trạng thái"
   },
   "DEVICE_MODAL": {
     "SETTING_DEVICE": "Cấu hình thiết bị",
@@ -348,7 +349,8 @@
     "SELECT_FIELD": "Chọn trường",
     "SELECT_DEVICE_TYPE": "Chọn loại thiết bị",
     "SELECT_METER_TYPE": "Chọn loại công tơ",
-    "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp"
+    "SELECT_VOLTAGE_UNIT": "Chọn đơn vị điện áp",
+    "SELECT_STATUS": "Chọn loại thiết bị"
   },
   "LOCATION": {
     "TITLE": "Quản lý địa điểm",

@@ -3,8 +3,8 @@ import { DeviceLocationResponseProps } from './location.interface';
 import { DeviceType, VoltageUnitEnum } from '@app/constants';
 
 export interface DeviceProps extends GetListParams {
-  status?: boolean;
-  deviceType?: DeviceType;
+  status?: boolean | null;
+  deviceType?: DeviceType | null;
   location?: string;
 }
 

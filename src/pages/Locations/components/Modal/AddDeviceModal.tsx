@@ -1,13 +1,16 @@
 import { Button, Input, Modal, Pagination, Table, Tag } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import { TableRowSelection } from 'antd/es/table/interface';
-import { useEffect, useState } from 'react';
+import { debounce } from 'lodash';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import './AddDeviceModal.css';
-import { deviceTypeOptionsEnum } from '@app/constants';
+import DeviceTypeSelectCustom from '@app/components/commons/DeviceTypeSelect/DeviceTypeSelectCustom';
+import StatusSelectCustom from '@app/components/commons/StatusSelect/StatusSelectCustom';
+import { DeviceType, deviceTypeOptionsEnum } from '@app/constants';
 import { useGetUnassignedDevices } from '@app/hooks/useDevice';
-import { DeviceResponseProps } from '@app/interface/device.interface';
+import { DeviceProps, DeviceResponseProps } from '@app/interface/device.interface';
 
 interface AddDiviceModalProps {
   open: boolean;
@@ -19,29 +22,34 @@ interface AddDiviceModalProps {
 const AddDiviceModal = ({ open, onCancel, onSelect, selectedDeviceKeys }: AddDiviceModalProps) => {
   const { t } = useTranslation();
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [filter, setFilter] = useState<DeviceProps>({
+    page: 1,
+    take: 10,
+    search: '',
+  });
 
   useEffect(() => {
     setSelectedRowKeys(selectedDeviceKeys);
   }, [selectedDeviceKeys]);
 
-  const {
-    data: devices,
-    isLoading,
-    refetch,
-  } = useGetUnassignedDevices({
-    page: 1,
-    take: 10,
-  });
+  const { data: devices, isLoading, refetch } = useGetUnassignedDevices(filter);
 
   useEffect(() => {
-    if (open) {
+    if (open || filter.search !== '') {
       refetch();
     }
-  }, [open, refetch]);
+  }, [open, filter, refetch]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
+
+  const handleSearch = useCallback(
+    debounce((value: string) => {
+      setFilter((prev) => ({ ...prev, search: value }));
+    }, 300),
+    [],
+  );
 
   const handleClickSave = () => {
     onSelect(selectedRowKeys);
@@ -113,18 +121,40 @@ const AddDiviceModal = ({ open, onCancel, onSelect, selectedDeviceKeys }: AddDiv
       onCancel={onCancel}
       footer={null}
       width={1000}
+      height={600}
       className='custom-add-device-modal'
     >
       <p className='font-semibold text-2xl text-center'>{t('LOCATION.ADD_DEVICE')}</p>
       <div className='flex flex-col gap-2 p-6'>
         <p className='text-sm text-gray-500'>{t('LOCATION.ADD_DEVICE_DESCRIPTION')}</p>
         <div className='mt-4'>
-          <div className='grid grid-cols-2 gap-2'>
+          <div className='flex flex-row items-center justify-between gap-2'>
             <div className='flex flex-row gap-2 items-center justify-'>
-              <p className='w-[80px]'>{t('LOCATION.SEARCH_DEVICE')}:</p>
+              <p className='w-[100px]'>{t('LOCATION.SEARCH_DEVICE')}:</p>
               <Input
                 className='h-[40px]'
                 placeholder={t<string>('LOCATION.SEARCH_DEVICE_PLACEHOLDER')}
+                allowClear
+                onChange={(e) => handleSearch(e.target.value)}
+              />
+            </div>
+            <div className='flex flex-row gap-2 items-center justify-between'>
+              <StatusSelectCustom
+                className='h-[40px] w-[180px]'
+                allowClear
+                onChange={(value) =>
+                  setFilter((prev) => ({
+                    ...prev,
+                    status: value ? (value === 1 ? true : false) : null,
+                  }))
+                }
+              />
+              <DeviceTypeSelectCustom
+                className='h-[40px] w-[180px]'
+                allowClear
+                onChange={(value) =>
+                  setFilter((prev) => ({ ...prev, deviceType: value as DeviceType }))
+                }
               />
             </div>
           </div>

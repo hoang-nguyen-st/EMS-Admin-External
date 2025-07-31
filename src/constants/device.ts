@@ -72,3 +72,8 @@ export const enum TimestampEnum {
   BY_MONTH = 'BY_MONTH',
   BY_QUARTER = 'BY_QUARTER',
 }
+
+export enum DeviceStatus {
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
+}

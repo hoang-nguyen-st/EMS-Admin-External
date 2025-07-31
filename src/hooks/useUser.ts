@@ -10,12 +10,12 @@ import {
   UserSummarizeResponse,
 } from '@app/interface/user.interface';
 import {
+  createUserByAdmin,
   createUser,
   deleteUserAPI,
   getUserByIdAPI,
   getUsersAPI,
   updateUser,
-  createUserByAdmin,
   getUsersLocationAPI,
   getUserSummarizeAPI,
 } from '@app/services';
@@ -110,6 +110,7 @@ export const useGetUsersLocation = () =>
       refetchOnMount: false,
     },
   );
+
 export const useGetUserSummarize = () =>
   useQuery<UserSummarizeResponse>([QUERY_KEY.USERS_SUMMARIZE], async () => {
     const { data } = await getUserSummarizeAPI();

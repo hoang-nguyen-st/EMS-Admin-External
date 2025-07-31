@@ -58,7 +58,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel }) => {
             <Form.Item>
               <Button
                 onClick={onCancel}
-                className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-2xl hover:text-black transition duration-300'
+                className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-md hover:text-black transition duration-300'
               >
                 {t('BUTTON.CANCEL')}
               </Button>
@@ -69,7 +69,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel }) => {
                 onClick={() => form.submit()}
                 type='primary'
                 htmlType='submit'
-                className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-2xl hover:!bg-primary-second hover:text-black transition duration-300'
+                className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-md hover:!bg-primary-second hover:text-black transition duration-300'
               >
                 {t('BUTTON.CREATE')}
               </Button>

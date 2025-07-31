@@ -335,6 +335,7 @@
     "DELETE_DEVICE_CONFIRM": "Delete Device Confirm",
     "DELETE_DEVICE_MESSAGE": "Are you sure you want to delete {{deviceName}}?",
     "DELETE": "Delete",
-    "CANCEL": "Cancel"
+    "CANCEL": "Cancel",
+    "TO_DATE": "To date"
   }
 }

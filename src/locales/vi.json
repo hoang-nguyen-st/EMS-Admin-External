@@ -399,12 +399,12 @@
     "INITIAL_ENERGY_IMPORT": "Chỉ số ban đầu",
     "SELECT_VOLTAGE_UNIT": "Đơn vị",
     "EDIT_LOCATION": "Chỉnh sửa địa điểm",
-    "TO_DATE": "Đến ngày",
     "INITIAL_VALUE_CANNOT_EXCEED_CURRENT": "Chỉ số ban đầu không được lớn hơn chỉ số hiện tại",
     "DELETE_DEVICE_CONFIRM": "Xóa thiết bị",
     "DELETE_DEVICE_MESSAGE": "Bạn có chắc chắn muốn xóa {{deviceName}} không?",
     "DELETE": "Xóa",
     "CANCEL": "Hủy",
+    "TO_DATE": "Đến ngày",
     "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu"
   }
 }

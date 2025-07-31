@@ -99,13 +99,20 @@ export const useDeleteUser = () => {
 };
 
 export const useGetUsersLocation = () =>
-  useQuery<{ data: UserDetail[] }>([QUERY_KEY.USERS], async () => {
-    const { data } = await getUsersLocationAPI();
-    return data;
-  });
+  useQuery<{ data: UserDetail[] }>(
+    [QUERY_KEY.USERS],
+    async () => {
+      const { data } = await getUsersLocationAPI();
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );
 
 export const useGetUserSummarize = () =>
   useQuery<UserSummarizeResponse>([QUERY_KEY.USERS_SUMMARIZE], async () => {
     const { data } = await getUserSummarizeAPI();
-    return data;
+    return data.data;
   });

@@ -73,6 +73,11 @@ export interface DetailDeviceProps {
   lastestTimeSeriesValue: string;
 }
 
+export interface DetailDeviceSettingProps {
+  device: DeviceResponseProps;
+  lastestTimeSeriesValue: TelemetryTimeSeriesResponse;
+}
+
 export interface DeviceWithInitDto {
   deviceId: string;
   initialIndex: number;

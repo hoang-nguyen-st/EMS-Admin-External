@@ -1,5 +1,5 @@
 import { SyncOutlined } from '@ant-design/icons';
-import { Modal, Button, Form, Input, DatePicker, Select } from 'antd';
+import { Modal, Button, Form, Input, DatePicker } from 'antd';
 import { Rule } from 'antd/lib/form';
 import { FC, useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ export interface UserModalProps {
   onSubmit: () => void;
 }
 
-const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) => {
+const UserModal: FC<UserModalProps> = ({ visible, user, onCancel }) => {
   const { t } = useTranslation();
   const [isMounted, setIsMounted] = useState(false);
 
@@ -58,7 +58,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
             <Form.Item>
               <Button
                 onClick={onCancel}
-                className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-2xl hover:text-black transition duration-300'
+                className='px-8 h-[3rem] bg-white text-gray-600 font-bold outline-none rounded-md hover:text-black transition duration-300'
               >
                 {t('BUTTON.CANCEL')}
               </Button>
@@ -69,7 +69,7 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
                 onClick={() => form.submit()}
                 type='primary'
                 htmlType='submit'
-                className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-2xl hover:!bg-primary-second hover:text-black transition duration-300'
+                className='px-8 h-[3rem] bg-[#465FFF] text-white font-bold border-none outline-none rounded-md hover:!bg-primary-second hover:text-black transition duration-300'
               >
                 {t('BUTTON.CREATE')}
               </Button>
@@ -84,18 +84,48 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
       </h1>
       <Form form={form} onFinish={onFinish} layout='vertical' className='px-4 mt-4'>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-x-4'>
-          <Form.Item label={t<string>('USER.NAME')} name='name' rules={validator}>
+          <Form.Item
+            label={
+              <span>
+                {t<string>('USER.NAME')} <span className='text-red-500'>*</span>
+              </span>
+            }
+            name='name'
+            rules={validator}
+          >
             <Input className='w-full p-3 pl-4' placeholder={t<string>('USER.NAME')} />
           </Form.Item>
-          <Form.Item label={t<string>('USER.EMAIL')} name='email' rules={validator}>
+          <Form.Item
+            label={
+              <span>
+                {t<string>('USER.EMAIL')} <span className='text-red-500'>*</span>
+              </span>
+            }
+            name='email'
+            rules={validator}
+          >
             <Input name='email' className='w-full p-3 pl-4' placeholder={t<string>('USER.EMAIL')} />
           </Form.Item>
-          <Form.Item label={t<string>('USER.PHONE')}>
+          <Form.Item
+            label={
+              <span>
+                {t<string>('USER.PHONE')} <span className='text-red-500'>*</span>
+              </span>
+            }
+          >
             <Form.Item name='phone' noStyle rules={validator}>
               <Input className='p-3 pr-4' placeholder={t<string>('USER.PHONE')} />
             </Form.Item>
           </Form.Item>
-          <Form.Item label={t<string>('USER.DATE_OF_BIRTH')} name='dateOfBirth' rules={validator}>
+          <Form.Item
+            label={
+              <span>
+                {t<string>('USER.DATE_OF_BIRTH')} <span className='text-red-500'>*</span>
+              </span>
+            }
+            name='dateOfBirth'
+            rules={validator}
+          >
             <DatePicker
               placeholder={t<string>('USER.DATE_OF_BIRTH')}
               className='py-3 w-full pr-3'
@@ -103,7 +133,11 @@ const UserModal: FC<UserModalProps> = ({ visible, user, onCancel, onSubmit }) =>
           </Form.Item>
         </div>
         <Form.Item
-          label={t<string>('USER.ADDRESS')}
+          label={
+            <span>
+              {t<string>('USER.ADDRESS')} <span className='text-red-500'>*</span>
+            </span>
+          }
           name='address'
           rules={validator}
           className='col-span-2'

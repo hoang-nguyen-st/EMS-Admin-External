@@ -140,7 +140,9 @@
   },
   "VALIDATE": {
     "MIN": " {{field}} phải lớn hơn hoặc bằng {{number}}",
+    "MIN_LENGTH": " {{field}} bắt buộc phải có ít nhất {{number}} ký tự",
     "MAX": " {{field}} phải bé hơn hoặc bằng {{number}}",
+    "MAX_LENGTH": " {{field}} bắt buộc phải có ít hơn {{number}} ký tự",
     "MAX_NUMBER": " {{field}} phải bé hơn {{number}}",
     "POSITIVE_NUMBER": " {{field}} giá trị phải lớn hơn 0",
     "INTEGER": " {{field}} phải là một số nguyên",
@@ -246,19 +248,23 @@
     "SEARCH": "Tìm kiếm người dùng",
     "ADD": "Thêm người dùng",
     "EDIT": "Chỉnh sửa người dùng",
-    "ACTIVE": "Kích hoạt",
-    "INACTIVE": "Không hoạt động",
-    "PENDING": "Chờ xác thực",
-    "ACTION": "Hành động",
-    "BLOCKED": "Bị khóa",
     "FULLNAME": "Họ và tên",
     "PHONE": "Số điện thoại",
     "JOIN_DATE": "Ngày tham gia",
     "STATUS": "Trạng thái",
+    "ACTION": "Hành động",
+    "ACTIVE": "Đã kích hoạt",
+    "INACTIVE": "Chưa kích hoạt",
+    "PENDING": "Chờ xác thực",
+    "BLOCKED": "Bị khóa",
     "START_DATE": "Ngày bắt đầu",
     "END_DATE": "Ngày kết thúc",
     "FROM_DATE": "Từ ngày",
-    "TO_DATE": "Đến ngày"
+    "TO_DATE": "Đến ngày",
+    "TOTAL_USER": "Tổng",
+    "ACTIVE_USER": "Đã kích hoạt",
+    "INACTIVE_USER": "Chưa kích hoạt",
+    "UNSIGNED_USER": "Chưa cấp quyền"
   },
   "USER_DETAIL": {
     "CONTACT": "Thông tin liên lạc",
@@ -286,11 +292,11 @@
     "SEARCH": "Tìm kiếm thiết bị...",
     "INDEX": "STT",
     "NAME": "Tên thiết bị",
-    "DEVICE_ID": "ID thiết bị",
     "NO_DEVICE_ID": "Chưa có ID thiết bị",
+    "DEVICE_ID": "DevEUI",
     "SENSOR_ID": "ID cảm biến",
-    "LOCATION": "Khu vực",
-    "FIELD": "Trường",
+    "LOCATION": "Địa điểm",
+    "FIELD": "Trường tính toán",
     "NO_FIELD": "Trường chưa được định danh",
     "NO_LOCATION": "Khu vực chưa được định danh",
     "DEVICE_TYPE": "Loại thiết bị",
@@ -403,6 +409,7 @@
     "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu",
     "UPDATE_LOCATION_SUCCESS": "Cập nhật địa điểm thành công",
     "UPDATE_LOCATION_ERROR": "Cập nhật địa điểm thất bại",
-    "CREATE_LOCATION_ERROR": "Thêm địa điểm thất bại"
+    "CREATE_LOCATION_ERROR": "Thêm địa điểm thất bại",
+    "TO_DATE": "Đến ngày"
   }
 }

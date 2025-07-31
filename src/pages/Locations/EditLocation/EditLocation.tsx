@@ -213,8 +213,11 @@ const EditLocation = () => {
         updateLocation({ id: locationData?.id as string, data: editLocationData });
         setSelectedDeviceKeys([]);
       })
-      .catch((errorInfo) => {
-        console.log('Validation failed:', errorInfo);
+      .catch(() => {
+        openNotificationWithIcon(
+          NotificationTypeEnum.ERROR,
+          t<string>('LOCATION.UPDATE_LOCATION_ERROR'),
+        );
       });
   };
 
@@ -441,18 +444,6 @@ const EditLocation = () => {
                   className='col-span-2 w-full'
                   label={t('LOCATION.DESCRIPTION')}
                   name='description'
-                  rules={[
-                    {
-                      validator: (_, value) => {
-                        if (value && value.trim() === '') {
-                          return Promise.reject(
-                            new Error(t<string>('LOCATION.DESCRIPTION_CANNOT_BE_EMPTY')),
-                          );
-                        }
-                        return Promise.resolve();
-                      },
-                    },
-                  ]}
                 >
                   <Input.TextArea
                     rows={3}

@@ -401,6 +401,8 @@
     "DELETE": "Xóa",
     "CANCEL": "Hủy",
     "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu",
-    "DESCRIPTION_CANNOT_BE_EMPTY": "Mô tả không được để trống"
+    "UPDATE_LOCATION_SUCCESS": "Cập nhật địa điểm thành công",
+    "UPDATE_LOCATION_ERROR": "Cập nhật địa điểm thất bại",
+    "CREATE_LOCATION_ERROR": "Thêm địa điểm thất bại"
   }
 }

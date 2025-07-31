@@ -43,7 +43,7 @@ export const useCreateUserByAdmin = () => {
     },
     {
       onSuccess: ({ data }) => {
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEY.USERS] });
+        queryClient.invalidateQueries([]);
         openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
       },
       onError: ({ response }) => {

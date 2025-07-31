@@ -107,22 +107,31 @@ const CreateLocationPage = () => {
         NotificationTypeEnum.ERROR,
         t<string>('LOCATION.ADD_DEVICE_REQUIRED'),
       );
-    } else {
-      const locationData: CreateLocationDto = {
-        name: form.getFieldValue('name'),
-        locationTypeId: form.getFieldValue('locationType'),
-        meterTypeId: form.getFieldValue('meterType'),
-        initialDate: dayjs(form.getFieldValue('startDate')).format('YYYY-MM-DD'),
-        description: form.getFieldValue('description'),
-        userId: form.getFieldValue('user'),
-        devices:
-          devicesData?.data.map((device) => ({
-            deviceId: device.device.id,
-            initialIndex: editingValues[device.device.id] || Number(device.lastestTimeSeriesValue),
-          })) || [],
-      };
-      createLocation(locationData);
+      return;
     }
+
+    form
+      .validateFields()
+      .then((values) => {
+        const locationData: CreateLocationDto = {
+          name: values.name,
+          locationTypeId: values.locationType,
+          meterTypeId: values.meterType,
+          initialDate: dayjs(values.startDate).format('YYYY-MM-DD'),
+          description: values.description,
+          userId: values.user,
+          devices:
+            devicesData?.data.map((device) => ({
+              deviceId: device.device.id,
+              initialIndex:
+                editingValues[device.device.id] || Number(device.lastestTimeSeriesValue),
+            })) || [],
+        };
+        createLocation(locationData);
+      })
+      .catch((errorInfo) => {
+        console.log('Validation failed:', errorInfo);
+      });
   };
 
   const columns: ColumnsType<DetailDeviceProps> = [
@@ -239,7 +248,19 @@ const CreateLocationPage = () => {
             <Form.Item
               label={t('LOCATION.LOCATION_NAME')}
               name='name'
-              rules={[{ required: true, message: t<string>('LOCATION.LOCATION_NAME_REQUIRED') }]}
+              rules={[
+                { required: true, message: t<string>('LOCATION.LOCATION_NAME_REQUIRED') },
+                {
+                  validator: (_, value) => {
+                    if (value && value.trim() === '') {
+                      return Promise.reject(
+                        new Error(t<string>('LOCATION.LOCATION_NAME_REQUIRED')),
+                      );
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
             >
               <Input
                 className='h-[40px]'
@@ -318,6 +339,18 @@ const CreateLocationPage = () => {
                   className='col-span-2 w-full'
                   label={t('LOCATION.DESCRIPTION')}
                   name='description'
+                  rules={[
+                    {
+                      validator: (_, value) => {
+                        if (value && value.trim() === '') {
+                          return Promise.reject(
+                            new Error(t<string>('LOCATION.DESCRIPTION_CANNOT_BE_EMPTY')),
+                          );
+                        }
+                        return Promise.resolve();
+                      },
+                    },
+                  ]}
                 >
                   <Input.TextArea
                     rows={3}

@@ -400,6 +400,7 @@
     "DELETE_DEVICE_MESSAGE": "Bạn có chắc chắn muốn xóa {{deviceName}} không?",
     "DELETE": "Xóa",
     "CANCEL": "Hủy",
-    "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu"
+    "SAVE_EDIT_DEVICE_FIRST": "Vui lòng lưu thay đổi của thiết bị trước khi lưu",
+    "DESCRIPTION_CANNOT_BE_EMPTY": "Mô tả không được để trống"
   }
 }

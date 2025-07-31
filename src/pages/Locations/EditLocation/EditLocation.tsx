@@ -183,32 +183,39 @@ const EditLocation = () => {
       return;
     }
 
-    const allDevices = [...(devices || []), ...(devicesSelectedData?.data || [])];
+    form
+      .validateFields()
+      .then((values) => {
+        const allDevices = [...(devices || []), ...(devicesSelectedData?.data || [])];
 
-    const editLocationData: CreateLocationDto = {
-      name: form.getFieldValue('name'),
-      locationTypeId: form.getFieldValue('locationType'),
-      meterTypeId: form.getFieldValue('meterType'),
-      initialDate: dayjs(form.getFieldValue('startDate')).format('YYYY-MM-DD'),
-      description: form.getFieldValue('description'),
-      userId: form.getFieldValue('user'),
-      devices: allDevices.map((deviceRecord) => {
-        const deviceId = deviceRecord.device.id;
-        return {
-          deviceId: deviceId,
-          initialIndex: Number(
-            editingValues[deviceId] !== undefined
-              ? editingValues[deviceId]
-              : deviceRecord.device.locationDevice?.initialIndex ||
-                  deviceRecord.lastestTimeSeriesValue ||
-                  0,
-          ),
+        const editLocationData: CreateLocationDto = {
+          name: values.name,
+          locationTypeId: values.locationType,
+          meterTypeId: values.meterType,
+          initialDate: dayjs(values.startDate).format('YYYY-MM-DD'),
+          description: values.description,
+          userId: values.user,
+          devices: allDevices.map((deviceRecord) => {
+            const deviceId = deviceRecord.device.id;
+            return {
+              deviceId: deviceId,
+              initialIndex: Number(
+                editingValues[deviceId] !== undefined
+                  ? editingValues[deviceId]
+                  : deviceRecord.device.locationDevice?.initialIndex ||
+                      deviceRecord.lastestTimeSeriesValue ||
+                      0,
+              ),
+            };
+          }),
         };
-      }),
-    };
 
-    updateLocation({ id: locationData?.id as string, data: editLocationData });
-    setSelectedDeviceKeys([]);
+        updateLocation({ id: locationData?.id as string, data: editLocationData });
+        setSelectedDeviceKeys([]);
+      })
+      .catch((errorInfo) => {
+        console.log('Validation failed:', errorInfo);
+      });
   };
 
   const handleFormKeyPress = (e: React.KeyboardEvent) => {
@@ -343,7 +350,19 @@ const EditLocation = () => {
             <Form.Item
               label={t('LOCATION.LOCATION_NAME')}
               name='name'
-              rules={[{ required: true, message: t<string>('LOCATION.LOCATION_NAME_REQUIRED') }]}
+              rules={[
+                { required: true, message: t<string>('LOCATION.LOCATION_NAME_REQUIRED') },
+                {
+                  validator: (_, value) => {
+                    if (value && value.trim() === '') {
+                      return Promise.reject(
+                        new Error(t<string>('LOCATION.LOCATION_NAME_REQUIRED')),
+                      );
+                    }
+                    return Promise.resolve();
+                  },
+                },
+              ]}
             >
               <Input
                 className='h-[40px]'
@@ -422,6 +441,18 @@ const EditLocation = () => {
                   className='col-span-2 w-full'
                   label={t('LOCATION.DESCRIPTION')}
                   name='description'
+                  rules={[
+                    {
+                      validator: (_, value) => {
+                        if (value && value.trim() === '') {
+                          return Promise.reject(
+                            new Error(t<string>('LOCATION.DESCRIPTION_CANNOT_BE_EMPTY')),
+                          );
+                        }
+                        return Promise.resolve();
+                      },
+                    },
+                  ]}
                 >
                   <Input.TextArea
                     rows={3}

@@ -30,6 +30,13 @@ export const useUserModalSchema = () => {
     name: yup
       .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.NAME') }))
+      .test(
+        'not-only-whitespace',
+        t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.NAME') }),
+        (value) => {
+          return value ? value.trim().length > 0 : false;
+        },
+      )
       .min(2, t<string>('VALIDATE.MIN_LENGTH', { field: t<string>('USER.NAME'), min: 2 }))
       .max(50, t<string>('VALIDATE.MAX_LENGTH', { field: t<string>('USER.NAME'), max: 50 })),
 
@@ -50,6 +57,13 @@ export const useUserModalSchema = () => {
     address: yup
       .string()
       .required(t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.ADDRESS') }))
+      .test(
+        'not-only-whitespace',
+        t<string>('VALIDATE.REQUIRED', { field: t<string>('USER.ADDRESS') }),
+        (value) => {
+          return value ? value.trim().length > 0 : false;
+        },
+      )
       .max(255, t<string>('VALIDATE.MAX_LENGTH', { field: t<string>('USER.ADDRESS'), max: 255 })),
   });
 };

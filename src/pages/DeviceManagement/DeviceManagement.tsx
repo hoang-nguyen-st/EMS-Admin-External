@@ -68,10 +68,10 @@ const DeviceManagement = () => {
     },
     {
       title: t('DEVICE_MANAGEMENT.LOCATION'),
-      dataIndex: 'location',
-      key: 'location',
+      dataIndex: 'locationName',
+      key: 'locationName',
       render: (_, record) => {
-        return record.location && record.location.name;
+        return record.locationName;
       },
     },
     {

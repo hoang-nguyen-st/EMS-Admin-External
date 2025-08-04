@@ -25,8 +25,8 @@ const MeterPricingTable = ({ meterTypes }: MeterPricingTableProps) => {
           key: `${voltageLevelRule.voltageLevel.id}-${voltageLevelRule.rules[0].id}`,
           voltageLevel: voltageLevel,
           time:
-            timeUsageMap[voltageLevelRule.rules[0].timeUsage] ||
-            voltageLevelRule.rules[0].timeUsage,
+            timeUsageMap[voltageLevelRule.rules[0].timeUsageEnum] ||
+            voltageLevelRule.rules[0].timeUsageEnum,
           unitPrice: voltageLevelRule.rules[0].unitPrice,
         });
       } else {
@@ -34,7 +34,7 @@ const MeterPricingTable = ({ meterTypes }: MeterPricingTableProps) => {
           dataSource.push({
             key: `${voltageLevelRule.voltageLevel.id}-${rule.id}`,
             voltageLevel: index === 0 ? voltageLevel : '',
-            time: timeUsageMap[rule.timeUsage] || rule.timeUsage,
+            time: timeUsageMap[rule.timeUsageEnum] || rule.timeUsageEnum,
             unitPrice: rule.unitPrice,
           });
         });

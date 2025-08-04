@@ -12,7 +12,7 @@ export interface MeterTypePricing {
 export interface PricingRule {
   id: string;
   unitPrice: number;
-  timeUsage: TimeUsageEnum;
+  timeUsageEnum: TimeUsageEnum;
 }
 
 export interface MeterPricingTableData {

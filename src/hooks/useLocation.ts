@@ -9,6 +9,7 @@ import {
   LocationDto,
   LocationFilterProps,
   LocationResponseDto,
+  PriceType,
 } from '@app/interface/location.interface';
 import { MetaProps } from '@app/interface/meta.interface';
 import {
@@ -17,6 +18,7 @@ import {
   getLocationAPI,
   getLocationByIdAPI,
   updateLocationAPI,
+  getPriceTypesAPI,
 } from '@app/services/locationAPI';
 
 export const useGetLocations = () =>
@@ -78,3 +80,9 @@ export const useUpdateLocation = () => {
     },
   });
 };
+
+export const useGetPriceTypes = () =>
+  useQuery<PriceType[]>([QUERY_KEY.PRICE_TYPES], async () => {
+    const { data } = await getPriceTypesAPI();
+    return data.data;
+  });

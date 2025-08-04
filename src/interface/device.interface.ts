@@ -22,7 +22,7 @@ export interface DeviceResponseProps {
   status: boolean | string;
   voltageUnit: VoltageUnitEnum;
   voltageValue: string;
-  location: DeviceLocationResponseProps;
+  locationName: string;
   initialDate?: string;
   locationDevice?: LocationDeviceResponseProps;
 }

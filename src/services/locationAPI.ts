@@ -16,3 +16,5 @@ export const getLocationByIdAPI = async (id: string) =>
 
 export const updateLocationAPI = async (id: string, params: CreateLocationDto) =>
   await axios.patch(`${API_URL.LOCATIONS}/${id}`, params);
+
+export const getPriceTypesAPI = async () => await axios.get(API_URL.PRICE_TYPES);

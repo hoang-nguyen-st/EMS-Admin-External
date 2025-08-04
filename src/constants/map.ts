@@ -2,9 +2,9 @@ import { t } from 'i18next';
 
 import { MeterTypeEnum } from './meterType';
 export const timeUsageMap: { [key: string]: string } = {
-  mid_peak: t('TIME_USAGE.MID_PEAK'),
-  peak: t('TIME_USAGE.PEAK'),
-  off_peak: t('TIME_USAGE.OFF_PEAK'),
+  MID_PEAK: t('TIME_USAGE.MID_PEAK'),
+  PEAK: t('TIME_USAGE.PEAK'),
+  OFF_PEAK: t('TIME_USAGE.OFF_PEAK'),
 };
 
 export function formatMeterTypeName(meterTypeEnum: MeterTypeEnum, meterTypeName: string): string {

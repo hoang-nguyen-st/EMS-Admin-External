@@ -57,18 +57,30 @@ const LocationManagement = () => {
       width: 150,
     },
     {
+      title: t<string>('LOCATION.PRICE_TYPE'),
+      dataIndex: ['priceType', 'name'],
+      key: 'priceType',
+      width: 150,
+      render: (_, record) => {
+        return record.priceType && record.priceType.name;
+      },
+    },
+    {
       title: t<string>('LOCATION.DEVICES'),
-      dataIndex: 'device',
-      key: 'device',
+      dataIndex: 'locationDevices',
+      key: 'locationDevices',
       width: 300,
       render: (_, record) => {
-        const firstTwoDevices = record.devices.slice(0, 2);
-        const remainingDevices = record.devices.slice(2);
+        const firstTwoDevices = record.locationDevices.slice(0, 2);
+        const remainingDevices = record.locationDevices.slice(2);
         return (
           <div className='flex items-center gap-2'>
             {firstTwoDevices.map((device) => (
-              <div key={device.id} className='text-sm text-black bg-[#D9D9D9] px-3 py-1 rounded-xl'>
-                <div>{device.name}</div>
+              <div
+                key={device.device.id}
+                className='text-sm text-black bg-[#D9D9D9] px-3 py-1 rounded-xl'
+              >
+                <div>{device.device.name}</div>
               </div>
             ))}
             {remainingDevices.length > 0 && (
@@ -77,7 +89,7 @@ const LocationManagement = () => {
                 content={
                   <div>
                     {remainingDevices.map((d) => (
-                      <div key={d.id}>{d.name}</div>
+                      <div key={d.device.id}>{d.device.name}</div>
                     ))}
                   </div>
                 }

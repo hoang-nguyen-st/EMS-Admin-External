@@ -5,7 +5,7 @@ export enum LocationTypeEnum {
 }
 
 export enum TimeUsageEnum {
-  MID_PEAK = 'mid_peak',
-  PEAK = 'peak',
-  OFF_PEAK = 'off_peak',
+  MID_PEAK = 'MID_PEAK',
+  PEAK = 'PEAK',
+  OFF_PEAK = 'OFF_PEAK',
 }

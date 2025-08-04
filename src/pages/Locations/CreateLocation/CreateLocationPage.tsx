@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 import AddDiviceModal from '../components/Modal/AddDeviceModal';
 import LocationTypeSelect from '@app/components/commons/LocationTypeSelect/LocationTypeSelect';
-import MeterTypeSelect from '@app/components/commons/MeterTypeSelect/MeterTypeSelect';
+import PriceTypeSelect from '@app/components/commons/PriceTypeSelect/PriceTypeSelect';
 import UserSelectCustom from '@app/components/commons/UserSelectCustom/UserSelectCustom';
 import { NotificationTypeEnum, openNotificationWithIcon } from '@app/components/molecules';
 import { deviceTypeOptionsEnum, NAVIGATE_URL } from '@app/constants';
@@ -40,7 +40,7 @@ const CreateLocationPage = () => {
   useEffect(() => {
     if (locationTypeEnum === LocationTypeEnum.RESIDENTIAL) {
       form.setFieldsValue({
-        meterType: null,
+        priceType: null,
       });
     }
   }, [locationTypeEnum, form]);
@@ -116,7 +116,7 @@ const CreateLocationPage = () => {
         const locationData: CreateLocationDto = {
           name: values.name,
           locationTypeId: values.locationType,
-          meterTypeId: values.meterType,
+          priceTypeId: values.priceType,
           initialDate: dayjs(values.startDate).format('YYYY-MM-DD'),
           description: values.description,
           userId: values.user,
@@ -287,8 +287,8 @@ const CreateLocationPage = () => {
             </Form.Item>
 
             <Form.Item
-              label={t('LOCATION.METER_TYPE')}
-              name='meterType'
+              label={t('LOCATION.PRICE_TYPE')}
+              name='priceType'
               required={true}
               dependencies={['locationType']}
               rules={[
@@ -299,14 +299,14 @@ const CreateLocationPage = () => {
                       return Promise.resolve();
                     }
                     if (!value) {
-                      return Promise.reject(new Error(t<string>('LOCATION.METER_TYPE_REQUIRED')));
+                      return Promise.reject(new Error(t<string>('LOCATION.PRICE_TYPE_REQUIRED')));
                     }
                     return Promise.resolve();
                   },
                 },
               ]}
             >
-              <MeterTypeSelect
+              <PriceTypeSelect
                 disabled={locationTypeEnum === LocationTypeEnum.RESIDENTIAL}
                 className='h-[40px]'
               />

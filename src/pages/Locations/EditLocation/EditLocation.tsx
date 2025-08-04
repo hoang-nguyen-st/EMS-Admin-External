@@ -9,14 +9,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import AddDiviceModal from '../components/Modal/AddDeviceModal';
 import LocationTypeSelect from '@app/components/commons/LocationTypeSelect/LocationTypeSelect';
-import MeterTypeSelect from '@app/components/commons/MeterTypeSelect/MeterTypeSelect';
+import PriceTypeSelect from '@app/components/commons/PriceTypeSelect/PriceTypeSelect';
 import UserSelectCustom from '@app/components/commons/UserSelectCustom/UserSelectCustom';
 import { NotificationTypeEnum, openNotificationWithIcon } from '@app/components/molecules';
 import { deviceTypeOptionsEnum, NAVIGATE_URL } from '@app/constants';
 import { useGetDeviceByIds, useUnassignDeviceToLocation } from '@app/hooks/useDevice';
 import { useGetLocationById, useUpdateLocation } from '@app/hooks/useLocation';
-import { CreateLocationDto } from '@app/interface';
-import { EditDeviceResponseProps } from '@app/interface/device.interface';
+import { CreateLocationDto, DeviceWithLatestValue } from '@app/interface';
+import { DetailDeviceProps, EditDeviceResponseProps } from '@app/interface/device.interface';
 import { LocationTypeEnum, LocationTypeNames } from '@app/interface/location-type.interface';
 
 import './EditLocation.css';
@@ -30,7 +30,7 @@ const EditLocation = () => {
   const [openDeviceModal, setOpenDeviceModal] = useState(false);
   const [selectedDeviceKeys, setSelectedDeviceKeys] = useState<React.Key[]>([]);
   const { data: locationData } = useGetLocationById(id as string);
-  const [devices, setDevices] = useState<EditDeviceResponseProps[]>([]);
+  const [devices, setDevices] = useState<DeviceWithLatestValue[]>([]);
   const { mutate: updateLocation } = useUpdateLocation();
   const [editingDeviceId, setEditingDeviceId] = useState<string | null>(null);
   const [editingValues, setEditingValues] = useState<Record<string, number | undefined>>({});
@@ -53,7 +53,7 @@ const EditLocation = () => {
   useEffect(() => {
     if (locationTypeEnum === LocationTypeEnum.RESIDENTIAL) {
       form.setFieldsValue({
-        meterType: null,
+        priceType: null,
       });
     }
   }, [locationTypeEnum, form]);
@@ -63,12 +63,13 @@ const EditLocation = () => {
       form.setFieldsValue({
         name: locationData.name,
         locationType: locationData.locationType?.id,
-        meterType: locationData.meterType?.id,
+        priceType: locationData.priceType?.id,
         startDate: locationData.initialDate ? dayjs(locationData.initialDate) : undefined,
         description: locationData.description,
         user: locationData.user?.id,
       });
 
+      // Use devices array for the table display since it has lastestTimeSeriesValue
       setDevices(locationData.devices);
 
       if (locationData.locationType?.locationTypeEnum) {
@@ -108,12 +109,7 @@ const EditLocation = () => {
     } else {
       setEditingValues((prev) => ({
         ...prev,
-        [deviceId]:
-          Number(
-            device?.device.locationDevice?.initialIndex
-              ? device?.device.locationDevice?.initialIndex
-              : device?.lastestTimeSeriesValue,
-          ) || 0,
+        [deviceId]: Number(device?.lastestTimeSeriesValue || 0),
       }));
     }
   };
@@ -123,7 +119,7 @@ const EditLocation = () => {
     const deviceFromSelected = devicesSelectedData?.data?.find((d) => d.device.id === deviceId);
     const device = deviceFromLocation || deviceFromSelected;
 
-    const currentValue = Number(device?.lastestTimeSeriesValue);
+    const currentValue = Number(device?.lastestTimeSeriesValue || 0);
 
     const newValue = Number(editingValues[deviceId]) || 0;
 
@@ -186,12 +182,12 @@ const EditLocation = () => {
     form
       .validateFields()
       .then((values) => {
-        const allDevices = [...(devices || []), ...(devicesSelectedData?.data || [])];
+        const allDevices = [...devices, ...(devicesSelectedData?.data || [])];
 
         const editLocationData: CreateLocationDto = {
           name: values.name,
           locationTypeId: values.locationType,
-          meterTypeId: values.meterType,
+          priceTypeId: values.priceType,
           initialDate: dayjs(values.startDate).format('YYYY-MM-DD'),
           description: values.description,
           userId: values.user,
@@ -202,9 +198,7 @@ const EditLocation = () => {
               initialIndex: Number(
                 editingValues[deviceId] !== undefined
                   ? editingValues[deviceId]
-                  : deviceRecord.device.locationDevice?.initialIndex ||
-                      deviceRecord.lastestTimeSeriesValue ||
-                      0,
+                  : deviceRecord.lastestTimeSeriesValue || 0,
               ),
             };
           }),
@@ -228,7 +222,32 @@ const EditLocation = () => {
     }
   };
 
-  const columns: ColumnsType<EditDeviceResponseProps> = [
+  // Create a unified type for table data
+  type TableDeviceData = {
+    device: {
+      id: string;
+      name: string;
+      devEUI: string;
+      deviceType: string;
+    };
+    lastestTimeSeriesValue: string;
+  };
+
+  // Convert all devices to unified format
+  const tableDevices: TableDeviceData[] = [
+    ...devices,
+    ...(devicesSelectedData?.data?.map((device) => ({
+      device: {
+        id: device.device.id,
+        name: device.device.name,
+        devEUI: device.device.devEUI,
+        deviceType: device.device.deviceType,
+      },
+      lastestTimeSeriesValue: device.lastestTimeSeriesValue,
+    })) || []),
+  ];
+
+  const columns: ColumnsType<TableDeviceData> = [
     {
       title: t('LOCATION.DEVICE_NAME'),
       dataIndex: ['device', 'name'],
@@ -253,7 +272,7 @@ const EditLocation = () => {
     },
     {
       title: t('LOCATION.INITIAL_ENERGY_IMPORT'),
-      dataIndex: ['device', 'locationDevice', 'initialIndex'],
+      dataIndex: 'lastestTimeSeriesValue',
       key: 'initialIndex',
       width: 150,
       render: (_, record) => {
@@ -263,7 +282,7 @@ const EditLocation = () => {
         const displayValue =
           editingValues[deviceId] !== undefined
             ? editingValues[deviceId]
-            : record.device.locationDevice?.initialIndex || record.lastestTimeSeriesValue;
+            : Number(record.lastestTimeSeriesValue) || 0;
 
         if (isEditing) {
           return (
@@ -389,8 +408,8 @@ const EditLocation = () => {
             </Form.Item>
 
             <Form.Item
-              label={t('LOCATION.METER_TYPE')}
-              name='meterType'
+              label={t('LOCATION.PRICE_TYPE')}
+              name='priceType'
               required={true}
               dependencies={['locationType']}
               rules={[
@@ -401,14 +420,14 @@ const EditLocation = () => {
                       return Promise.resolve();
                     }
                     if (!value) {
-                      return Promise.reject(new Error(t<string>('LOCATION.METER_TYPE_REQUIRED')));
+                      return Promise.reject(new Error(t<string>('LOCATION.PRICE_TYPE_REQUIRED')));
                     }
                     return Promise.resolve();
                   },
                 },
               ]}
             >
-              <MeterTypeSelect
+              <PriceTypeSelect
                 disabled={locationTypeEnum === LocationTypeEnum.RESIDENTIAL}
                 className='h-[40px]'
               />
@@ -468,7 +487,7 @@ const EditLocation = () => {
               <Table
                 rowKey={(record) => record.device.id}
                 className='custom-device-table shadow-md !rounded-lg'
-                dataSource={[...(devicesSelectedData?.data || []), ...devices]}
+                dataSource={tableDevices}
                 columns={columns}
                 scroll={{ x: 'max-content' }}
               />

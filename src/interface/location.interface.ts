@@ -5,7 +5,6 @@ import {
   EditDeviceResponseProps,
 } from './device.interface';
 import { LocationTypeEnum } from './location-type.interface';
-import { MeterType } from './meter-type.interface';
 import { UserDetail } from './user.interface';
 
 export interface LocationDto {
@@ -18,7 +17,7 @@ export interface LocationDto {
 export interface CreateLocationDto {
   name: string;
   locationTypeId: string;
-  meterTypeId: string;
+  priceTypeId: string;
   initialDate: string;
   description?: string;
   userId: string;
@@ -37,30 +36,82 @@ export interface LocationType {
   locationTypeEnum: LocationTypeEnum;
 }
 
+export interface PriceType {
+  id: string;
+  name: string;
+  priceTypeEnum: string;
+  description: string | null;
+}
+
+export interface Workspace {
+  id: string;
+  name: string;
+}
+
+export interface LocationDevice {
+  id: string;
+  initialIndex: string;
+  currentIndex: string | null;
+  device: {
+    id: string;
+    name: string;
+    devEUI: string;
+    deviceType: string;
+    description: string;
+    fieldCalculate: string;
+    voltageUnit: string;
+    voltageValue: string;
+    status: boolean;
+    priceType: any;
+  };
+}
+
+export interface DeviceWithLatestValue {
+  device: {
+    id: string;
+    name: string;
+    devEUI: string;
+    deviceType: string;
+    description: string;
+    fieldCalculate: string;
+    voltageUnit: string;
+    voltageValue: string;
+    status: boolean;
+    priceType: any;
+  };
+  lastestTimeSeriesValue: string;
+}
+
 export interface LocationResponseDto {
   id: string;
   name: string;
+  status: string;
+  initialDate: string | null;
+  description: string | null;
   locationType: LocationType;
-  description: string;
-  createdAt: string;
-  updatedAt: string;
+  workspace: Workspace;
   user: UserDetail;
-  devices: DeviceResponseProps[];
-  meterType: MeterType;
-  initialDate: string;
+  priceType: PriceType | null;
+  locationDevices: LocationDevice[];
 }
 
 export interface EditLocationResponseDto {
   id: string;
-  name: string;
-  locationType: LocationType;
-  description: string;
   createdAt: string;
+  createdBy: string | null;
   updatedAt: string;
-  user: UserDetail;
-  devices: EditDeviceResponseProps[];
-  meterType: MeterType;
+  updatedBy: string | null;
+  deletedAt: string | null;
+  deletedBy: string | null;
+  name: string;
+  status: string;
   initialDate: string;
+  description: string | null;
+  locationType: LocationType;
+  user: UserDetail;
+  priceType: PriceType | null;
+  locationDevices: LocationDevice[];
+  devices: DeviceWithLatestValue[];
 }
 
 export interface LocationFilterProps extends GetListParams {

@@ -51,6 +51,7 @@ export const API_URL = {
   DEVICE_BY_IDS: '/devices/detail-by-ids',
   UNASSIGNED_DEVICES: '/devices/unassigned',
   UNASSIGN_DEVICE_TO_LOCATION: '/devices/unassign-devices-to-location',
+  PRICE_TYPES: '/price-types',
 };
 
 export const VEHICLES_URL = '/vehicles';

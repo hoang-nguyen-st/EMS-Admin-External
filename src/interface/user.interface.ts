@@ -1,12 +1,20 @@
+import { Dayjs } from 'dayjs';
+
 import { GetListParams } from './common.interface';
+import { UserStatus } from '@app/constants';
 
 export interface UserColumns {
-  id: number;
+  id: string;
   name: string;
   email: string;
   phone: string;
   status: string;
-  operation: string;
+  address: string;
+  avatar?: string;
+  dateOfBirth: string;
+  identityId: string;
+  createdAt: string;
+  unassigned: boolean;
 }
 
 export interface Credentials {
@@ -63,5 +71,26 @@ export interface AssignPermissionParams {
 
 export interface GetUsersParams extends GetListParams {
   search: string;
-  status: string | null;
+  status?: UserStatus;
+  startDate?: string;
+  endDate?: string;
+}
+
+export interface CreateUserDto {
+  name: string;
+  email: string;
+  address: string;
+  phone: string;
+  dateOfBirth: string;
+}
+
+export interface UserTotalStatus {
+  status: string;
+  count: number;
+}
+
+export interface UserSummarizeResponse {
+  message: string;
+  data: UserTotalStatus[];
+  total: number;
 }

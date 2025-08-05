@@ -29,15 +29,15 @@ export default async ({ mode }: any) => {
       },
       host: true,
       strictPort: true,
-      port: parseInt(process.env.VITE_FRONTEND_PORT) || 5001,
+      port: parseInt(process.env.VITE_FRONTEND_PORT || '') || 5001,
     },
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      coverage: {
-        reporter: ['text', 'html'],
-        exclude: ['node_modules/'],
-      },
-    },
+    // test: {
+    //   globals: true,
+    //   environment: 'jsdom',
+    //   coverage: {
+    //     reporter: ['text', 'html'],
+    //     exclude: ['node_modules/'],
+    //   },
+    // },
   });
 };

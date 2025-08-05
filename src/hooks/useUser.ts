@@ -1,9 +1,24 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
+import { openNotificationWithIcon, NotificationTypeEnum } from '@app/components/molecules/index';
 import { NAVIGATE_URL, QUERY_KEY } from '@app/constants';
-import { GetUsersParams, UserDetail } from '@app/interface/user.interface';
-import { createUser, deleteUserAPI, getUserByIdAPI, getUsersAPI, updateUser } from '@app/services';
+import {
+  CreateUserDto,
+  GetUsersParams,
+  UserDetail,
+  UserSummarizeResponse,
+} from '@app/interface/user.interface';
+import {
+  createUserByAdmin,
+  createUser,
+  deleteUserAPI,
+  getUserByIdAPI,
+  getUsersAPI,
+  updateUser,
+  getUsersLocationAPI,
+  getUserSummarizeAPI,
+} from '@app/services';
 
 export const useCreateUser = () => {
   const navigate = useNavigate();
@@ -20,6 +35,24 @@ export const useCreateUser = () => {
   );
 };
 
+export const useCreateUserByAdmin = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (data: CreateUserDto) => {
+      return await createUserByAdmin(data);
+    },
+    {
+      onSuccess: ({ data }) => {
+        queryClient.invalidateQueries([]);
+        openNotificationWithIcon(NotificationTypeEnum.SUCCESS, data.message);
+      },
+      onError: ({ response }) => {
+        openNotificationWithIcon(NotificationTypeEnum.ERROR, response.data.message);
+      },
+    },
+  );
+};
+
 export const useGetUsers = (params: GetUsersParams) =>
   useQuery(
     [QUERY_KEY.USERS, params.search, params.status, params.page, params.take],
@@ -28,13 +61,12 @@ export const useGetUsers = (params: GetUsersParams) =>
       return data;
     },
     {
-      enabled: false,
-      keepPreviousData: true,
-      cacheTime: 0,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
     },
   );
 
-export const useGetUserById = (id: number) =>
+export const useGetUserById = (id: string) =>
   useQuery([QUERY_KEY.USERS, id], async () => {
     const { data } = await getUserByIdAPI(id);
     return data.data;
@@ -65,3 +97,22 @@ export const useDeleteUser = () => {
     return response.data;
   });
 };
+
+export const useGetUsersLocation = () =>
+  useQuery<{ data: UserDetail[] }>(
+    [QUERY_KEY.USERS],
+    async () => {
+      const { data } = await getUsersLocationAPI();
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  );
+
+export const useGetUserSummarize = () =>
+  useQuery<UserSummarizeResponse>([QUERY_KEY.USERS_SUMMARIZE], async () => {
+    const { data } = await getUserSummarizeAPI();
+    return data.data;
+  });

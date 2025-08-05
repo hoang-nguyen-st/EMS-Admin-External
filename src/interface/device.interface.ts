@@ -87,3 +87,55 @@ export interface LocationDeviceResponseProps {
   id: string;
   initialIndex: number;
 }
+
+// New interfaces for detailed device response
+export interface LocationDevice {
+  id: string;
+  initialIndex: string;
+  currentIndex: string;
+  location: {
+    id: string;
+    name: string;
+    status: string;
+    initialDate: string;
+    description: string | null;
+  };
+}
+
+export interface DetailedDeviceResponse {
+  id: string;
+  createdAt: string;
+  createdBy: string | null;
+  updatedAt: string;
+  updatedBy: string | null;
+  deletedAt: string | null;
+  deletedBy: string | null;
+  devEUI: string;
+  name: string;
+  deviceType: string;
+  description: string;
+  fieldCalculate: string;
+  voltageUnit: string;
+  voltageValue: string;
+  status: boolean;
+  meterType: string | null;
+  locationDevices: LocationDevice[];
+  locationName: string;
+}
+
+export interface TimeSeriesValue {
+  ts: number;
+  value: string;
+}
+
+export interface LatestTimeSeriesValue {
+  [key: string]: TimeSeriesValue[];
+}
+
+export interface DetailDeviceResponse {
+  data: {
+    device: DetailedDeviceResponse;
+    lastestTimeSeriesValue: LatestTimeSeriesValue;
+  };
+  message: string;
+}

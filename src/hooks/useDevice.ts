@@ -6,6 +6,7 @@ import { QUERY_KEY, TimestampEnum } from '@app/constants';
 import {
   DetailDeviceProps,
   DetailDeviceSettingProps,
+  DetailDeviceResponse,
   DeviceProps,
   DeviceResponseProps,
   DeviceSettingProps,
@@ -94,11 +95,11 @@ export const useGetElectricityConsumption = (
   );
 
 export const useGetDetailDevice = (deviceThingsboardId: string) =>
-  useQuery<DetailDeviceSettingProps>(
+  useQuery<DetailDeviceResponse>(
     [QUERY_KEY.DETAIL_DEVICE, deviceThingsboardId],
     async () => {
       const { data } = await getDetailDeviceAPI(deviceThingsboardId);
-      return data.data;
+      return data;
     },
     {
       refetchOnWindowFocus: false,

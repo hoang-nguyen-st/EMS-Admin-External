@@ -3,15 +3,16 @@ import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { getNameDeviceType } from '@app/constants';
+import { getNameDeviceType, DeviceType } from '@app/constants';
 import { useGetDetailDevice } from '@app/hooks/useDevice';
+import { DetailDeviceResponse } from '@app/interface/device.interface';
 
 const DeviceInfomation = () => {
   const { id } = useParams();
   const { t } = useTranslation();
 
   const { data: detailDeviceRes, isLoading } = useGetDetailDevice(id!);
-  const fieldCalculate = detailDeviceRes?.device.fieldCalculate;
+  const fieldCalculate = detailDeviceRes?.data?.device.fieldCalculate;
 
   if (isLoading || !detailDeviceRes) {
     return (
@@ -23,18 +24,19 @@ const DeviceInfomation = () => {
     <Card>
       <div className='flex justify-between items-start'>
         <div className='gap-2 flex flex-col'>
-          <p className='font-bold text-2xl'>{detailDeviceRes.device.name}</p>
+          <p className='font-bold text-2xl'>{detailDeviceRes.data.device.name}</p>
           <p className='text-lg text-[#667085]'>
-            {detailDeviceRes.device.deviceType
+            {detailDeviceRes.data.device.deviceType
               ? t('DEVICE_MANAGEMENT.DEVICE_PROFILE_TYPE', {
                   deviceType:
-                    detailDeviceRes && getNameDeviceType(detailDeviceRes.device.deviceType, t),
+                    detailDeviceRes &&
+                    getNameDeviceType(detailDeviceRes.data.device.deviceType as DeviceType, t),
                 })
               : 'N/A'}
           </p>
         </div>
         <div className='bg-[#28A745] text-white font-medium px-4 py-2 rounded-xl border-[#12B76A] border-[1px]'>
-          {detailDeviceRes.device.status
+          {detailDeviceRes.data.device.status
             ? t('DEVICE_MANAGEMENT.ACTIVE')
             : t('DEVICE_MANAGEMENT.INACTIVE')}
         </div>
@@ -50,17 +52,19 @@ const DeviceInfomation = () => {
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.LAST_ELECTRICITY_CONSUMPTION')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes.lastestTimeSeriesValue
-                  ? detailDeviceRes.lastestTimeSeriesValue?.[fieldCalculate as string]?.[0]?.value
+                {detailDeviceRes.data.lastestTimeSeriesValue
+                  ? detailDeviceRes.data.lastestTimeSeriesValue?.[fieldCalculate as string]?.[0]
+                      ?.value
                   : 'N/A'}
               </span>
             </p>
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.TIME_ELECTRICITY_CONSUMPTION')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes.lastestTimeSeriesValue
+                {detailDeviceRes.data.lastestTimeSeriesValue
                   ? dayjs(
-                      detailDeviceRes.lastestTimeSeriesValue?.[fieldCalculate as string]?.[0]?.ts,
+                      detailDeviceRes.data.lastestTimeSeriesValue?.[fieldCalculate as string]?.[0]
+                        ?.ts,
                     ).format('DD/MM/YYYY HH:mm')
                   : 'N/A'}
               </span>
@@ -77,27 +81,27 @@ const DeviceInfomation = () => {
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.DEVICE_LOCATION')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes.device.location?.name || 'N/A'}
+                {detailDeviceRes.data.device.locationName || 'N/A'}
               </span>
             </p>
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.ELECTRICITY_USAGE')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes.device.voltageValue
-                  ? `${detailDeviceRes.device.voltageValue} ${detailDeviceRes.device.voltageUnit}`
+                {detailDeviceRes.data.device.voltageValue
+                  ? `${detailDeviceRes.data.device.voltageValue} ${detailDeviceRes.data.device.voltageUnit}`
                   : 'N/A'}
               </span>
             </p>
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.DEV_EUI')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes.device.devEUI || 'N/A'}
+                {detailDeviceRes.data.device.devEUI || 'N/A'}
               </span>
             </p>
             <p className='text-base'>
               {t('DEVICE_MANAGEMENT.MEASUREMENT_DEVICE')}:{' '}
               <span className='font-semibold text-lg'>
-                {detailDeviceRes.device.fieldCalculate || 'N/A'}
+                {detailDeviceRes.data.device.fieldCalculate || 'N/A'}
               </span>
             </p>
           </div>

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+  --primary-color: #465fff;
+  --primary-color-light: #ecf3ff;
+  --primary-color-bold: #262e89;
+
+  --primary-second-color: #344054;
+
+  --primary-background: #f8f8f8;
+
+  --badge--paid: #28a745;
+  --badge--pending: #021247;
+  --badge--overdue: #dc3545;
+
+  --pharagraph-color: #ffffff;
+}
+
+body {
+  background: var(--primary-background);
+}

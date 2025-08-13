@@ -1,0 +1,103 @@
+import {
+  LeftOutlined,
+  PhoneOutlined,
+  MailOutlined,
+  CalendarFilled,
+  EnvironmentOutlined,
+  FolderOutlined,
+} from '@ant-design/icons';
+import { Image, Button, Empty, Spin } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { useParams, Link } from 'react-router-dom';
+
+import companyDefault from '@app/assets/images/company_default.jpg';
+import defaultAvatar from '@app/assets/images/default-avatar-profile.webp';
+import { API_URL, UserStatus } from '@app/constants';
+import { formatTime } from '@app/helpers';
+import { useGetUserById } from '@app/hooks';
+import { ProjectUserDetail } from '@app/interface/project-user.interface';
+
+const UserDetail = () => {
+  const { t } = useTranslation();
+  const { id } = useParams<{ id: string }>();
+  const { data: user, isLoading } = useGetUserById(id!);
+
+  if (isLoading || !user) {
+    return (
+      <div className='w-full text-center'>{isLoading ? <Spin size='large' /> : <Empty />}</div>
+    );
+  }
+
+  return (
+    <div>
+      <Link className='text-primary-second flex items-center gap-x-1' to={API_URL.USER_MANAGEMENT}>
+        <LeftOutlined />
+        {t('USER.RETURN')}
+      </Link>
+      <div className='rounded-xl shadow p-8 mt-4 bg-white space-y-4'>
+        <div className='flex items-center justify-between'>
+          <div className='flex items-center gap-x-2'>
+            <div className='h-24 w-24'>
+              <Image className='w-full h-full object-cover' preview={false} src={defaultAvatar} />
+            </div>
+            <div className='space-y-1'>
+              <h1>{user.name}</h1>
+              <p className='text-base text-gray-500'>
+                {user.dateOfBirth ? formatTime(user.dateOfBirth) : t('USER_DETAIL.NO_INFORMATION')}
+              </p>
+            </div>
+          </div>
+          <div>
+            <Button
+              className={`text-base px-8 py-5 rounded-2xl ${
+                user.status === UserStatus.ACTIVE
+                  ? 'bg-[#039855] text-white hover:!text-[#039855] hover:!border-[#A9B4BE]'
+                  : 'bg-[#A9B4BE] text-black hover:!text-black hover:!border-[#A9B4BE]'
+              }`}
+            >
+              {user.status === UserStatus.ACTIVE
+                ? t('USER_DETAIL.ACTIVE')
+                : t('USER_DETAIL.INACTIVE')}
+            </Button>
+          </div>
+        </div>
+        <div className='flex items-center justify-between'>
+          <div className='space-y-2'>
+            <p className='text-lg font-bold'>{t('USER_DETAIL.CONTACT')}</p>
+            <div className='flex-col items-end space-y-2 text-gray-600'>
+              <div className='flex items-center gap-x-2'>
+                <MailOutlined className='text-lg text-blue-900' />
+                {user.email || t('USER_DETAIL.NO_INFORMATION')}
+              </div>
+              <div className='flex items-center gap-x-2'>
+                <PhoneOutlined className='text-lg text-green-600' />
+                {user.phone || t('USER_DETAIL.NO_INFORMATION')}
+              </div>
+              <div className='flex items-center gap-x-2'>
+                <CalendarFilled className='text-lg text-gray-400' />{' '}
+                {user.dateOfBirth ? formatTime(user.dateOfBirth) : t('USER_DETAIL.NO_INFORMATION')}
+              </div>
+              <div className='flex items-center gap-x-2'>
+                <EnvironmentOutlined className='text-lg text-red-600' />
+                {user.address || t('USER_DETAIL.NO_INFORMATION')}
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className='shadow-[0_0px_2px_1px_rgba(0,0,0,0.2)] p-6 pr-12 rounded-2xl flex items-center gap-x-4'>
+              <div className='bg-primary-light p-4 rounded-lg'>
+                <FolderOutlined className='text-xl' />
+              </div>
+              <div className='flex-col'>
+                <p>{t('USER_DETAIL.PROJECT_ALL')}</p>
+                <p className='text-2xl font-bold'>{user.projectsCount || '0'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default UserDetail;

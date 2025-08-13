@@ -1,0 +1,15 @@
+.ant-layout {
+  background: #f8f8f8;
+  height: 100vh;
+  overflow: hidden;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    background: #efeff5;
+    overflow-y: auto;
+  }
+  .outlet-layout {
+    width: 100%;
+  }
+}

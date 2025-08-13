@@ -1,12 +1,12 @@
 version: '3.8'
 services:
   frontend:
-    container_name: EMS-admin
+    container_name: EMS-Admin-External
     build:
       context: .
       dockerfile: ./docker/Dockerfile
     ports:
-      - '5001:5001'
+      - '5002:5002'
     volumes:
       - ./:/app
       - /app/node_modules
